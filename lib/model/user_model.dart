@@ -3,6 +3,7 @@ part 'user_model.g.dart';
 @JsonSerializable()
 class UserModel {
   String name;
+  String lastName;
   String description;
   DateTime eventDate;
   UserModel();
