@@ -41,23 +41,25 @@ class LoginView extends StatelessWidget {
                           SizedBox(
                             width: 30,
                           ),
-                          Container(
-                              width: MediaQuery.of(context).size.width * 0.7,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  labelText: "EMAIL",
-                                  labelStyle: TextStyle(
-                                      fontFamily: 'Open Sans',
-                                      fontSize: 16,
-                                      color: const Color.fromRGBO(
-                                          149, 149, 149, 1)),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
+                          Expanded(
+                            child: Container(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                    labelText: "EMAIL",
+                                    labelStyle: TextStyle(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 16,
                                         color: const Color.fromRGBO(
-                                            196, 196, 196, 1)),
+                                            149, 149, 149, 1)),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: const Color.fromRGBO(
+                                              196, 196, 196, 1)),
+                                    ),
                                   ),
-                                ),
-                              )
+                                )
+                            ),
                           ),
                         ],
                       ),
@@ -77,27 +79,29 @@ class LoginView extends StatelessWidget {
                           SizedBox(
                             width: 30,
                           ),
-                          Container(
-                              width: MediaQuery.of(context).size.width * 0.7,
-                              child: TextField(
-                                obscureText: true,
-                                style: TextStyle(
-                                  color: const Color.fromRGBO(149, 149, 149, 1),
-                                ),
-                                decoration: InputDecoration(
-                                  labelText: "PASSWORD",
-                                  labelStyle: TextStyle(
-                                      fontFamily: 'Open Sans',
-                                      fontSize: 16,
-                                      color: const Color.fromRGBO(
-                                          149, 149, 149, 1)),
-                                  focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: const Color.fromRGBO(
-                                            196, 196, 196, 1)),
+                          Expanded(
+                            child: Container(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: TextField(
+                                  obscureText: true,
+                                  style: TextStyle(
+                                    color: const Color.fromRGBO(149, 149, 149, 1),
                                   ),
-                                ),
-                              )
+                                  decoration: InputDecoration(
+                                    labelText: "PASSWORD",
+                                    labelStyle: TextStyle(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 16,
+                                        color: const Color.fromRGBO(
+                                            149, 149, 149, 1)),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: const Color.fromRGBO(
+                                              196, 196, 196, 1)),
+                                    ),
+                                  ),
+                                )
+                            ),
                           ),
                         ],
                       ),

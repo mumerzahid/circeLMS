@@ -59,16 +59,16 @@ class DashboardView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(3.0),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.13,
+                        // height: MediaQuery.of(context).size.height * 0.13,
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
                               color: const Color.fromRGBO(0, 0, 0, 0.25)
                                   .withOpacity(0.4),
-                              spreadRadius: 7,
-                              blurRadius: 10,
-                              offset:
-                                  Offset(0, 3), // changes position of shadow
+                              // spreadRadius: 7,
+                              // blurRadius: 10,
+                              // offset:
+                              //     Offset(0, 3), // changes position of shadow
                             ),
                           ],
                           border: Border(

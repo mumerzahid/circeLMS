@@ -20,21 +20,21 @@ class CustomButton extends StatelessWidget {
                     border: Border.all(
                         width: 3,
                         color: const Color.fromRGBO(25, 87, 94, 1))),
-                height: 50,
-                width: 50,
+                height: MediaQuery.of(context).size.height * 0.06, // was fixed height and width 50,
+                width: MediaQuery.of(context).size.width * 0.11,
                 child: Center(
                   child: Image.asset(imgUrl,
-                    width: 25,
-                    height: 25,
+                    width:    MediaQuery.of(context).size.width * 0.055, //was fixed height and width 25
+                    height:  MediaQuery.of(context).size.height * 0.03,
                   ),
                 ),
               ),
               Positioned(
-                left: 12,
-                top: 40,
+                left: MediaQuery.of(context).size.width * 0.03, // 12
+                top: MediaQuery.of(context).size.width * 0.085, // 40
                 child: Container(
-                  height: 25,
-                  width: 25,
+                  height: MediaQuery.of(context).size.height * 0.03, //25
+                  width: MediaQuery.of(context).size.width * 0.055, //25
                   color: Colors.transparent,
                   child: Image.asset('assets/images/Diamond.png'),
                 ),
@@ -43,13 +43,16 @@ class CustomButton extends StatelessWidget {
             overflow: Overflow.visible,
           ),
           Container(
-            width: 80,
-              padding: EdgeInsets.only(top: 15),
+            width:MediaQuery.of(context).size.width * 0.195, //80
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.018, // 12
+              ),
               child: Center(
                 child: Text(
                   screenName,
-                  style: TextStyle(color:
-                  pressed?Color.fromRGBO(107, 126, 130, 1):
+                  style: TextStyle(
+                      fontSize:13,
+                      color: pressed?Color.fromRGBO(107, 126, 130, 1):
                    Color.fromRGBO(146, 204, 180, 1)
                   ),
                 ),

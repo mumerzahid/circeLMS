@@ -24,7 +24,7 @@ class SettingsView extends StatelessWidget {
           child: Column(children: [
             Padding(
               padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.height * 0.1,
+                // top: MediaQuery.of(context).size.height * 0.1,
                 left: MediaQuery.of(context).size.width * 0.07,
                 right: MediaQuery.of(context).size.width * 0.07,
               ),

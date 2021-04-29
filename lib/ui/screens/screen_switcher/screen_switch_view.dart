@@ -17,7 +17,7 @@ class ScreenSwitchView extends StatelessWidget {
     return ViewModelBuilder<ScreenSwitcherViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         appBar: CustomAppBar(
-            height: MediaQuery.of(context).size.height * 0.32,
+            height: MediaQuery.of(context).size.height *0.35,
             sName: model.currentScreen,
             fCall: true,
             topNavigationCallBack: model.switchTabs,
