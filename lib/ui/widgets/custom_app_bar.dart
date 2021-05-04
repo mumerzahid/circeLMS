@@ -45,25 +45,25 @@ class CustomAppBar extends PreferredSize{
                     )
                 ),
                 Expanded(
-                  flex: 5,
+                  flex: 4,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Expanded(
                         child: Image.asset('assets/images/Group1883.png' ,
-                            width: MediaQuery.of(context).size.width *0.2, //100
+                            // width: MediaQuery.of(context).size.width *0.2, //100
                             height:MediaQuery.of(context).size.height *0.1, //60
                         ),
                       ),
                       Expanded(
                         child: Image.asset('assets/images/Group1882.png',
-                          width: MediaQuery.of(context).size.width *0.15, //50
+                          // width: MediaQuery.of(context).size.width *0.15, //50
                         height: MediaQuery.of(context).size.height *0.05, //35
                         ),
                       ),
                       Expanded(
                         child: Image.asset('assets/images/Group1881.png',
-                          width: MediaQuery.of(context).size.width *0.1, //70
+                          // width: MediaQuery.of(context).size.width *0.1, //70
                           height: MediaQuery.of(context).size.height *0.1
                         ),
                       ),
@@ -102,8 +102,8 @@ class CustomAppBar extends PreferredSize{
               // horizontal:MediaQuery.of(context).size.width * 0.01,
               // vertical: MediaQuery.of(context).size.height * 0.07,
               top: MediaQuery.of(context).size.height * 0.06,
-              left: MediaQuery.of(context).size.width * 0.02,
-              right: MediaQuery.of(context).size.width * 0.02,
+              left: MediaQuery.of(context).size.width * 0.017,
+              right: MediaQuery.of(context).size.width * 0.015,
             ),
               child: CustomButtonBar(callback: topNavigationCallBack , vScreen: vScreen )
           ) : Container(height: 0,)

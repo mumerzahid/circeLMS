@@ -10,11 +10,15 @@ import 'package:crice_hospital_app/ui/widgets/stepper.dart';
 import 'package:flutter/material.dart';
 import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:crice_hospital_app/app/router.dart' as router;
+import 'package:stacked_services/stacked_services.dart';
+
+import 'services/snackbar.dart';
 
 
 
 void main() {
   setupLocator();
+  MySnackBar();
   runApp(MyApp());
 }
 Map<int, Color> color =
@@ -40,7 +44,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner:false,
       initialRoute: routes.SwitcherRoute,
       onGenerateRoute: router.generateRoute,
-      navigatorKey: locator<NavigationService>().navigatorKey,
+      navigatorKey: StackedService.navigatorKey,
+      // navigatorKey: locator<MyNavigationService>().navigatorKey,
       theme: ThemeData(
         primarySwatch: colorCustom,
       ),

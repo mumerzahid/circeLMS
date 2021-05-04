@@ -1,4 +1,5 @@
 import 'package:crice_hospital_app/ui/screens/dashboard/dashboard_view.dart';
+import 'package:crice_hospital_app/ui/screens/drawer_view/drawer_view.dart';
 import 'package:crice_hospital_app/ui/screens/login_screen/login_view.dart';
 import 'package:crice_hospital_app/ui/screens/notification_screen/notification_screen_view.dart';
 import 'package:crice_hospital_app/ui/screens/report/report_view.dart';
@@ -35,6 +36,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => ScreenSwitchView());
     case routes.LoginRoute:
       return MaterialPageRoute(builder: (context) => LoginView());
+    case routes.DrawerRoute:
+      return MaterialPageRoute(builder: (context) => DrawerView());
       default:
       return MaterialPageRoute(
         builder: (context) => Scaffold(

@@ -1,3 +1,4 @@
+import 'package:crice_hospital_app/ui/screens/drawer_view/drawer_viewmodel.dart';
 import 'package:crice_hospital_app/ui/screens/login_screen/login_viewmodel.dart';
 import 'package:crice_hospital_app/ui/screens/screen_switcher/screen_switch_view.dart';
 import 'package:crice_hospital_app/ui/screens/screen_switcher/screen_switcher_viewmodel.dart';
@@ -8,7 +9,7 @@ import 'package:flutter/material.dart';
 class MyCustomDrawer extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return  SafeArea(
       child: Container(
         width: MediaQuery.of(context).size.width,
         child: Drawer(
@@ -44,7 +45,7 @@ class MyCustomDrawer extends StatelessWidget{
                 ),
               ),
               Positioned(
-                left:MediaQuery.of(context).size.width * 0.16 ,
+                left:MediaQuery.of(context).size.width * 0.15 ,
                 top: MediaQuery.of(context).size.height * 0.1,
                 child: Column(
                   // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -70,7 +71,7 @@ class MyCustomDrawer extends StatelessWidget{
                       ),
                         SizedBox(width: 15,),
 
-                        Text("                " )
+                        Text("                 " )
                       ]
 
                     ),
@@ -101,11 +102,14 @@ class MyCustomDrawer extends StatelessWidget{
                         ),
                         SizedBox(width: 15,),
 
-                        Text("Dashboard",
-                          style: TextStyle(
-                              fontFamily: 'Open Sans',
-                              fontSize: 13,
-                              color: const Color.fromRGBO(107, 126, 129, 1)
+                        InkWell(
+                          onTap: ()=>LoginViewModel().navigation(),
+                          child: Text("Dashboard",
+                            style: TextStyle(
+                                fontFamily: 'Open Sans',
+                                fontSize: 13,
+                                color: const Color.fromRGBO(107, 126, 129, 1)
+                            ),
                           ),
                         )
                       ]
@@ -137,12 +141,15 @@ class MyCustomDrawer extends StatelessWidget{
                         ),
                         SizedBox(width: 15,),
 
-                        Text("Settings    ",
-                          style: TextStyle(
-                            fontFamily: 'Open Sans',
-                            fontSize: 13,
-                            color: const Color.fromRGBO(107, 126, 129, 1)
-                        ),)
+                        InkWell(
+                          onTap: () => SettingsViewModel().navigation(),
+                          child: Text("Settings     ",
+                            style: TextStyle(
+                              fontFamily: 'Open Sans',
+                              fontSize: 13,
+                              color: const Color.fromRGBO(107, 126, 129, 1)
+                          ),),
+                        )
 
                       ]
                     )

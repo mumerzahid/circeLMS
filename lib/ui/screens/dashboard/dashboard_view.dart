@@ -65,10 +65,6 @@ class DashboardView extends StatelessWidget {
                             BoxShadow(
                               color: const Color.fromRGBO(0, 0, 0, 0.25)
                                   .withOpacity(0.4),
-                              // spreadRadius: 7,
-                              // blurRadius: 10,
-                              // offset:
-                              //     Offset(0, 3), // changes position of shadow
                             ),
                           ],
                           border: Border(

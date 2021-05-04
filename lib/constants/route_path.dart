@@ -5,3 +5,4 @@ const String VisitRoute = 'Visit';
 const String SettingRoute = 'Setting';
 const String SwitcherRoute = 'Switcher';
 const String LoginRoute = 'Login';
+const String DrawerRoute = 'Drawer';

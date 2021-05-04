@@ -27,12 +27,12 @@ class CustomButtonBar extends StatelessWidget {
         Positioned(
           // padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).size.height * 0.06,
-            left: MediaQuery.of(context).size.width * 0.09,
-            right: MediaQuery.of(context).size.width * 0.09,
+            left: MediaQuery.of(context).size.width * 0.1,
+            right: MediaQuery.of(context).size.width * 0.1,
           // ),
           child: Container(
             height: MediaQuery.of(context).size.height * 0.009,
-            color: const Color.fromRGBO(134, 227, 220, 12),
+            color: Color.fromRGBO(134, 227, 220, 12),
           ),
         ),
 

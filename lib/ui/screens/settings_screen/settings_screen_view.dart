@@ -50,16 +50,14 @@ class SettingsView extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.003,
                   ),
-                  TextFieldWidget(
+                  TextFieldWidget
+                    (
                     null,
                     "+00 000 00000",
                     TextInputType.visiblePassword,
-                    true,
+                    false,
                     null,
                     null,
-                      callFunction: (value) {
-                        model.setIsObscureText(value);
-                      }
                   ),
                   Padding(
                       padding: EdgeInsets.only(
@@ -83,9 +81,12 @@ class SettingsView extends StatelessWidget {
                     null,
                     "********",
                     TextInputType.visiblePassword,
-                    false,
+                    model.obscureText,
                     null,
                     Icons.visibility_off,
+                      callFunction: (value) {
+                        model.setIsObscureText(value);
+                      }
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,

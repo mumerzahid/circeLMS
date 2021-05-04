@@ -5,11 +5,4 @@ import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:stacked/stacked.dart';
 class NotificationScreenViewModel extends BaseViewModel {
 
-  // final NavigationService _navigationService =locator<NavigationService>();
-  //
-  // Future<bool> navigation({bool success = true}) async {
-  //
-  //   _navigationService.navigateTo(routes.NotificationRoute);
-  //
-  // }
 }

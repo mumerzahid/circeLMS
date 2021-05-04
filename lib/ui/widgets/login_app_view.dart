@@ -10,10 +10,10 @@ Size get preferredSize => Size.fromHeight(height);
 Widget build(BuildContext context){
   return SafeArea(
     top: true,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
+      child: Column(
+        children: [
+          Expanded(
+            child: Padding(
               padding:EdgeInsets.only(
                 top: MediaQuery.of(context).size.height * 0.03,
                 right: MediaQuery.of(context).size.width * 0.03,
@@ -32,15 +32,15 @@ Widget build(BuildContext context){
                 ],
               ),
             ),
-            Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal:MediaQuery.of(context).size.width * 0.066,
-                   vertical:MediaQuery.of(context).size.height * 0.05
-                ),
-              child: Image.asset("assets/images/loog.png"),
-                    ),
-          ],
-        ),
+          ),
+          Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal:MediaQuery.of(context).size.width * 0.066,
+                 vertical:MediaQuery.of(context).size.height * 0.05
+              ),
+            child: Image.asset("assets/images/loog.png"),
+                  ),
+        ],
       )
   );
 }

@@ -114,8 +114,7 @@ class ReportView extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              ]
-                          ),
+                              ]),
                           Container(
                               height: 35,
                               width: 150,

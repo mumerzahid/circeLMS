@@ -10,8 +10,15 @@ import 'login_viewmodel.dart';
 class LoginView extends StatelessWidget {
   const LoginView({Key key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
+    // bool loading = true;
+    // loading? Container(
+    //   child: Center(
+    //     child: CircularProgressIndicator(),
+    //   ),
+    // ):
     return ViewModelBuilder<LoginViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
         top: true,
@@ -45,6 +52,7 @@ class LoginView extends StatelessWidget {
                             child: Container(
                                 width: MediaQuery.of(context).size.width * 0.7,
                                 child: TextField(
+                                  controller: model.emailController,
                                   decoration: InputDecoration(
                                     labelText: "EMAIL",
                                     labelStyle: TextStyle(
@@ -58,8 +66,7 @@ class LoginView extends StatelessWidget {
                                               196, 196, 196, 1)),
                                     ),
                                   ),
-                                )
-                            ),
+                                )),
                           ),
                         ],
                       ),
@@ -83,9 +90,11 @@ class LoginView extends StatelessWidget {
                             child: Container(
                                 width: MediaQuery.of(context).size.width * 0.7,
                                 child: TextField(
+                                  controller: model.passwordController,
                                   obscureText: true,
                                   style: TextStyle(
-                                    color: const Color.fromRGBO(149, 149, 149, 1),
+                                    color:
+                                        const Color.fromRGBO(149, 149, 149, 1),
                                   ),
                                   decoration: InputDecoration(
                                     labelText: "PASSWORD",
@@ -100,8 +109,7 @@ class LoginView extends StatelessWidget {
                                               196, 196, 196, 1)),
                                     ),
                                   ),
-                                )
-                            ),
+                                )),
                           ),
                         ],
                       ),
@@ -113,22 +121,28 @@ class LoginView extends StatelessWidget {
                             left: MediaQuery.of(context).size.width * 0.1),
                         child: Row(
                           children: [
-                            Container(
-                              child: Image.asset(
-                                "assets/images/Group 1799.png",
-                                width: MediaQuery.of(context).size.width * 0.1,
+                            InkWell(
+                              onTap:()=> model.logIn(model.emailController.text, model.passwordController.text),
+                              child: Container(
+                                child: Image.asset(
+                                  "assets/images/Group 1799.png",
+                                  width: MediaQuery.of(context).size.width * 0.1,
+                                ),
                               ),
                             ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.05,
                             ),
                             Container(
-                              child: Text(
-                                "LOGIN",
-                                style: TextStyle(
-                                  fontFamily: 'Open Sans',
-                                  fontSize: 18,
-                                  color: const Color.fromRGBO(107, 126, 129, 1),
+                              child: InkWell(
+                                onTap: ()=>model.snackBar(),
+                                child: Text(
+                                  "LOGIN",
+                                  style: TextStyle(
+                                    fontFamily: 'Open Sans',
+                                    fontSize: 18,
+                                    color: const Color.fromRGBO(107, 126, 129, 1),
+                                  ),
                                 ),
                               ),
                             )
