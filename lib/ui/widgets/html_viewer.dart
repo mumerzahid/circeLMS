@@ -1,0 +1,44 @@
+import 'package:crice_hospital_app/app/locator.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+class HtmlViewer extends StatelessWidget {
+  final String data;
+  final NavigationService _navigationService = locator<NavigationService>();
+
+  HtmlViewer({Key key, this.data}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      top: true,
+      child: Scaffold(
+        appBar: AppBar(
+            leading: InkWell(
+                onTap: () => Navigator.pop(context),
+                child: Icon(Icons.keyboard_backspace_rounded)),
+            title: Text(
+              "HOSTPITAL REPORT",
+              style: TextStyle(
+                fontFamily: 'Open Sans',
+                  fontWeight: FontWeight.w700,
+                fontSize: 16,
+                color: Colors.black
+              ),
+            ),
+            centerTitle: true ,
+        ),
+        body: data == null
+            ? SizedBox()
+            : Padding(
+                padding: EdgeInsets.all(20),
+                child: WebviewScaffold(
+                  url: Uri.dataFromString(data, mimeType: 'text/html')
+                      .toString(),
+                ),
+              ),
+      ),
+    );
+  }
+}

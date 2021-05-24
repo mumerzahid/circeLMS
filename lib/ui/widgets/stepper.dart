@@ -676,3 +676,122 @@
 //     data['auth_token'] = this.authToken;
 //     return data;
 //   }
+
+
+// register Service Manually
+// void setupLocator() {
+//   locator.registerSingleton(()=> NavigationService());
+//   locator.registerSingleton(()=> SnackbarService());
+//   // locator.registerLazySingleton(() => MyNavigationService());
+//   locator.registerLazySingleton(() => MediaService());
+//   locator.registerLazySingleton(() => ValidationService());
+//   locator.registerLazySingleton(() => Api());
+// }
+
+//Material Routes
+// @MaterialAutoRouter(
+//   routes: [
+//     MaterialRoute(page: DashboardView ,initial: true),
+//     MaterialRoute(page: NotificationScreenView),
+//     MaterialRoute(page: ReportView),
+//     MaterialRoute(page: VisitScreenView,),
+//   ],
+// )
+// class $Router {}
+
+//oldNavigationService
+// import 'package:crice_hospital_app/app/locator.dart';
+// import 'package:flutter/widgets.dart';
+// import 'package:injectable/injectable.dart';
+// import 'package:stacked_services/stacked_services.dart';
+//
+// @lazySingleton
+// class MyNavigationService{
+//
+//   // final GlobalKey <NavigatorState>  navigatorKey = GlobalKey<NavigatorState>();
+//   final NavigationService navigationService=locator<NavigationService>();
+//
+//
+//   Future<dynamic> navigateTo(String routeName)
+//   {
+//     // return navigatorKey.currentState.pushNamed(routeName);
+//     return navigationService.navigateTo(routeName);
+//   }
+//
+//   // bool goBack(){
+//   //   return navigatorKey.currentState.canPop();
+//   // }
+// }
+
+
+//NavigationMethod
+// bool pressAttention = false;
+// final NavigationService _navigationService =locator<NavigationService>();
+//
+// Future<bool> navigation({bool success = true}) async {
+//
+//   _navigationService.navigateTo(routes.DashboardRoute);
+//
+// }
+
+// else part of login API
+// Fluttertoast.showToast(msg: passError + " Password");
+// _emailError = loginModel.message;
+// Fluttertoast.showToast(msg: emailError);
+
+
+//TextField
+// import 'package:flutter/material.dart';
+//
+// class TextFieldLogin extends StatelessWidget {
+//   final TextEditingController controller;
+//   final IconData iconData, suffixIcon;
+//   final String hintText;
+//   final TextInputType inputType;
+//   final bool obscureText;
+//   final String errorText;
+//   final ValueChanged<bool> callFunction;
+//   TextFieldLogin(this.controller, this.iconData, this.hintText, this.inputType,
+//       this.obscureText, this.errorText, this.suffixIcon,
+//       {this.callFunction});
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//         margin: EdgeInsets.only(top: 10, left: 35.0, right: 35.0),
+//         child: TextFormField(
+//           controller: controller,
+//           cursorColor: Colors.black,
+//           obscureText: obscureText,
+//           keyboardType: inputType,
+//           textAlignVertical: TextAlignVertical.center,
+//           enabled: true,
+//           decoration: InputDecoration(
+//             focusedBorder: UnderlineInputBorder(
+//               borderSide: BorderSide(color: Colors.black),
+//             ),
+//             errorText: errorText,
+//             prefixIcon: Padding(
+//               padding: EdgeInsets.only(right: 20),
+//               child: Icon(
+//                 iconData,
+//                 color: Colors.black,
+//               ),
+//             ),
+//             suffixIcon: GestureDetector(
+//               onTap: () {
+//                 callFunction(!obscureText);
+//               },
+//               child: Padding(
+//                 padding: const EdgeInsets.only(right: 20),
+//                 child: Icon(
+//                   obscureText?Icons.visibility:Icons.visibility_off,
+//                   color: Colors.black,
+//                 ),
+//               ),
+//             ),
+//             hintText: hintText,
+//             hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+//           ),
+//         ));
+//   }
+// }

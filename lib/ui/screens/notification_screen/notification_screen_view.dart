@@ -1,14 +1,9 @@
-import 'package:crice_hospital_app/ui/shared/style_size.dart';
-import 'package:crice_hospital_app/ui/widgets/custom_app_bar.dart';
-import 'package:crice_hospital_app/ui/widgets/custom_button_bar.dart';
-import 'package:crice_hospital_app/ui/widgets/drawyer.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'notification_screen_viewmodel.dart';
 
 class NotificationScreenView extends StatelessWidget {
   const NotificationScreenView({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<NotificationScreenViewModel>.reactive(

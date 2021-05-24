@@ -1,8 +1,4 @@
 import 'package:crice_hospital_app/ui/screens/visits_screen/visit_screen_viewmodel.dart';
-import 'package:crice_hospital_app/ui/shared/style_size.dart';
-import 'package:crice_hospital_app/ui/widgets/custom_app_bar.dart';
-import 'package:crice_hospital_app/ui/widgets/custom_button_bar.dart';
-import 'package:crice_hospital_app/ui/widgets/drawyer.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -14,16 +10,16 @@ class VisitScreenView extends StatelessWidget {
     return ViewModelBuilder<VisitScreenViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-        body: SingleChildScrollView(
+        body: model.isLoading?CircularProgressIndicator():SingleChildScrollView(
           child: Column(
             children: [
               // verticalSpaceLarge,
               // verticalSpaceTiny,
-              ListView.builder(
+              model.isLoading?CircularProgressIndicator():ListView.builder(
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   physics: ScrollPhysics(),
-                  itemCount: 10,
+                  itemCount: model.visits !=null ? model.visits.length : 0,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: EdgeInsets.only(
@@ -55,7 +51,7 @@ class VisitScreenView extends StatelessWidget {
                                     // horizontalSpaceLarge,
                                     Expanded(
                                       child: Text(
-                                        " Masoom",
+                                        model.visits[index].userName,
                                         style: TextStyle(
                                           fontFamily: 'Open Sans',
                                           fontWeight: FontWeight.w700,
@@ -94,7 +90,7 @@ class VisitScreenView extends StatelessWidget {
                                     Expanded(
                                         flex: 6,
                                         child: Text(
-                                          "masomtrainer@gmail.com ",
+                                          model.visits[index].companyPocEmail,
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontSize: 12,
@@ -130,7 +126,7 @@ class VisitScreenView extends StatelessWidget {
                                     Expanded(
                                         flex: 6,
                                         child: Text(
-                                          "Lorem Ipsum ",
+                                          model.visits[index].level,
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontSize: 12,
@@ -166,7 +162,7 @@ class VisitScreenView extends StatelessWidget {
                                     Expanded(
                                         flex: 6,
                                         child: Text(
-                                          "Masom Trainer",
+                                          model.visits[index].companyName,
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontSize: 12,
@@ -202,7 +198,7 @@ class VisitScreenView extends StatelessWidget {
                                     Expanded(
                                         flex: 6,
                                         child: Text(
-                                          "21 February 2020, 04:38 PM",
+                                          model.visits[index].checkInTimeAndDate,
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontSize: 12,
@@ -238,7 +234,7 @@ class VisitScreenView extends StatelessWidget {
                                     Expanded(
                                         flex: 6,
                                         child: Text(
-                                          "21 February 2021, 06:48 PM",
+                                          model.visits[index].checkOutTimeAndDate,
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontSize: 12,

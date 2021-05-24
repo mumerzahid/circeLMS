@@ -1,10 +1,7 @@
-import 'package:crice_hospital_app/app/locator.dart';
-import 'package:crice_hospital_app/services/navigation_service_dart.dart';
-import 'package:crice_hospital_app/ui/screens/report/report_view.dart';
 import 'package:stacked/stacked.dart';
-import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 
 class ScreenSwitcherViewModel extends BaseViewModel {
+  bool loader =true;
   int indexPosition = 0;
   String currentScreen = "DASHBOARD";
   String valuePressedString = "DASHBOARD";
@@ -14,7 +11,9 @@ class ScreenSwitcherViewModel extends BaseViewModel {
   ) {
     print(int);
     indexPosition = index;
+    print(index);
     currentScreen = screenName;
+    print(screenName);
     valuePressedString = screenName;
     notifyListeners();
   }

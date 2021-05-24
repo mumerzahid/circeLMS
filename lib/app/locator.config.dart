@@ -9,7 +9,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:stacked_services/stacked_services.dart' as _i4;
 
 import '../services/api.dart' as _i3;
-import '../services/media_service.dart' as _i5;
+import '../services/local_storage.dart' as _i5;
 import '../services/third_party_services.dart' as _i7;
 import '../services/validation_service.dart'
     as _i6; // ignore_for_file: unnecessary_lambdas
@@ -22,7 +22,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   final thirdPartyServices = _$ThirdPartyServices();
   gh.lazySingleton<_i3.Api>(() => _i3.Api());
   gh.lazySingleton<_i4.DialogService>(() => thirdPartyServices.dialogService);
-  gh.lazySingleton<_i5.MediaService>(() => _i5.MediaService());
+  gh.lazySingleton<_i5.LocalStorage>(() => _i5.LocalStorage());
   gh.lazySingleton<_i4.NavigationService>(
       () => thirdPartyServices.navigationService);
   gh.lazySingleton<_i4.SnackbarService>(

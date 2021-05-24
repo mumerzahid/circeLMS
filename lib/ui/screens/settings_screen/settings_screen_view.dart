@@ -1,6 +1,5 @@
 import 'package:crice_hospital_app/ui/screens/settings_screen/settings_screen_viewmodel.dart';
 import 'package:crice_hospital_app/ui/widgets/custom_app_bar.dart';
-import 'package:crice_hospital_app/ui/widgets/custom_button_bar.dart';
 import 'package:crice_hospital_app/ui/widgets/drawyer.dart';
 import 'package:crice_hospital_app/ui/widgets/textfield.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +12,8 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<SettingsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
-        backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
+        backgroundColor:
+        const Color.fromRGBO(255, 255, 255, 1),
         appBar: CustomAppBar(
           height: MediaQuery.of(context).size.height * 0.32,
           sName: 'SETTINGS',
@@ -38,8 +38,7 @@ class SettingsView extends StatelessWidget {
                         alignment: Alignment.topLeft,
                         child: Text(
                           "Mobile Number",
-                          style:
-                          TextStyle(
+                          style: TextStyle(
                             fontFamily: 'Open Sans',
                             fontWeight: FontWeight.w700,
                             fontSize: 14,
@@ -48,17 +47,17 @@ class SettingsView extends StatelessWidget {
                         )),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.003,
+                    height: MediaQuery.of(context).size.height * 0.006,
                   ),
-                  TextFieldWidget
-                    (
-                    null,
+                  TextFieldWidget(
+                    model.mobileController,
                     "+00 000 00000",
                     TextInputType.visiblePassword,
                     false,
                     null,
                     null,
                   ),
+                  SizedBox(height: 20,),
                   Padding(
                       padding: EdgeInsets.only(
                         left: MediaQuery.of(context).size.width * 0.1,
@@ -75,23 +74,22 @@ class SettingsView extends StatelessWidget {
                             ),
                           ))),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.003,
+                    height: MediaQuery.of(context).size.height * 0.006,
                   ),
                   TextFieldWidget(
-                    null,
-                    "********",
-                    TextInputType.visiblePassword,
-                    model.obscureText,
-                    null,
-                    Icons.visibility_off,
+                      model.passwordController,
+                      "********",
+                      TextInputType.visiblePassword,
+                      model.obscureText,
+                      null,
+                      Icons.visibility_off,
                       callFunction: (value) {
-                        model.setIsObscureText(value);
-                      }
-                  ),
+                    model.setIsObscureText(value);
+                  }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
-                  Container(
+                  model.isLoading? CircularProgressIndicator():Container(
                     width: 180,
                     height: 40,
                     child: ElevatedButton(
@@ -107,7 +105,7 @@ class SettingsView extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         primary: const Color.fromRGBO(134, 227, 220, 1),
                       ),
-                      onPressed: () {},
+                      onPressed: ()=> model.updation( model.passwordController.text,model.mobileController.text),
                     ),
                   )
                 ],

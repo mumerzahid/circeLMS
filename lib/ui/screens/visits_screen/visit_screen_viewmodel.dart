@@ -1,14 +1,110 @@
 import 'package:crice_hospital_app/app/locator.dart';
-import 'package:crice_hospital_app/services/navigation_service_dart.dart';
+import 'package:crice_hospital_app/constants/constants_messages.dart';
+import 'package:crice_hospital_app/model/user.dart';
+import 'package:crice_hospital_app/model/visits.dart';
+import 'package:crice_hospital_app/services/api.dart';
+import 'package:crice_hospital_app/services/local_storage.dart';
+import 'package:crice_hospital_app/services/snackbar.dart';
+import 'package:crice_hospital_app/services/validation_service.dart';
 import 'package:stacked/stacked.dart';
-import 'package:crice_hospital_app/constants/route_path.dart' as routes;
+import 'package:stacked_services/stacked_services.dart';
+import 'package:crice_hospital_app/constants/route_path.dart'as routes;
 
-class VisitScreenViewModel extends BaseViewModel{
-  // final NavigationService _navigationService =locator<NavigationService>();
+class VisitScreenViewModel extends FutureViewModel{
 
-  // Future<bool> navigation({bool success = true}) async {
+  final _navigationService = locator<NavigationService>();
+  final ValidationService _validationService=locator<ValidationService>();
+  final SnackbarService _snackbarService = locator<SnackbarService>();
+  final DialogService _dialogService = locator<DialogService>();
+  final LocalStorage _localStorage =locator<LocalStorage>();
+
+
+  final Api _api = locator<Api>();
+  List<Visits> visits = new List();
+
+  // String _visitsModel;
   //
-  //   _navigationService.navigateTo(routes.VisitRoute);
-  //
-  // }
+  // String get visitsModel => _visitsModel;
+
+  String _emailError;
+
+  String get emailError => _emailError;
+
+  String _passError;
+
+  String get passError => _passError;
+
+    bool _isLoading = true;
+
+    bool get isLoading => _isLoading;
+
+  setIsLoading(bool isLoading) {
+    _isLoading = isLoading;
+    notifyListeners();
+  }
+
+  void errorListener(VisitModel visit) {
+    if (visit.success) {
+      print("Successfully visit");
+
+      visits = visit.data.visits;
+      notifyListeners();
+      setIsLoading(false);
+
+    }
+    else
+    {
+      _passError = visit.message;
+      snackBar(_passError);
+    }
+    // emailController.clear();
+    // passwordController.clear();
+    setIsLoading(false);
+  }
+
+
+  bool validationMethod(String email, String password) {
+    if (!_validationService.checkEmpty(email)) {
+      _emailError = ConstantsMessages.emailEmpty;
+      snackBar(_emailError);
+    }
+    else if (!_validationService.checkEmailPattern(email)) {
+      _emailError = ConstantsMessages.emailInvalid;
+      snackBar(_emailError);
+    }
+    else if (!_validationService.checkEmpty(password)) {
+      _passError = ConstantsMessages.passwordEmpty;
+      snackBar(_passError);
+    }
+    else if (!_validationService.passwordLength(password)) {
+      _passError = ConstantsMessages.passwordLength;
+      snackBar(_passError);
+    }
+    else {
+      return true;
+    }
+    return false;
+  }
+
+  void snackBar(String Error) {
+    _snackbarService.showCustomSnackBar(
+      variant: SnackbarType.white,
+      message: Error,
+      title: Error,
+      duration: Duration(seconds: 2),
+      onTap: (_) {
+        print('snackbar tapped');
+      },
+      mainButtonTitle: 'Undo',
+      onMainButtonTapped: () => print('Undo the action!'),
+    );
+  }
+
+  @override
+  Future futureToRun() {
+    return  _api.getVisits().then((value) => {
+      errorListener(value),
+
+    });
+  }
 }

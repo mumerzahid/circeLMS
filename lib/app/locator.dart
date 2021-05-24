@@ -12,11 +12,3 @@ import 'locator.config.dart';
 final locator = GetIt.instance;
 @injectableInit
 void setupLocator() => $initGetIt(locator);
-// void setupLocator() {
-//   locator.registerSingleton(()=> NavigationService());
-//   locator.registerSingleton(()=> SnackbarService());
-//   // locator.registerLazySingleton(() => MyNavigationService());
-//   locator.registerLazySingleton(() => MediaService());
-//   locator.registerLazySingleton(() => ValidationService());
-//   locator.registerLazySingleton(() => Api());
-// }

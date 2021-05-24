@@ -1,0 +1,3 @@
+class HTMLWeb{
+  String htmlData = " ";
+}

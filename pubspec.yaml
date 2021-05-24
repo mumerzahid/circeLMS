@@ -33,7 +33,6 @@ dependencies:
   injectable: ^1.2.2
   injectable_generator: ^1.1.2
   get_it: ^6.0.0
-  split_view: ^2.0.1+2
   #buildRunner
   build_runner: ^1.10.0
   #router
@@ -42,11 +41,26 @@ dependencies:
   json_annotation: 3.1.1
   json_serializable: 3.5.1
   #imagePicker
-  image_picker: ^0.6.6+4
+#  image_picker: ^0.6.6+4
   #http
   http:
   dio:
+  path_provider: ^2.0.1
   fluttertoast:
+  shared_preferences: ^2.0.5
+  flutter_html:
+  #FilePdf
+  flutter_downloader: ^1.6.0
+  permission_handler: ^7.1.0
+  ext_storage: ^1.0.3
+  date_format: ^2.0.2
+  basic_utils: ^1.4.0
+  flutter_webview_plugin: ^0.3.11
+#  flutter_web_view: ^0.0.6
+  webview_flutter: ^2.0.4
+#  flutter_inappwebview: ^5.3.2
+  youtube_player_flutter: ^8.0.0
+
 
 
   # The following adds the Cupertino Icons font to your application.
