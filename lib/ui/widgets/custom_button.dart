@@ -33,24 +33,24 @@ class CustomButton extends StatelessWidget {
                   ),
                 ],
               ),
-              height: MediaQuery.of(context).size.height *
-                  0.06, // was fixed height and width 50,
-              width: MediaQuery.of(context).size.width * 0.11,
+              height: MediaQuery.of(context).size.width *
+                  0.1, // was fixed height and width 50,
+              width: MediaQuery.of(context).size.width * 0.1,
               child: Center(
                 child: Image.asset(
                   imgUrl,
                   width: MediaQuery.of(context).size.width *
-                      0.055, //was fixed height and width 25
-                  height: MediaQuery.of(context).size.height * 0.03,
+                      0.045, //was fixed height and width 25
+                  height: MediaQuery.of(context).size.width * 0.045,
                 ),
               ),
             ),
             Positioned(
-              left: MediaQuery.of(context).size.width * 0.03, // 12
-              top: MediaQuery.of(context).size.width * 0.085, // 40
+              left: MediaQuery.of(context).size.width * 0.026, // 12
+              top: MediaQuery.of(context).size.width * 0.08, // 40
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.03, //25
-                width: MediaQuery.of(context).size.width * 0.055, //25
+                height: MediaQuery.of(context).size.width * 0.05, //25
+                width: MediaQuery.of(context).size.width * 0.05, //25
                 color: Colors.transparent,
                 child: Image.asset('assets/images/Diamond.png'),
               ),
@@ -62,13 +62,13 @@ class CustomButton extends StatelessWidget {
         Container(
             width: MediaQuery.of(context).size.width * 0.195, //80
             padding: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height * 0.018, // 12
+              top: MediaQuery.of(context).size.width * 0.035, // 12
             ),
             child: Center(
               child: Text(
                 screenName,
                 style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 12,
                     color: pressed
                         ? Color.fromRGBO(107, 126, 130, 1)
                         : Color.fromRGBO(146, 204, 180, 1)),

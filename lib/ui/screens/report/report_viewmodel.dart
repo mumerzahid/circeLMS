@@ -7,19 +7,21 @@ import 'package:crice_hospital_app/ui/widgets/html_viewer.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class ReportViewModel extends BaseViewModel {
+class ReportViewModel extends BaseViewModel implements Initialisable{
   String html;
   String success;
   final Api _api = locator<Api>();
   final NavigationService navigationService = locator<NavigationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
+  final yesterday = DateTime.now().subtract(Duration(days: 1));
 
   DateTime todayDate;
   DateTime currentDate = DateTime.now();
-  DateTime startDate ;
+  DateTime startDate  ;
   // = DateTime(DateTime.now().day, DateTime.now().month, DateTime.now().year);
   DateTime endDate;
   // = DateTime(DateTime.now().day, DateTime.now().month, DateTime.now().year);
@@ -33,39 +35,57 @@ class ReportViewModel extends BaseViewModel {
   bool get isLoading => _isLoading;
 
 
+  @override
+  void initialise() {
+    startDate= yesterday;
+    endDate = currentDate;
+    notifyListeners();
+  }
+
   setIsLoading(bool isLoading) {
     _isLoading = isLoading;
     notifyListeners();
   }
 
-
 // Date Picker also set the Start and End Date
-  Future<void> selectStartDate(BuildContext context, bool isStartDate) async {
-    final DateTime pickedDate = await showDatePicker(
+  void selectStartDate(BuildContext context, bool isStartDate) async {
+    DateTime pickedDate = await showDatePicker(
+
         context: context,
-        initialDate: currentDate,
-        firstDate: DateTime(2015),
-        lastDate: currentDate);
+        initialDate:currentDate,
+        firstDate: Jiffy().subtract(months: 3).dateTime,
+        // DateTime.now().subtract(Duration()),
+        lastDate: currentDate
+    );
 
     if (pickedDate != null ) {
-      startDate=currentDate;
-      endDate=currentDate;
-      if (isStartDate) {
+      if (isStartDate == true) {
         startDateBoolean = true;
+        if(pickedDate.isAfter(endDate))
+          {
+            pickedDate =yesterday;
+            endDate=currentDate;
+            snackBar("Start date can not be greater than end date");
+          }
         startDate = pickedDate;
         print(startDate);
       } else {
         endDateBoolean = true;
+        if(pickedDate.isBefore(startDate))
+          {
+            pickedDate=currentDate;
+            snackBar("End date can not be smaller than end date");
+          }
         endDate = pickedDate;
       }
       notifyListeners();
     }
   }
 
-  // void filterClick() {
-  //   isEnabled = true;
-  //   notifyListeners();
-  // }
+  void filterClick() {
+    isEnabled = true;
+    notifyListeners();
+  }
 
   void snackBar(String Error) {
     _snackbarService.showCustomSnackBar(
@@ -95,7 +115,11 @@ class ReportViewModel extends BaseViewModel {
       'end_date': end,
     };
     _api.getReportsHTML(body).then((value) => {
-          if (value != null) {errorListener(value)}
+          if (value != null) {
+            errorListener(value)
+          }
         });
   }
+
+
 }

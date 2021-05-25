@@ -15,7 +15,8 @@ class CustomButtonBar extends StatelessWidget {
       children: [
         Positioned(
           // padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).size.height * 0.06,
+          // bottom: MediaQuery.of(context).size.width * 0.05,
+          top: MediaQuery.of(context).size.width * 0.04,
           left: MediaQuery.of(context).size.width * 0.1,
           right: MediaQuery.of(context).size.width * 0.1,
           // ),

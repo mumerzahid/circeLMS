@@ -125,21 +125,15 @@ class LoginViewModel extends BaseViewModel {
   void toResetNav(){
     _navigationService.navigateTo(routes.ResetRoute);
   }
-// void Dialog(){
-//   _dialogService.showDialog(
-//     title: 'Test Dialog Title',
-//     description: 'Test Dialog Description',
-//     dialogPlatform: DialogPlatform.Material,
-//   );
-// }
+
   void logIn(String email, String password) async {
     _passError = null;
     _emailError = null;
     setIsLoading(true);
     if (validationMethod(email, password)) {
       Map<String, String> body = {
-        'email': email,
-        'password': password,
+        'email': email.trim(),
+        'password': password.trim(),
       };
       _api.login(body).then((value) => {
         errorListener(value),

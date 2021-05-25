@@ -13,16 +13,18 @@ class LoginView extends StatelessWidget {
     return ViewModelBuilder<LoginViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
         top: true,
-        child: Scaffold(
+        child:Scaffold(
           resizeToAvoidBottomInset: false,
           appBar:
               LoginAppBar(height: MediaQuery.of(context).size.height * 0.33),
-          body: SingleChildScrollView(
+          body: model.isLoading?Center(
+            child: CircularProgressIndicator(),
+          ):SingleChildScrollView(
             child: Column(
                 children: [
               Container(
                 padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.03,
+                  // top: MediaQuery.of(context).size.height * 0.01,
                   // bottom: MediaQuery.of(context).size.height * 0.07,
                   left: MediaQuery.of(context).size.width * 0.12,
                 ),
@@ -35,19 +37,20 @@ class LoginView extends StatelessWidget {
                           Image.asset(
                             "assets/images/B-logo.png",
                             width: MediaQuery.of(context).size.width * 0.05,
-                            height: MediaQuery.of(context).size.height * 0.05,
+                            // height: MediaQuery.of(context).size.height * 0.05,
                           ),
                           SizedBox(
                             width: 50,
                           ),
                           Expanded(
                             child: Container(
-                              height: MediaQuery.of(context).size.height * 0.06,
+                              height: MediaQuery.of(context).size.height * 0.07,
                               //   width: MediaQuery.of(context).size.width * 0.7,
                                 child: TextField(
                                   controller: model.emailController,
                                   decoration: InputDecoration(
                                     labelText: "EMAIL",
+                                    //hintText: "Enter Email",
                                     labelStyle: TextStyle(
                                         fontFamily: 'Open Sans',
                                         fontSize: 14,
@@ -71,14 +74,14 @@ class LoginView extends StatelessWidget {
                           Image.asset(
                             "assets/images/key.png",
                             width: MediaQuery.of(context).size.width * 0.05,
-                            height: MediaQuery.of(context).size.height * 0.05,
+                            // height: MediaQuery.of(context).size.height * 0.05,
                           ),
                           SizedBox(
                             width: 50,
                           ),
                           Expanded(
                             child: Container(
-                                height: MediaQuery.of(context).size.height * 0.06,
+                                height: MediaQuery.of(context).size.height * 0.07,
                                 child: TextField(
                                   controller: model.passwordController,
                                   obscureText: model.obsecureText,
@@ -111,18 +114,20 @@ class LoginView extends StatelessWidget {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05,
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: MediaQuery.of(context).size.width * 0.15),
-                        child: model.isLoading
-                            ? Center(child: CircularProgressIndicator())
-                            : Row(
-                                children: [
-                                  Container(
-                                    child: InkWell(
-                                      onTap: () => model.logIn(
-                                          model.emailController.text,
-                                          model.passwordController.text),
+                      InkWell(
+                        onTap: () => model.logIn(
+                            model.emailController.text,
+                            model.passwordController.text),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: MediaQuery.of(context).size.width * 0.15),
+                          child:
+                          // model.isLoading
+                          //     ? Center(child: CircularProgressIndicator())
+                          //     :
+                          Row(
+                                  children: [
+                                    Container(
                                       child: Image.asset(
                                         "assets/images/Group 1799.png",
                                         width:
@@ -130,16 +135,11 @@ class LoginView extends StatelessWidget {
                                                 0.09,
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.04,
-                                  ),
-                                  Container(
-                                    child: InkWell(
-                                      onTap: () => model.logIn(
-                                          model.emailController.text,
-                                          model.passwordController.text),
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.04,
+                                    ),
+                                    Container(
                                       child: Text(
                                         "LOGIN",
                                         style: TextStyle(
@@ -149,13 +149,13 @@ class LoginView extends StatelessWidget {
                                               107, 126, 129, 1),
                                         ),
                                       ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                    )
+                                  ],
+                                ),
+                        ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       InkWell(
                         splashColor: Colors.transparent,
@@ -175,6 +175,8 @@ class LoginView extends StatelessWidget {
                             // model.snackBar("Link has been sent your registered email!"),
                         child: Container(
                           padding: EdgeInsets.only(
+                              top: 6,
+                              bottom: 6,
                               left: MediaQuery.of(context).size.width * 0.15),
                           alignment: Alignment.centerLeft,
                           child: Text(

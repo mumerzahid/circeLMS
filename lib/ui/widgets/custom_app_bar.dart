@@ -27,9 +27,9 @@ class CustomAppBar extends PreferredSize {
           Padding(
             padding: EdgeInsets.only(
               left: MediaQuery.of(context).size.width * 0.04,
-              top: MediaQuery.of(context).size.height * 0.01, //10
+              top: MediaQuery.of(context).size.width * 0.02, //10
               right: MediaQuery.of(context).size.width * 0.02,
-              bottom: MediaQuery.of(context).size.height * 0.01, //10
+              bottom: MediaQuery.of(context).size.width * 0.02, //10
             ),
             child: Row(
               children: [
@@ -56,14 +56,14 @@ class CustomAppBar extends PreferredSize {
                     children: [
                       Expanded(
                         child: Image.asset(
-                          'assets/images/Group1883.png',
+                          'assets/images/Login2.png',
                           // width: MediaQuery.of(context).size.width *0.2, //100
                           height: MediaQuery.of(context).size.height * 0.1, //60
                         ),
                       ),
                       Expanded(
                         child: Image.asset(
-                          'assets/images/Group1882.png',
+                          'assets/images/Login1.png',
                           // width: MediaQuery.of(context).size.width *0.15, //50
                           height:
                               MediaQuery.of(context).size.height * 0.05, //35
@@ -91,7 +91,7 @@ class CustomAppBar extends PreferredSize {
                   child: Text(
                 sName,
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 19,
                   color: const Color.fromRGBO(107, 126, 130, 1),
                 ),
               )),
@@ -112,9 +112,7 @@ class CustomAppBar extends PreferredSize {
                   ),
                   child: CustomButtonBar(
                       callback: topNavigationCallBack, vScreen: vScreen))
-              : Container(
-                  height: 0,
-                )
+              : SizedBox()
         ],
       ),
     );

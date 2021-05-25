@@ -39,7 +39,7 @@ class VisitScreenView extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "UserName:",
+                                      "UserName :",
                                       style: TextStyle(
                                         fontFamily: 'Open Sans',
                                         fontWeight: FontWeight.w700,
@@ -50,7 +50,7 @@ class VisitScreenView extends StatelessWidget {
                                     ),
                                     // horizontalSpaceLarge,
                                     Expanded(
-                                      child: Text(
+                                      child: Text("" +
                                         model.visits[index].userName,
                                         style: TextStyle(
                                           fontFamily: 'Open Sans',

@@ -1,3 +1,5 @@
+import 'package:crice_hospital_app/ui/screens/drawer_view/drawer_view.dart';
+import 'package:crice_hospital_app/ui/screens/drawer_view/drawer_viewmodel.dart';
 import 'package:crice_hospital_app/ui/screens/settings_screen/settings_screen_viewmodel.dart';
 import 'package:crice_hospital_app/ui/widgets/custom_app_bar.dart';
 import 'package:crice_hospital_app/ui/widgets/drawyer.dart';
@@ -19,7 +21,8 @@ class SettingsView extends StatelessWidget {
           sName: 'SETTINGS',
           fCall: false,
         ),
-        drawer: MyCustomDrawer(),
+        drawer: DrawerView(),
+        // MyCustomDrawer(),
         body: SingleChildScrollView(
           child: Column(children: [
             Padding(

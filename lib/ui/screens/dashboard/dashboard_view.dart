@@ -223,10 +223,10 @@ class DashboardView extends StatelessWidget {
                                 ,
                               ),
                         Padding(
-                          padding: EdgeInsets.symmetric(vertical: 20),
+                          padding: EdgeInsets.symmetric(vertical: 20,),
                           child: Container(
                             height: 30,
-                            width: MediaQuery.of(context).size.width * 0.4,
+                            width: MediaQuery.of(context).size.width * 0.45,
                             // color: Colors.grey,
                             decoration: BoxDecoration(
                                 color: const Color.fromRGBO(107, 126, 130, 1),
