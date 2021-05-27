@@ -34,6 +34,8 @@ class HtmlViewer extends StatelessWidget {
             : Padding(
                 padding: EdgeInsets.all(20),
                 child: WebviewScaffold(
+                  withLocalStorage: true,
+                  withJavascript: true,
                   url: Uri.dataFromString(data, mimeType: 'text/html')
                       .toString(),
                 ),

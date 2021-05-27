@@ -77,142 +77,144 @@ class DashboardView extends StatelessWidget {
                                         bottom:
                                             MediaQuery.of(context).size.height *
                                                 0.02),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(3.0),
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        // height: MediaQuery.of(context).size.height * 0.13,
-                                        decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: const Color.fromRGBO(
-                                                      0, 0, 0, 0.25)
-                                                  .withOpacity(0.4),
-                                            ),
-                                          ],
-                                          border: Border(
-                                            left: BorderSide(
-                                                width: 5,
+                                    child: Card(
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(3.0),
+                                        child: Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          // height: MediaQuery.of(context).size.height * 0.13,
+                                          decoration: BoxDecoration(
+                                            boxShadow: [
+                                              BoxShadow(
                                                 color: const Color.fromRGBO(
-                                                    146, 204, 180, 1)),
-                                            // top: BorderSide(color: Colors.grey)
+                                                        0, 0, 0, 0.25)
+                                                    .withOpacity(0.4),
+                                              ),
+                                            ],
+                                            border: Border(
+                                              left: BorderSide(
+                                                  width: 5,
+                                                  color: const Color.fromRGBO(
+                                                      146, 204, 180, 1)),
+                                              // top: BorderSide(color: Colors.grey)
+                                            ),
+                                            color: Colors.white,
                                           ),
-                                          color: Colors.white,
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.all(15),
-                                          child: Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Expanded(
-                                                    flex: 7,
-                                                    // child:
-                                                    child: InkWell(
-                                                      onTap: () => showDialog(
-                                                          context: context,
-                                                          builder: (BuildContext
-                                                              context) {
-                                                            return Dialog(
-                                                                child: DashboardFeeds(
-                                                                    htmlView: model
-                                                                        .feedlist[
-                                                                            index]
-                                                                        .content,
-                                                                    title: model
-                                                                        .feedlist[
-                                                                            index]
-                                                                        .newsFeedTitle));
-                                                          }),
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsets.all(7),
-                                                        child: Text(
-                                                          model.feedlist[index]
-                                                              .newsFeedTitle,
-                                                          style: TextStyle(
-                                                            decoration:
-                                                                TextDecoration
-                                                                    .underline,
-                                                            fontFamily:
-                                                                'Open Sans',
-                                                            fontWeight:
-                                                                FontWeight.w700,
-                                                            fontSize: 13,
-                                                            color: const Color
-                                                                    .fromRGBO(
-                                                                107,
-                                                                126,
-                                                                130,
-                                                                1),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(15),
+                                            child: Column(
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Expanded(
+                                                      flex: 7,
+                                                      // child:
+                                                      child: InkWell(
+                                                        onTap: () => showDialog(
+                                                            context: context,
+                                                            builder: (BuildContext
+                                                                context) {
+                                                              return Dialog(
+                                                                  child: DashboardFeeds(
+                                                                      htmlView: model
+                                                                          .feedlist[
+                                                                              index]
+                                                                          .content,
+                                                                      title: model
+                                                                          .feedlist[
+                                                                              index]
+                                                                          .newsFeedTitle));
+                                                            }),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsets.all(7),
+                                                          child: Text(
+                                                            model.feedlist[index]
+                                                                .newsFeedTitle,
+                                                            style: TextStyle(
+                                                              decoration:
+                                                                  TextDecoration
+                                                                      .underline,
+                                                              fontFamily:
+                                                                  'Open Sans',
+                                                              fontWeight:
+                                                                  FontWeight.w700,
+                                                              fontSize: 13,
+                                                              color: const Color
+                                                                      .fromRGBO(
+                                                                  107,
+                                                                  126,
+                                                                  130,
+                                                                  1),
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
-                                                  Expanded(
-                                                      flex: 2,
-                                                      child: Align(
-                                                          alignment: Alignment
-                                                              .centerRight,
-                                                          child: InkWell(
-                                                            onTap: () async {
-                                                              model
-                                                                      .feedlist[
-                                                                          index]
-                                                                      .documentDownloadUrl
-                                                                      .isEmpty
-                                                                  ? model.snackBar(
-                                                                      "Invalid URL")
-                                                                  : model.downloadFile(
-                                                                      model
-                                                                          .feedlist[
-                                                                              index]
-                                                                          .documentDownloadUrl,
-                                                                      null,
-                                                                      false);
-                                                            },
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(4),
-                                                              child:
-                                                                  Image.asset(
-                                                                "assets/images/download.png",
-                                                                width: 27,
-                                                                height: 27,
+                                                    Expanded(
+                                                        flex: 2,
+                                                        child: Align(
+                                                            alignment: Alignment
+                                                                .centerRight,
+                                                            child: InkWell(
+                                                              onTap: () async {
+                                                                model
+                                                                        .feedlist[
+                                                                            index]
+                                                                        .documentDownloadUrl
+                                                                        .isEmpty
+                                                                    ? model.snackBar(
+                                                                        "Invalid URL")
+                                                                    : model.downloadFile(
+                                                                        model
+                                                                            .feedlist[
+                                                                                index]
+                                                                            .documentDownloadUrl,
+                                                                        null,
+                                                                        false);
+                                                              },
+                                                              child: Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(4),
+                                                                child:
+                                                                    Image.asset(
+                                                                  "assets/images/download.png",
+                                                                  width: 27,
+                                                                  height: 27,
+                                                                ),
                                                               ),
-                                                            ),
-                                                          )))
-                                                ],
-                                              ),
-                                              Divider(
-                                                color: Colors.grey,
-                                              ),
-                                              Align(
-                                                  alignment:
-                                                      Alignment.bottomRight,
-                                                  child: Text(
-                                                    "Date: " +
-                                                        formatDate(dateTime, [
-                                                          dd,
-                                                          '-',
-                                                          mm,
-                                                          '-',
-                                                          yyyy
-                                                        ]),
-                                                    style: TextStyle(
-                                                      fontFamily: 'Open Sans',
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize: 12,
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              107, 126, 130, 1),
-                                                    ),
-                                                  )),
-                                            ],
+                                                            )))
+                                                  ],
+                                                ),
+                                                Divider(
+                                                  color: Colors.grey,
+                                                ),
+                                                Align(
+                                                    alignment:
+                                                        Alignment.bottomRight,
+                                                    child: Text(
+                                                      "Date: " +
+                                                          formatDate(dateTime, [
+                                                            dd,
+                                                            '-',
+                                                            mm,
+                                                            '-',
+                                                            yyyy
+                                                          ]),
+                                                      style: TextStyle(
+                                                        fontFamily: 'Open Sans',
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 12,
+                                                        color:
+                                                            const Color.fromRGBO(
+                                                                107, 126, 130, 1),
+                                                      ),
+                                                    )),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -353,77 +355,78 @@ class DashboardView extends StatelessWidget {
                                                             .trList[index]
                                                             .documentDownloadUrl
                                                             .isNotEmpty
-                                                        ? Row(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .min,
-                                                            children: [
-                                                              Text(
-                                                                "Document",
-                                                                style:
-                                                                    TextStyle(
-                                                                  decoration:
-                                                                      TextDecoration
-                                                                          .underline,
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
-                                                                  fontSize: 13,
-                                                                  color: const Color
-                                                                          .fromRGBO(
-                                                                      107,
-                                                                      126,
-                                                                      130,
-                                                                      1),
+                                                        ? InkWell(
+                                                      onTap: () => model
+                                                          .trList[
+                                                      index]
+                                                          .documentDownloadUrl
+                                                          .isEmpty
+                                                          ? Fluttertoast.showToast(
+                                                          msg:
+                                                          "Invalid Link")
+                                                          : model.downloadFile(
+                                                          model
+                                                              .trList[index]
+                                                              .documentDownloadUrl,
+                                                          index,
+                                                          true),
+                                                          child: Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              children: [
+                                                                Text(
+                                                                  "Document",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    decoration:
+                                                                        TextDecoration
+                                                                            .underline,
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    fontSize: 13,
+                                                                    color: const Color
+                                                                            .fromRGBO(
+                                                                        107,
+                                                                        126,
+                                                                        130,
+                                                                        1),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              Text(
-                                                                " :",
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
-                                                                  fontSize: 13,
-                                                                  color: const Color
-                                                                          .fromRGBO(
-                                                                      107,
-                                                                      126,
-                                                                      130,
-                                                                      1),
+                                                                Text(
+                                                                  " :",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    fontSize: 13,
+                                                                    color: const Color
+                                                                            .fromRGBO(
+                                                                        107,
+                                                                        126,
+                                                                        130,
+                                                                        1),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              InkWell(
-                                                                  onTap: () => model
-                                                                          .trList[
-                                                                              index]
-                                                                          .documentDownloadUrl
-                                                                          .isEmpty
-                                                                      ? Fluttertoast.showToast(
-                                                                          msg:
-                                                                              "Invalid Link")
-                                                                      : model.downloadFile(
-                                                                          model
-                                                                              .trList[index]
-                                                                              .documentDownloadUrl,
-                                                                          index,
-                                                                          true),
-                                                                  child: Padding(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .all(8),
-                                                                    child: Icon(
-                                                                      Icons
-                                                                          .download_sharp,
-                                                                      size: 30,
-                                                                    ),
-                                                                  ))
-                                                            ],
-                                                          )
+                                                                Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(8),
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .download_sharp,
+                                                                    size: 30,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                        )
                                                         : SizedBox(),
                                               ),
                                               Divider(

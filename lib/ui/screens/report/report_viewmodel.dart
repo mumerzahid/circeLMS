@@ -74,7 +74,7 @@ class ReportViewModel extends BaseViewModel implements Initialisable{
         if(pickedDate.isBefore(startDate))
           {
             pickedDate=currentDate;
-            snackBar("End date can not be smaller than end date");
+            snackBar("End date can not be smaller than start date");
           }
         endDate = pickedDate;
       }
@@ -95,7 +95,7 @@ class ReportViewModel extends BaseViewModel implements Initialisable{
       onTap: (_) {
         print('snackbar tapped');
       },
-      mainButtonTitle: 'Undo',
+      mainButtonTitle: '',
       onMainButtonTapped: () => print('Undo the action!'),
     );
   }

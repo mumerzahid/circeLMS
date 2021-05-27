@@ -24,7 +24,8 @@ class SettingsView extends StatelessWidget {
         drawer: DrawerView(),
         // MyCustomDrawer(),
         body: SingleChildScrollView(
-          child: Column(children: [
+          child: Column(
+              children: [
             Padding(
               padding: EdgeInsets.only(
                 // top: MediaQuery.of(context).size.height * 0.1,

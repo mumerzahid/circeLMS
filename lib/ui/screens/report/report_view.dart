@@ -283,38 +283,39 @@ class ReportView extends StatelessWidget {
                                         ),
                                       ),
                                     ]),
-                                model.isEnabled?Container(
-                                    // color: const Color.fromRGBO(134, 227, 220, 1),
-                                    height: 35,
-                                    width: 150,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        primary: const Color.fromRGBO(
-                                            134, 227, 220, 1), // background
-                                      ),
-                                      onPressed: () => showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return Dialog(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10.0)), //this right here
-                                              child: DownloadPopupView(),
-                                            );
-                                          }),
-                                      child: Text(
-                                        "Download",
-                                        style: TextStyle(
-                                          fontFamily: 'Open Sans',
-                                          // fontWeight: FontWeight.w700,
-                                          fontSize: 16,
-                                          color: const Color.fromRGBO(
-                                              255, 255, 255, 1),
-                                        ),
-                                      ),
-                                    )
-                                ):Container(
+                                // model.isEnabled?Container(
+                                //     // color: const Color.fromRGBO(134, 227, 220, 1),
+                                //     height: 35,
+                                //     width: 150,
+                                //     child: ElevatedButton(
+                                //       style: ElevatedButton.styleFrom(
+                                //         primary: const Color.fromRGBO(
+                                //             134, 227, 220, 1), // background
+                                //       ),
+                                //       onPressed: () => showDialog(
+                                //           context: context,
+                                //           builder: (BuildContext context) {
+                                //             return Dialog(
+                                //               shape: RoundedRectangleBorder(
+                                //                   borderRadius:
+                                //                       BorderRadius.circular(
+                                //                           10.0)), //this right here
+                                //               child: DownloadPopupView(),
+                                //             );
+                                //           }),
+                                //       child: Text(
+                                //         "Download",
+                                //         style: TextStyle(
+                                //           fontFamily: 'Open Sans',
+                                //           // fontWeight: FontWeight.w700,
+                                //           fontSize: 16,
+                                //           color: const Color.fromRGBO(
+                                //               255, 255, 255, 1),
+                                //         ),
+                                //       ),
+                                //     )
+                                // ):
+                                Container(
                                   // color: const Color.fromRGBO(134, 227, 220, 1),
                                     height: 35,
                                     width: 150,
@@ -322,7 +323,7 @@ class ReportView extends StatelessWidget {
                                       style: ElevatedButton.styleFrom(
                                         primary: Colors.grey // background
                                       ),
-                                      onPressed: (){},
+                                      onPressed: null,
                                       child: Text(
                                         "Download",
                                         style: TextStyle(

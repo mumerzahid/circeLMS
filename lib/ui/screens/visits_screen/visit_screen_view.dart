@@ -39,7 +39,7 @@ class VisitScreenView extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "UserName :",
+                                      "Username :  ",
                                       style: TextStyle(
                                         fontFamily: 'Open Sans',
                                         fontWeight: FontWeight.w700,
@@ -90,14 +90,15 @@ class VisitScreenView extends StatelessWidget {
                                     Expanded(
                                         flex: 6,
                                         child: Text(
-                                          model.visits[index].companyPocEmail,
+                                          model.visits[index].user_email,
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontSize: 12,
                                             color: const Color.fromRGBO(
                                                 107, 126, 130, 1),
                                           ),
-                                        )),
+                                        )
+                                    ),
                                   ],
                                 ),
                               ),
@@ -185,7 +186,7 @@ class VisitScreenView extends StatelessWidget {
                                     Expanded(
                                         flex: 4,
                                         child: Text(
-                                          "Check-in-Date Time:",
+                                          "Check-in Date Time:",
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontWeight: FontWeight.w700,

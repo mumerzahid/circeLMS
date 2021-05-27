@@ -34,15 +34,18 @@ height: MediaQuery.of(context).size.height * 0.35,
         ),
         TextField(
           controller: model.emailController,
+           onChanged: (string) {
+                              model.isEmail(string);},
           decoration: InputDecoration(
+            errorText: model.getVerifiedemail?null:"Please enter the correct email",
             labelText: "EMAIL",
             labelStyle: TextStyle(
                 fontFamily: 'Open Sans',
                 fontSize: 14,
                 color: const Color.fromRGBO(149, 149, 149, 1)),
             focusedBorder: UnderlineInputBorder(
-              borderSide:
-              BorderSide(color: const Color.fromRGBO(196, 196, 196, 1)),
+              borderSide: model.getVerifiedemail?
+              BorderSide(color: const Color.fromRGBO(196, 196, 196, 1)):BorderSide(color: Colors.red),
             ),
           ),
         ),

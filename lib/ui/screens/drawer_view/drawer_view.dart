@@ -51,7 +51,7 @@ class DrawerView extends StatelessWidget {
                               ),
                               Container(
                                 child:
-                                    Image.asset("assets/images/Group1881.png",
+                                    Image.asset("assets/images/CRICE.png",
                                       height: MediaQuery.of(context).size.width * 0.2,
                                       width: MediaQuery.of(context).size.width * 0.2,
                                     ),
@@ -211,7 +211,7 @@ class DrawerView extends StatelessWidget {
                               child: InkWell(
                                 onTap: () => {
                                   model.setIsLoading(true),
-                                  Timer(Duration(seconds: 2),(){
+                                  Timer(Duration(seconds: 1),(){
                                     model.snackBar("LogOut");
                                     // Fluttertoast.showToast(msg: "Logging out");
                                     model.localStorage.clearSharedPrefrences();

@@ -1,10 +1,10 @@
 class ConstantsMessages {
 
   // Error Messages
-  static final String emailEmpty = "Empty email";
+  static final String emailEmpty = "Please enter your email";
   static final String emailInvalid = "Invalid email";
-  static final String passwordEmpty = "Enter your password";
-  static final String passwordLength = "Password should be 6 character";
+  static final String passwordEmpty = "Please enter your password";
+  static final String passwordLength = "Password must contain at least 6 characters";
   static final String phoneNumberLength = "Phone number should be 11 character";
 
 

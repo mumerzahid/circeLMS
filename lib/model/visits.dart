@@ -52,6 +52,7 @@ class Visits {
   String userName;
   String companyName;
   String companyPocName;
+  String user_email;
   String companyPocEmail;
   String checkIn;
   String checkInTimeAndDate;
@@ -63,6 +64,7 @@ class Visits {
       {this.userName,
         this.companyName,
         this.companyPocName,
+        this.user_email,
         this.companyPocEmail,
         this.checkIn,
         this.checkInTimeAndDate,
@@ -73,15 +75,16 @@ class Visits {
         );
 
   Visits.fromJson(Map<String, dynamic> json) {
-    userName = json['user_name'];
-    companyName = json['company_name'];
-    companyPocName = json['company_poc_name'];
-    companyPocEmail = json['company_poc_email'];
-    checkIn = json['check_in'];
-    checkInTimeAndDate = json['check_in_time_and_date'];
-    checkOut = json['check_out'];
-    checkOutTimeAndDate = json['check_out_time_and_date'];
-    level = json['level'];
+    userName = json['user_name'] ?? json['user_name'] ?? "";
+    companyName = json['company_name'] ?? json['company_name'] ?? "";
+    companyPocName = json['company_poc_name'] ?? json['company_poc_name'] ?? "";
+    user_email = json['user_email'] ?? json['user_email'] ?? "";
+    companyPocEmail = json['company_poc_email'] ?? json['company_poc_email'] ?? "";
+    checkIn = json['check_in'] ?? json['check_in'] ?? "";;
+    checkInTimeAndDate = json['check_in_time_and_date'] ?? json['check_in_time_and_date'] ?? "";
+    checkOut = json['check_out'] ?? json['check_out'] ?? "";
+    checkOutTimeAndDate = json['check_out_time_and_date'] ?? json['check_out_time_and_date'] ?? "";
+    level = json['level'] ?? json['level'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -89,6 +92,7 @@ class Visits {
     data['user_name'] = this.userName;
     data['company_name'] = this.companyName;
     data['company_poc_name'] = this.companyPocName;
+    data['user_email'] = this.user_email;
     data['company_poc_email'] = this.companyPocEmail;
     data['check_in'] = this.checkIn;
     data['check_in_time_and_date'] = this.checkInTimeAndDate;

@@ -28,20 +28,22 @@ class LoginViewModel extends BaseViewModel {
   final Api _api = locator<Api>();
 
   String _emailError;
-
   String get emailError => _emailError;
 
   String _passError;
-
   String get passError => _passError;
 
   bool _isLoading = false;
-
   bool get isLoading => _isLoading;
 
   bool _obsecureText = true;
-
   bool get obsecureText => _obsecureText;
+
+  bool password = true;
+  bool get getVerifiedPassword => password;
+
+  bool _email = true;
+  bool get getVerifiedemail => _email;
 
   setIsLoading(bool isLoading) {
     _isLoading = isLoading;
@@ -53,6 +55,27 @@ class LoginViewModel extends BaseViewModel {
     print(_obsecureText);
     notifyListeners();
   }
+
+  bool isEmail(String string) {
+    const pattern = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+    final regExp = RegExp(pattern,caseSensitive: true);
+
+    if (!regExp.hasMatch(string)) {
+      print("Print False");
+      _email= false;
+    }
+    print("Print False");
+    if(regExp.hasMatch(string) || (string.isEmpty || string == null ))
+    _email = true;
+    notifyListeners();
+  }
+
+  // bool checkEmailPattern(String emailPattern) {
+  //   return RegExp(
+  //       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+  //       caseSensitive: true)
+  //       .hasMatch(emailPattern);
+  // }
 
   void errorListener(User loginModel) {
     if (loginModel.success) {
@@ -113,14 +136,24 @@ class LoginViewModel extends BaseViewModel {
     _snackbarService.showCustomSnackBar(
       variant: SnackbarType.white,
       message: Error,
-      title: Error,
       duration: Duration(seconds: 2),
       onTap: (_) {
         print('snackbar tapped');
       },
-      mainButtonTitle: 'Undo',
+      mainButtonTitle: '',
       onMainButtonTapped: () => print('Undo the action!'),
     );
+  }
+
+  //
+  void verifyUsername(String value) {
+    if (value.length<6) {
+      password = false;
+    }
+    if((value.isEmpty || value == null) || value.length>5){
+      password = true;
+    }
+    notifyListeners();
   }
   void toResetNav(){
     _navigationService.navigateTo(routes.ResetRoute);

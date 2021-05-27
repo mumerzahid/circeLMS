@@ -51,14 +51,14 @@ class Geofence {
   int id;
   String longitude;
   String latitude;
-  Null siteNumber;
-  Null deptInCharge;
+  int siteNumber;
+  int deptInCharge;
   String siteName;
   String person;
   String email;
   String createdAt;
   String updatedAt;
-  Null physicalAddress;
+  String physicalAddress;
   String usnCode1;
   String usnCode2;
   String hospitalGroup;
@@ -94,27 +94,27 @@ class Geofence {
         this.authToken});
 
   Geofence.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    longitude = json['longitude'];
-    latitude = json['latitude'];
-    siteNumber = json['site_number'];
-    deptInCharge = json['dept_in_charge'];
-    siteName = json['site_name'];
-    person = json['person'];
-    email = json['email'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    physicalAddress = json['physical_address'];
-    usnCode1 = json['usn_code_1'];
-    usnCode2 = json['usn_code_2'];
-    hospitalGroup = json['hospital_group'];
-    secondaryEmail = json['secondary_email'];
-    smsStatus = json['sms_status'];
-    emailStatus = json['email_status'];
-    popupMessage = json['popup_message'];
-    phoneNumber = json['phone_number'];
-    additionalEmails = json['additional_emails'];
-    authToken = json['auth_token'];
+    id = json['id'] ?? json['id'] ?? "";
+    longitude = json['longitude'] ?? json['longitude'] ?? "";
+    latitude = json['latitude'] ?? json['latitude'] ?? "";
+    siteNumber = json['site_number'] ?? json['site_number'] ?? 0;
+    deptInCharge = json['dept_in_charge'] ?? json['dept_in_charge'] ?? 0;
+    siteName = json['site_name'] ?? json['site_name'] ?? "";
+    person = json['person'] ?? json['person'] ?? "";
+    email = json['email'] ?? json['email'] ?? "";
+    createdAt = json['created_at'] ?? json['created_at'] ?? "";
+    updatedAt = json['updated_at'] ?? json['updated_at'] ?? "";
+    physicalAddress = json['physical_address'] ?? json['physical_address'] ?? "";
+    usnCode1 = json['usn_code_1'] ?? json['usn_code_1'] ?? "";
+    usnCode2 = json['usn_code_2'] ?? json['usn_code_2'] ?? "";
+    hospitalGroup = json['hospital_group'] ?? json['hospital_group'] ?? "";
+    secondaryEmail = json['secondary_email'] ?? json['secondary_email'] ?? "";
+    smsStatus = json['sms_status'] ?? json['sms_status'] ?? "";
+    emailStatus = json['email_status'] ?? json['email_status'] ?? "";
+    popupMessage = json['popup_message'] ?? json['popup_message'] ?? "";
+    phoneNumber = json['phone_number'] ?? json['phone_number'] ?? "";
+    additionalEmails = json['additional_emails'] ?? json['additional_emails'] ?? "";
+    authToken = json['auth_token'] ?? json['auth_token'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

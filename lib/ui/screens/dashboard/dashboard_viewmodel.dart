@@ -109,8 +109,10 @@ class DashboardViewModel extends FutureViewModel {
           savedDir: path,
           fileName: check ? myList[index] : "Report.pdf",
           showNotification: true,
-          openFileFromNotification: true);
+          openFileFromNotification: true
+      );
     } else {
+      Fluttertoast.showToast(msg: "Downloading failed");
       print("Permission Denied");
     }
   }

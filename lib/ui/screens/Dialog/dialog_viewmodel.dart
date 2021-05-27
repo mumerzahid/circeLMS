@@ -18,23 +18,40 @@ class DialogViewModel extends BaseViewModel{
   final NavigationService navigationService = locator<NavigationService>();
 
   String _emailFError;
-
   String get emailFError => _emailFError;
 
   bool _isFLoading = false;
-
   bool get isLoading => _isFLoading;
+
+  bool _email = true;
+  bool get getVerifiedemail => _email;
 
   setIsLoading(bool isLoading) {
     _isFLoading = isLoading;
     notifyListeners();
   }
 
+
+  bool isEmail(String string) {
+    const pattern = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+    final regExp = RegExp(pattern,caseSensitive: true);
+
+    if (!regExp.hasMatch(string)) {
+      print("Print False");
+      _email= false;
+    }
+    print("Print False");
+    if(regExp.hasMatch(string) || (string.isEmpty || string == null ))
+      _email = true;
+    notifyListeners();
+  }
+
   bool validationMethod(String email) {
     if (!_validationService.checkEmpty(email))
+      {
       _emailFError = ConstantsMessages.emailEmpty;
-    else if (!_validationService.checkEmailPattern(email))
-      _emailFError = ConstantsMessages.emailInvalid;
+    snackBar("Please enter email");
+       }
     else {
       return true;
     }
@@ -44,12 +61,11 @@ class DialogViewModel extends BaseViewModel{
     _snackbarService.showCustomSnackBar(
       variant: SnackbarType.universal,
       message: Error,
-      title: Error,
       duration: Duration(seconds: 2),
       onTap: (_) {
         print('snackbar tapped');
       },
-      mainButtonTitle: 'Undo',
+      mainButtonTitle: '',
       onMainButtonTapped: () => print('Undo the action!'),
     );
   }

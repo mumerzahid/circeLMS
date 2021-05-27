@@ -35,7 +35,7 @@ class LoginView extends StatelessWidget {
                       Row(
                         children: [
                           Image.asset(
-                            "assets/images/B-logo.png",
+                            "assets/images/x-logo.png",
                             width: MediaQuery.of(context).size.width * 0.05,
                             // height: MediaQuery.of(context).size.height * 0.05,
                           ),
@@ -44,23 +44,31 @@ class LoginView extends StatelessWidget {
                           ),
                           Expanded(
                             child: Container(
-                              height: MediaQuery.of(context).size.height * 0.07,
+                              height: MediaQuery.of(context).size.height * 0.1,
                               //   width: MediaQuery.of(context).size.width * 0.7,
                                 child: TextField(
+                                  keyboardType: TextInputType.emailAddress ,
                                   controller: model.emailController,
-                                  decoration: InputDecoration(
+                                  onChanged: (string) {
+                                    model.isEmail(string);
+                                  },
+                                  decoration:  InputDecoration(
+                                      errorText: model.getVerifiedemail?null:"Please enter the right email",
                                     labelText: "EMAIL",
                                     //hintText: "Enter Email",
                                     labelStyle: TextStyle(
                                         fontFamily: 'Open Sans',
                                         fontSize: 14,
                                         color: const Color.fromRGBO(
-                                            149, 149, 149, 1)),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: const Color.fromRGBO(
-                                              196, 196, 196, 1)),
+                                            149, 149, 149, 1
+                                        )
                                     ),
+                                    focusedBorder: UnderlineInputBorder(
+                                      borderSide: model.getVerifiedemail?BorderSide(
+                                          color: const Color.fromRGBO(
+                                              196, 196, 196, 1)):BorderSide(
+                                          color: Colors.red),
+                                    )
                                   ),
                                 )),
                           ),
@@ -72,7 +80,7 @@ class LoginView extends StatelessWidget {
                       Row(
                         children: [
                           Image.asset(
-                            "assets/images/key.png",
+                            "assets/images/key-1.png",
                             width: MediaQuery.of(context).size.width * 0.05,
                             // height: MediaQuery.of(context).size.height * 0.05,
                           ),
@@ -81,8 +89,12 @@ class LoginView extends StatelessWidget {
                           ),
                           Expanded(
                             child: Container(
-                                height: MediaQuery.of(context).size.height * 0.07,
+                                height: MediaQuery.of(context).size.height * 0.09,
                                 child: TextField(
+                                  keyboardType: TextInputType.number,
+                                  onChanged: (value) {
+                                    model.verifyUsername(value);
+                                  },
                                   controller: model.passwordController,
                                   obscureText: model.obsecureText,
                                   style: TextStyle(
@@ -90,6 +102,7 @@ class LoginView extends StatelessWidget {
                                         const Color.fromRGBO(149, 149, 149, 1),
                                   ),
                                   decoration: InputDecoration(
+                                    errorText: model.getVerifiedPassword?null:"Password must contain at least 6 characters",
                                     labelText: "PASSWORD",
                                     suffixIcon: InkWell(
                                       onTap: ()=> model.obsecureValue(),
@@ -101,9 +114,11 @@ class LoginView extends StatelessWidget {
                                         color: const Color.fromRGBO(
                                             149, 149, 149, 1)),
                                     focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
+                                      borderSide: model.getVerifiedPassword?BorderSide(
                                           color: const Color.fromRGBO(
-                                              196, 196, 196, 1)),
+                                              196, 196, 196, 1)
+                                      ):BorderSide(
+                                          color: Colors.red),
                                     ),
                                   ),
                                 )

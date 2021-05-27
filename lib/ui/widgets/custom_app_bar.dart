@@ -70,7 +70,7 @@ class CustomAppBar extends PreferredSize {
                         ),
                       ),
                       Expanded(
-                        child: Image.asset('assets/images/Group1881.png',
+                        child: Image.asset('assets/images/CRICE.png',
                             // width: MediaQuery.of(context).size.width *0.1, //70
                             height: MediaQuery.of(context).size.height * 0.1),
                       ),

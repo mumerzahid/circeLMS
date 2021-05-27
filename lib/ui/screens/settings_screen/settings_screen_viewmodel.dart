@@ -1,122 +1,3 @@
-// import 'package:crice_hospital_app/app/locator.dart';
-// import 'package:crice_hospital_app/model/settings.dart';
-// import 'package:crice_hospital_app/services/validation_service.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:stacked/stacked.dart';
-// import 'package:crice_hospital_app/constants/route_path.dart' as routes;
-// import 'package:stacked_services/stacked_services.dart';
-//
-// class SettingsViewModel extends BaseViewModel{
-//   final _navigationService = locator<NavigationService>();
-// final ValidationService validationService = locator<ValidationService>();  // final MyNavigationService _navigationService =locator<MyNavigationService>();
-//   TextEditingController mobileController = TextEditingController();
-//   TextEditingController passwordController = TextEditingController();
-//   // String _passwordError;
-//   // String get passwordError => _passwordError;
-//
-//   String _emailError;
-//
-//   String get emailError => _emailError;
-//
-//   String _passError;
-//
-//   String get passError => _passError;
-//
-//   bool _isLoading = false;
-//
-//   bool get isLoading => _isLoading;
-//
-//   bool _obscureText = true;
-//   bool get obscureText=> _obscureText;
-//
-//
-//
-// setIsLoading(bool isLoading) {
-//   _isLoading = isLoading;
-//   notifyListeners();
-// }
-//
-// void errorListener(Settings update) {
-//   if (update.success) {
-//     print("Successfully");
-//     _navigationService.pushNamedAndRemoveUntil(routes.SwitcherRoute);
-//     snackBar(update.message);
-//     // Fluttertoast.showToast(msg: loginModel.message);
-//   }
-//   else
-//   {
-//     _passError = update.message;
-//     snackBar(_passError);
-//   }
-//   mobileController.clear();
-//   passwordController.clear();
-//   setIsLoading(false);
-// }
-//
-//
-//
-// Future<bool> navigation({bool success = true}) async {
-//   _navigationService.navigateTo(routes.SwitcherRoute);
-// }
-//
-// bool validationMethod(String email, String password) {
-//   if (!_validationService.checkEmpty(email))
-//     _emailError = ConstantsMessages.emailEmpty;
-//   else if (!_validationService.checkEmailPattern(email))
-//     _emailError = ConstantsMessages.emailInvalid;
-//   else if (!_validationService.checkEmpty(password))
-//     _passError = ConstantsMessages.passwordEmpty;
-//   else if (!_validationService.passwordLength(password))
-//     _passError = ConstantsMessages.passwordLength;
-//   else {
-//     return true;
-//   }
-//   return false;
-// }
-//
-// void snackBar(String Error) {
-//   _snackbarService.showCustomSnackBar(
-//     variant: SnackbarType.white,
-//     message: Error,
-//     title: Error,
-//     duration: Duration(seconds: 2),
-//     onTap: (_) {
-//       print('snackbar tapped');
-//     },
-//     mainButtonTitle: 'Undo',
-//     onMainButtonTapped: () => print('Undo the action!'),
-//   );
-// }
-// void toResetNav(){
-//   _navigationService.navigateTo(routes.ResetRoute);
-// }
-// // void Dialog(){
-// //   _dialogService.showDialog(
-// //     title: 'Test Dialog Title',
-// //     description: 'Test Dialog Description',
-// //     dialogPlatform: DialogPlatform.Material,
-// //   );
-// // }
-// void logIn(String email, String password) async {
-//   _passError = null;
-//   _emailError = null;
-//   setIsLoading(true);
-//   if (validationMethod(email, password)) {
-//     Map<String, String> body = {
-//       'email': email,
-//       'password': password,
-//     };
-//     _api.login(body).then((value) => {
-//       errorListener(value),
-//     });
-//   } else {
-//     setIsLoading(false);
-//   }
-// }
-//
-//
-// }
-
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/model/settings.dart';
@@ -202,9 +83,17 @@ class SettingsViewModel extends BaseViewModel {
         validPassword = false;
       }
     }
-    if(validPhoneNumber == validPassword){
+    if((password.isEmpty ||  password == null) && (phoneNumber.isEmpty || phoneNumber == null))
+    {
+      validPassword=false;
+      snackBar("Please fill the given fields");
+      return false;
+    }
+    if(validPhoneNumber == true && validPassword ==true){
       return true;
-    }else{
+    }
+    else
+      {
       return false;
     }
   }
@@ -213,12 +102,11 @@ class SettingsViewModel extends BaseViewModel {
     _snackbarService.showCustomSnackBar(
       variant: SnackbarType.white,
       message: Error,
-      title: Error,
-      duration: Duration(seconds: 2),
+      duration: Duration(seconds: 1),
       onTap: (_) {
         print('snackbar tapped');
       },
-      mainButtonTitle: 'Undo',
+      mainButtonTitle: '',
       onMainButtonTapped: () => print('Undo the action!'),
     );
   }
@@ -227,6 +115,7 @@ class SettingsViewModel extends BaseViewModel {
     print(password);
     print(phoneNumber);
     setIsLoading(true);
+
     if (validationMethod(password, phoneNumber)) {
       print(password);
       print(phoneNumber);
