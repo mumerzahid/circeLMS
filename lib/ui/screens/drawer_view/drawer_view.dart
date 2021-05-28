@@ -204,8 +204,8 @@ class DrawerView extends StatelessWidget {
                                   bottomLeft: Radius.circular(8.0),
                                   bottomRight: Radius.circular(8.0),
                                 )),
-                            height: MediaQuery.of(context).size.height * 0.05,
-                            width: MediaQuery.of(context).size.height * 0.05,
+                            height: MediaQuery.of(context).size.width * 0.09,
+                            width: MediaQuery.of(context).size.width * 0.09,
                             child: Padding(
                               padding: EdgeInsets.all(8),
                               child: InkWell(

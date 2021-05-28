@@ -35,8 +35,8 @@ class DashboardViewModel extends FutureViewModel {
 
   bool _isLoading = true;
 
-  bool get isLoading => _isLoading;
 
+  bool get isLoading => _isLoading;
   static downloadingCallback(id, status, progress) {
     SendPort sendPort = IsolateNameServer.lookupPortByName("downloading");
     sendPort.send([id, status, progress]);
@@ -93,7 +93,7 @@ class DashboardViewModel extends FutureViewModel {
     Fluttertoast.showToast(msg: "Start Downloading");
     String url = ConstantsMessages.fBaseURL + link;
     print(url);
-    Dio dio = Dio();
+    // Dio dio = Dio();
     // getStoragePermission();
     final status = await Permission.storage.request();
     if (status.isGranted) {
@@ -109,7 +109,7 @@ class DashboardViewModel extends FutureViewModel {
           savedDir: path,
           fileName: check ? myList[index] : "Report.pdf",
           showNotification: true,
-          openFileFromNotification: true
+          openFileFromNotification: true,
       );
     } else {
       Fluttertoast.showToast(msg: "Downloading failed");

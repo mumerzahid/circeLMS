@@ -1,20 +1,23 @@
 import 'package:crice_hospital_app/app/locator.dart';
+import 'package:crice_hospital_app/ui/screens/login_screen/login_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
-
+import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 import 'dialog_viewmodel.dart';
 
 class  DialogView extends StatelessWidget {
+  var dialogeContext;
 
 final NavigationService _navigationService = locator<NavigationService>();
 
 @override
 Widget build(BuildContext context) {
-return ViewModelBuilder<DialogViewModel>.reactive(
+  dialogeContext= context;
+  return ViewModelBuilder<DialogViewModel>.reactive(
 builder: (context, model, child) => Container(
 height: MediaQuery.of(context).size.height * 0.35,
   child: Padding(
@@ -68,7 +71,10 @@ height: MediaQuery.of(context).size.height * 0.35,
                 style: ElevatedButton.styleFrom(
                   primary: const Color.fromRGBO(134, 227, 220, 1),
                 ),
-                onPressed: ()=> _navigationService.popRepeated(1),
+                onPressed: ()=> Navigator.pushAndRemoveUntil(
+                    context,
+                    PageRouteBuilder(pageBuilder: (c, a1, a2) => LoginView()),
+                        (Route<dynamic> route) => false)
               ),
             ),
             Container(
@@ -89,7 +95,11 @@ height: MediaQuery.of(context).size.height * 0.35,
                 style: ElevatedButton.styleFrom(
                   primary: const Color.fromRGBO(134, 227, 220, 1),
                 ),
-                onPressed: ()=>model.resetPassword(model.emailController.text),
+                onPressed: ()=>{
+                  model.resetPassword(model.emailController.text,context),
+
+                  //
+                }
               ),
             ),
           ]),

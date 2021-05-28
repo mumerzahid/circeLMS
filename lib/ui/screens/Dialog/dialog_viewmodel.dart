@@ -4,8 +4,12 @@ import 'package:crice_hospital_app/model/reset_password.dart';
 import 'package:crice_hospital_app/services/api.dart';
 import 'package:crice_hospital_app/services/snackbar.dart';
 import 'package:crice_hospital_app/services/validation_service.dart';
+import 'package:crice_hospital_app/ui/screens/Dialog/dialog_view.dart';
+import 'package:crice_hospital_app/ui/screens/login_screen/login_view.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -25,6 +29,9 @@ class DialogViewModel extends BaseViewModel{
 
   bool _email = true;
   bool get getVerifiedemail => _email;
+
+  bool _submit = false;
+  bool get submit => _submit;
 
   setIsLoading(bool isLoading) {
     _isFLoading = isLoading;
@@ -46,11 +53,13 @@ class DialogViewModel extends BaseViewModel{
     notifyListeners();
   }
 
-  bool validationMethod(String email) {
+  bool validationMethod(String email, context) {
     if (!_validationService.checkEmpty(email))
       {
       _emailFError = ConstantsMessages.emailEmpty;
-    snackBar("Please enter email");
+      // Navigator.of(context, rootNavigator: true).pop();
+      snackBar(_emailFError);
+      // navigationService.pushNamedAndRemoveUntil(routes.LoginRoute);
        }
     else {
       return true;
@@ -59,9 +68,9 @@ class DialogViewModel extends BaseViewModel{
   }
   void snackBar(String Error) {
     _snackbarService.showCustomSnackBar(
-      variant: SnackbarType.universal,
+      variant: SnackbarType.white,
       message: Error,
-      duration: Duration(seconds: 2),
+      duration: Duration(seconds: 3),
       onTap: (_) {
         print('snackbar tapped');
       },
@@ -70,10 +79,12 @@ class DialogViewModel extends BaseViewModel{
     );
   }
 
-  void resetListner(PasswordReset reset) {
+
+
+  void resetListner(PasswordReset reset ,context) {
     if (reset.success) {
       print("Submit?");
-      navigationService.popRepeated(1);
+      Navigator.of(context, rootNavigator: true).pop();
       snackBar(reset.message);
       print(reset.message);
     }
@@ -85,16 +96,16 @@ class DialogViewModel extends BaseViewModel{
     emailController.clear();
     setIsLoading(false);
   }
-  void resetPassword(String email) async {
+  void resetPassword(String email,context) async {
     _emailFError = null;
-    if (validationMethod(email)) {
+    if (validationMethod(email, context)) {
       Map<String, String> body = {
         'email': email,
       };
       setIsLoading(true);
       _api.resetPassword(body).then((value) =>
       {
-        resetListner(value),
+        resetListner(value,context),
       });
       // } else {
       //   setIsLoading(false);

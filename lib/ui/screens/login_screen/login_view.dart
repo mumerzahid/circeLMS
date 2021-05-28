@@ -74,9 +74,9 @@ class LoginView extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.02,
-                      ),
+                      // SizedBox(
+                      //   height: MediaQuery.of(context).size.height * 0.02,
+                      // ),
                       Row(
                         children: [
                           Image.asset(
@@ -127,7 +127,7 @@ class LoginView extends StatelessWidget {
                         ],
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
+                        height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       InkWell(
                         onTap: () => model.logIn(
@@ -170,24 +170,22 @@ class LoginView extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.03,
+                        height: MediaQuery.of(context).size.height * 0.025,
                       ),
                       InkWell(
                         splashColor: Colors.transparent,
                         onTap: () =>
-                            showDialog(context: context,
+                            showDialog(
+                                context: context,
                             builder: (BuildContext context) {
                               return  Dialog(
                                 shape: RoundedRectangleBorder(
                                     borderRadius:
                                     BorderRadius.circular(10.0)), //this right here
-                                child: DialogView(),
+                                child:  DialogView(),
                               );
                             }
                             ),
-                            // model.toResetNav(),
-                            // model.toResetNav(),
-                            // model.snackBar("Link has been sent your registered email!"),
                         child: Container(
                           padding: EdgeInsets.only(
                               top: 6,
