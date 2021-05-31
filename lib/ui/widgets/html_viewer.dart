@@ -4,6 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+
+// String selectedUrl = 'https://flutter.io';
+//
+// // ignore: prefer_collection_literals
+// final Set<JavascriptChannel> jsChannels = [
+//   JavascriptChannel(
+//       name: 'Print',
+//       onMessageReceived: (JavascriptMessage message) {
+//         print(message.message);
+//       }),
+// ].toSet();
+//
+// void main() {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   runApp(HtmlViewer());
+// }
+
 class HtmlViewer extends StatelessWidget {
   final String data;
   final NavigationService _navigationService = locator<NavigationService>();
@@ -19,7 +36,7 @@ class HtmlViewer extends StatelessWidget {
                 onTap: () => Navigator.pop(context),
                 child: Icon(Icons.keyboard_backspace_rounded)),
             title: Text(
-              "HOSTPITAL REPORT",
+              "HOSPITAL REPORT",
               style: TextStyle(
                 fontFamily: 'Open Sans',
                   fontWeight: FontWeight.w700,
@@ -34,6 +51,7 @@ class HtmlViewer extends StatelessWidget {
             : Padding(
                 padding: EdgeInsets.all(20),
                 child: WebviewScaffold(
+                  withZoom: true,
                   withLocalStorage: true,
                   withJavascript: true,
                   url: Uri.dataFromString(data, mimeType: 'text/html')

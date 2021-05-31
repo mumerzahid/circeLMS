@@ -4,12 +4,8 @@ import 'package:crice_hospital_app/model/reset_password.dart';
 import 'package:crice_hospital_app/services/api.dart';
 import 'package:crice_hospital_app/services/snackbar.dart';
 import 'package:crice_hospital_app/services/validation_service.dart';
-import 'package:crice_hospital_app/ui/screens/Dialog/dialog_view.dart';
-import 'package:crice_hospital_app/ui/screens/login_screen/login_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 

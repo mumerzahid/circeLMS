@@ -5,7 +5,6 @@ import 'package:crice_hospital_app/services/local_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:crice_hospital_app/app/router.dart' as router;
-import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'services/snackbar.dart';
 
@@ -15,9 +14,9 @@ void main() async {
   MySnackBar();
   WidgetsFlutterBinding.ensureInitialized();
   await LocalStorage.localStorage.init();
-  await FlutterDownloader.initialize(
-      debug: true // optional: set false to disable printing logs to console
-      );
+  // await FlutterDownloader.initialize(
+  //     debug: true // optional: set false to disable printing logs to console
+  //     );
   // token = await locator<LocalStorage>().getAuthToken();
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
@@ -95,7 +94,7 @@ class _MyAppState extends State<MyApp> {
   // }
 
   void loadData() {
-    Timer(Duration(milliseconds: 6500), () {
+    Timer(Duration(milliseconds: 6200), () {
       navToDashboard();
     });
   }

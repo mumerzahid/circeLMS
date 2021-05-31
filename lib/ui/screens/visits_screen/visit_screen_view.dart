@@ -10,7 +10,7 @@ class VisitScreenView extends StatelessWidget {
     return ViewModelBuilder<VisitScreenViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
-        body: model.isLoading?CircularProgressIndicator():SingleChildScrollView(
+        body: model.isLoading?Center(child: CircularProgressIndicator()):SingleChildScrollView(
           child: Column(
             children: [
               // verticalSpaceLarge,

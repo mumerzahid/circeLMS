@@ -1,4 +1,5 @@
 import 'package:crice_hospital_app/app/locator.dart';
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/services/api.dart';
 import 'package:crice_hospital_app/ui/screens/youtube_player/youtube_video_player_view.dart';
 import 'package:dio/dio.dart';
@@ -10,6 +11,15 @@ import 'dashboard_viewmodel.dart';
 import 'package:date_format/date_format.dart';
 import 'package:crice_hospital_app/ui/widgets/FeedsView.dart';
 
+// void main(){
+//   _initializeFlutterDownloader();
+//   runApp(DashboardView());
+// }
+//
+// _initializeFlutterDownloader()async{
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await FlutterDownloader.initialize();
+// }
 class DashboardView extends StatelessWidget {
   final Api _api = locator<Api>();
   final NavigationService _navigationService = locator<NavigationService>();
@@ -17,6 +27,8 @@ class DashboardView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var dashboardviewmodel =
+    DashboardViewModel();
     return ViewModelBuilder<DashboardViewModel>.reactive(
       builder: (context, model, child) {
         return Scaffold(
@@ -166,13 +178,16 @@ class DashboardView extends StatelessWidget {
                                                                         .isEmpty
                                                                     ? model.snackBar(
                                                                         "Invalid URL")
-                                                                    : model.downloadFile(
-                                                                        model
+                                                                    :
+                                                                model.downloadFile(
+                                                                  context,
+                                                                        ConstantsMessages.fBaseURL+model
                                                                             .feedlist[
                                                                                 index]
                                                                             .documentDownloadUrl,
-                                                                        null,
-                                                                        false);
+                                                                  model.feedlist[index].documentFileName == '' || model.feedlist[index].documentFileName ==  null? "Report $index.pdf" :model.feedlist[index].documentFileName,
+                                                                        );
+                                                                SizedBox();
                                                               },
                                                               child: Padding(
                                                                 padding:
@@ -364,12 +379,16 @@ class DashboardView extends StatelessWidget {
                                                           ? Fluttertoast.showToast(
                                                           msg:
                                                           "Invalid Link")
-                                                          : model.downloadFile(
-                                                          model
-                                                              .trList[index]
-                                                              .documentDownloadUrl,
-                                                          index,
-                                                          true),
+                                                          :
+                                                      // model.downloadFile(
+                                                      //     model
+                                                      //         .trList[index]
+                                                      //         .documentDownloadUrl,
+                                                      //     index,
+                                                      //     true
+                                                      // ),
+                                                      model.downloadFile(context,ConstantsMessages.fBaseURL+model.trList[index].documentDownloadUrl, model.trList[index].documentFileName)
+                                                          .then((onValue) {}),
                                                           child: Row(
                                                               mainAxisSize:
                                                                   MainAxisSize
@@ -423,7 +442,12 @@ class DashboardView extends StatelessWidget {
                                                                         .download_sharp,
                                                                     size: 30,
                                                                   ),
-                                                                )
+                                                                ),
+                                                      // Text(
+                                                      //   model.downloadStatusView(dashboardviewmodel),
+                                                      //   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                                                      // ),
+
                                                               ],
                                                             ),
                                                         )
@@ -473,4 +497,17 @@ class DashboardView extends StatelessWidget {
       viewModelBuilder: () => DashboardViewModel(),
     );
   }
+
+  // Widget downloadProgress() {
+  //   var dashboardviewmoedl =
+  //   locator<DashboardViewModel>();
+  //
+  //   return Text(
+  //     downloadStatus(dashboardviewmoedl),
+  //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+  //   );
+  // }
+
+
+
 }

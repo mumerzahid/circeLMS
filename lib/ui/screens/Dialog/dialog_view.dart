@@ -36,6 +36,7 @@ height: MediaQuery.of(context).size.height * 0.35,
             )
         ),
         TextField(
+          keyboardType: TextInputType.emailAddress,
           controller: model.emailController,
            onChanged: (string) {
                               model.isEmail(string);},
@@ -56,7 +57,8 @@ height: MediaQuery.of(context).size.height * 0.35,
           height: MediaQuery.of(context).size.height * 0.05,
         ),
         model.isLoading?CircularProgressIndicator():Expanded(
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          child: Row(mainAxisAlignment: MainAxisAlignment.end,
+              children: [
             Container(
               child: ElevatedButton(
                 child: Text(
@@ -71,12 +73,10 @@ height: MediaQuery.of(context).size.height * 0.35,
                 style: ElevatedButton.styleFrom(
                   primary: const Color.fromRGBO(134, 227, 220, 1),
                 ),
-                onPressed: ()=> Navigator.pushAndRemoveUntil(
-                    context,
-                    PageRouteBuilder(pageBuilder: (c, a1, a2) => LoginView()),
-                        (Route<dynamic> route) => false)
+                onPressed: ()=> Navigator.of(context, rootNavigator: true).pop()
               ),
             ),
+            SizedBox(width: 10,),
             Container(
               // width: 180,
 
