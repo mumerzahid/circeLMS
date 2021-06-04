@@ -795,3 +795,21 @@
 //         ));
 //   }
 // }
+// -------------------------
+// showDialog(
+// context: context,
+// builder: (BuildContext
+//     context) {
+//   return
+//
+//     Dialog(
+//       child: DashboardFeeds(
+//           htmlView: model
+//               .feedlist[
+//                   index]
+//               .content,
+//           title: model
+//               .feedlist[
+//                   index]
+//               .newsFeedTitle));
+// }),

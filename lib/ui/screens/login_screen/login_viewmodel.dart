@@ -80,9 +80,20 @@ class LoginViewModel extends BaseViewModel {
   void errorListener(User loginModel) {
     if (loginModel.success) {
       print("Successfully");
+      print(loginModel.data.geofence.id);
       _localStorage.saveAuthToken(loginModel.data.geofence.authToken);
+     // var fcm= _localStorage.saveFcmToken(loginModel.data.geofence.fcmToken);
+      _localStorage.saveUserID(loginModel.data.geofence.id);
+
+      // print("Geofence_id :" + _localStorage.saveUserID(loginModel.data.geofence.id));
+      // print("Login User Id: " + _localStorage.saveUserID(loginModel.data.geofence.id.toString()));
       _localStorage.saveLoginStatus(true);
+      // Map<String, String> body = {
+      //   'fcm-token': _localStorage.getFcmToken()
+      // };
+      // _api.fcmToken(body);
       print("Login Status Saved as: " + _localStorage.getLoginStatus().toString());
+      // print("Login UserID Saved as: " + _localStorage.getUserID());
       _navigationService.pushNamedAndRemoveUntil(routes.SwitcherRoute);
       emailController.clear();
       passwordController.clear();

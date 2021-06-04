@@ -6,21 +6,26 @@ import 'package:crice_hospital_app/services/api.dart';
 import 'package:crice_hospital_app/services/local_storage.dart';
 import 'package:crice_hospital_app/services/snackbar.dart';
 import 'package:crice_hospital_app/services/validation_service.dart';
+import 'package:date_format/date_format.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:crice_hospital_app/constants/route_path.dart'as routes;
 
 class VisitScreenViewModel extends FutureViewModel{
-
-  final _navigationService = locator<NavigationService>();
+  var  apiReturn;
+  final navigationService = locator<NavigationService>();
   final ValidationService _validationService=locator<ValidationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
   final DialogService _dialogService = locator<DialogService>();
+  final Api api = locator<Api>();
   final LocalStorage _localStorage =locator<LocalStorage>();
+  DateTime currentDate = DateTime.now();
 
 
   final Api _api = locator<Api>();
   List<Visits> visits = new List();
+  var checkInDate;
+  // List<Visits> arrayVisits = new List();
 
   // String _visitsModel;
   //
@@ -48,6 +53,7 @@ class VisitScreenViewModel extends FutureViewModel{
       print("Successfully visit");
 
       visits = visit.data.visits;
+      print(visits);
       notifyListeners();
       setIsLoading(false);
 
@@ -99,12 +105,14 @@ class VisitScreenViewModel extends FutureViewModel{
       onMainButtonTapped: () => print('Undo the action!'),
     );
   }
-
   @override
   Future futureToRun() {
-    return  _api.getVisits().then((value) => {
+     checkInDate= formatDate(currentDate, [dd, '/', mm, '/', yyyy]);
+    Map<String, String> body = {
+      'checkin_date': currentDate.toString(),
+    };
+    return _api.getVisits(checkInDate).then((value) => {
       errorListener(value),
-
     });
   }
 }

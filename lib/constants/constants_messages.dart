@@ -16,14 +16,16 @@ class ConstantsMessages {
   static String endRPoint = "reset_password";
   static String endSPoint = "settings";
   static String endVPoint ="visits";
-    static String endDPoint = "dashboard";
+  static String endDPoint = "dashboard";
   static String reportsEPoint ="http://79.143.187.147:3000/visits/hospital_facility_report_mob";
+  static String fcmTokenPoints = "update_fcm_token";
   static bool loginStatus = false;
 
   static String loginURL =   baseUrl + midPoint + endLPoint;
   static String resetURL =   baseUrl + midPoint + endRPoint;
   static String settingURL = baseUrl + midPoint + endSPoint;
-  static String visitsURL =  baseUrl + endVPoint;
+  static String visitsURL =  baseUrl + endVPoint + "?&&checkin_date=";
   static String dashBoardURL = baseUrl + endDPoint;
   static String reportsURL = reportsEPoint;
+  static String fcmToken = baseUrl+midPoint+fcmTokenPoints;
 }

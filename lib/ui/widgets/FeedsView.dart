@@ -26,17 +26,17 @@ class DashboardFeeds extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Container(
+            // width: MediaQuery.of(context).size.width,
             child: Padding(
-                padding: const EdgeInsets
-                    .all(
-                    12.0),
-                child: Html(
-                  data: htmlView
-                  // data: model
-                  //     .feedlist[
-                  // index]
-                  //     .content,
-                )),
+              padding: EdgeInsets.all(3),
+              child: Html(
+                data: htmlView
+                // data: model
+                //     .feedlist[
+                // index]
+                //     .content,
+              ),
+            ),
           ),
         ),
       ),

@@ -148,7 +148,8 @@ class ReportView extends StatelessWidget {
                                         if (model.startDate == null &&
                                                 model.endDate == null ||
                                             model.startDate.isAtSameMomentAs(
-                                                model.endDate) ||
+                                                model.endDate)
+                                            ||
                                             (model.startDate
                                                 .isAfter(model.endDate))) {
                                           model.snackBar(
@@ -319,22 +320,23 @@ class ReportView extends StatelessWidget {
                                   // color: const Color.fromRGBO(134, 227, 220, 1),
                                     height: 35,
                                     width: 150,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        primary: Colors.grey // background
-                                      ),
-                                      onPressed: null,
-                                      child: Text(
-                                        "Download",
-                                        style: TextStyle(
-                                          fontFamily: 'Open Sans',
-                                          // fontWeight: FontWeight.w700,
-                                          fontSize: 16,
-                                          color: const Color.fromRGBO(
-                                              255, 255, 255, 1),
-                                        ),
-                                      ),
-                                    )
+                                    color: Colors.transparent,
+                                    // child: ElevatedButton(
+                                    //   style: ElevatedButton.styleFrom(
+                                    //     primary: Colors.grey // background
+                                    //   ),
+                                    //   onPressed: null,
+                                    //   child: Text(
+                                    //     "Download",
+                                    //     style: TextStyle(
+                                    //       fontFamily: 'Open Sans',
+                                    //       // fontWeight: FontWeight.w700,
+                                    //       fontSize: 16,
+                                    //       color: const Color.fromRGBO(
+                                    //           255, 255, 255, 1),
+                                    //     ),
+                                    //   ),
+                                    // )
                                 )
                               ],
                             ),

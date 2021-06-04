@@ -2,14 +2,33 @@ import 'dart:async';
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/services/local_storage.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:crice_hospital_app/app/router.dart' as router;
+import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'services/snackbar.dart';
 
+// final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+// FlutterLocalNotificationsPlugin();
+// AndroidNotificationChannel channel = AndroidNotificationChannel(
+//   'high_importance_channel', // id
+//   'High Importance Notifications', // title
+//   'This channel is used for important notifications.', // description
+//   importance: Importance.high,
+// );
 String token;
 void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // await flutterLocalNotificationsPlugin
+  //     .resolvePlatformSpecificImplementation<
+  //     AndroidFlutterLocalNotificationsPlugin>()
+  //     ?.createNotificationChannel(channel);
   setupLocator();
   MySnackBar();
   WidgetsFlutterBinding.ensureInitialized();
@@ -48,6 +67,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     // TODO: implement initState
+    // initNotification();
+    // getToken();
+    // firebaseNotification();
     loadData();
     super.initState();
 
@@ -94,7 +116,7 @@ class _MyAppState extends State<MyApp> {
   // }
 
   void loadData() {
-    Timer(Duration(milliseconds: 6200), () {
+    Timer(Duration(milliseconds: 6000), () {
       navToDashboard();
     });
   }
@@ -104,6 +126,7 @@ class _MyAppState extends State<MyApp> {
         PageRouteBuilder(pageBuilder: (c, a1, a2) => AfterSplash()),
             (Route<dynamic> route) => false);
   }
+
 }
 class AfterSplash extends StatefulWidget{
   @override
@@ -115,6 +138,10 @@ class _AfterSplashState extends State<AfterSplash> {
   void initState() {
     super.initState();
     getLoginStatus();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
   }
 
   @override
@@ -139,5 +166,48 @@ class _AfterSplashState extends State<AfterSplash> {
     print("Login Status: " + ConstantsMessages.loginStatus.toString());
   }
 }
+// void firebaseNotification() {
+//   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+//     RemoteNotification notification = message.notification;
+//     AndroidNotification android = message.notification?.android;
+//     if (notification != null) {
+//       _handleNotification(message);
+//     }
+//   });
+// }
+// getToken() async {
+//   String token = await FirebaseMessaging.instance.getToken();
+//   print(token);
+// }
+
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
+// Future<void> initNotification() async {
+//   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+//   FlutterLocalNotificationsPlugin();
+//   var initializationSettingsAndroid = AndroidInitializationSettings("@mipmap/launcher_icon");
+//   var initializationSettingsIOS = IOSInitializationSettings();
+//   var initializationSettings = InitializationSettings(
+//       android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+//   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+// }
+// void _handleNotification(RemoteMessage message) {
+//   var check = message.data["delete"] as String;
+//   if (check == "true") {
+//   } else {
+//     _showNotification(
+//         message.notification.title,message.notification.body);
+//   }
+// }
+// Future<void> _showNotification(String title, String body) async {
+//   var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+//       'your channel id', 'your channel name', 'your channel description',
+//       importance: Importance.max, priority: Priority.high, ticker: 'ticker');
+//   var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+//   var platformChannelSpecifics = NotificationDetails(
+//       android: androidPlatformChannelSpecifics,
+//       iOS: iOSPlatformChannelSpecifics);
+//   await flutterLocalNotificationsPlugin
+//       .show(0, title, body, platformChannelSpecifics, payload: 'item x');
+// }
 
 // "http://schemas.android.com/apk/res/android"

@@ -133,18 +133,24 @@ class Api {
   }
 
   @override
-  Future<VisitModel> getVisits() async {
+  Future<VisitModel> getVisits(body) async {
 
     String token = await _localStorage.getAuthToken();
     print(token);
+    print("run again");
     var header = {'Auth-Token': token};
+    // Uri uri = Uri.parse(ConstantsMessages.visitsURL);
+    // final params = uri.replace(queryParameters: body);
+    // final bodyjson = json.encode(params);
     final response = await client.get(
-        Uri.parse(ConstantsMessages.visitsURL),
+        Uri.parse(ConstantsMessages.visitsURL+"$body"),
+      // bodyjson,
         headers: header,
     );
     print(response);
     if (response.statusCode == 200) {
       print(response.statusCode);
+      print(response.body);
 
       return VisitModel.fromJson(json.decode(response.body));
     } else {
@@ -161,6 +167,7 @@ class Api {
 
     String token = await _localStorage.getAuthToken();
     print(token);
+    print("again");
     var header = {'Auth-Token': token};
     final response = await client.get(
       Uri.parse(ConstantsMessages.dashBoardURL),
@@ -182,15 +189,16 @@ class Api {
   @override
   Future<HTMLWeb> getReportsHTML(Map<String,String> bodyMap) async {
 
-    String token = await _localStorage.getAuthToken();
-    print(token);
-    var header = {'Auth-Token': token};
+    // int userId = await _localStorage.getUserID();
+    // // print(token);
+    // var header = {'id': userId};
     // Uri uri = Uri.parse(ConstantsMessages.reportsURL);
     // uri.replace(queryParameters: bodyMap);
     // final bodyjson = json.encode(bodyMap);
-    final response = await client.post(Uri.parse(ConstantsMessages.reportsURL),
-        body: bodyMap,
-        headers: header);
+    final response = await client.get(Uri.parse(ConstantsMessages.reportsURL),
+        // body: bodyMap,
+        // headers: header
+    );
     print(response);
     if (response.statusCode == 200) {
       print(response.statusCode);
@@ -206,6 +214,23 @@ class Api {
         htmlWeb.htmlData = null;
         return htmlWeb;
       } else
+        throw Exception(response.reasonPhrase);
+    }
+  }
+
+  @override
+  Future fcmToken(Map<String, String> body) async {
+    final response =
+    await client.post(Uri.parse(ConstantsMessages.fcmTokenPoints), body: body);
+
+    print(response);
+    if (response.statusCode == 200) {
+      print(response.statusCode);
+      return json.decode(response.body);
+    } else {
+      if (response.body != null)
+        return json.decode(response.body);
+      else
         throw Exception(response.reasonPhrase);
     }
   }

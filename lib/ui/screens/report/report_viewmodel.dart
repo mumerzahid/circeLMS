@@ -1,6 +1,8 @@
 import 'package:crice_hospital_app/app/locator.dart';
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/model/html.dart';
 import 'package:crice_hospital_app/services/api.dart';
+import 'package:crice_hospital_app/services/local_storage.dart';
 import 'package:crice_hospital_app/services/snackbar.dart';
 import 'package:crice_hospital_app/ui/widgets/custom_button_bar.dart';
 import 'package:crice_hospital_app/ui/widgets/html_viewer.dart';
@@ -13,17 +15,21 @@ import 'package:stacked_services/stacked_services.dart';
 
 class ReportViewModel extends BaseViewModel implements Initialisable{
   String html;
+  int userId;
   String success;
   final Api _api = locator<Api>();
   final NavigationService navigationService = locator<NavigationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
+  final LocalStorage _localStorage =locator<LocalStorage>();
   final yesterday = DateTime.now().subtract(Duration(days: 1));
 
+  // String userId;
   DateTime todayDate;
   DateTime currentDate = DateTime.now();
   DateTime startDate  ;
   // = DateTime(DateTime.now().day, DateTime.now().month, DateTime.now().year);
   DateTime endDate;
+
   // = DateTime(DateTime.now().day, DateTime.now().month, DateTime.now().year);
 
   bool startDateBoolean = false, endDateBoolean = false;
@@ -36,16 +42,19 @@ class ReportViewModel extends BaseViewModel implements Initialisable{
 
 
   @override
-  void initialise() {
+  Future<void> initialise() async {
+    userId = await _localStorage.getUserID();
     startDate= yesterday;
     endDate = currentDate;
     notifyListeners();
+    // userId = _localStorage.getUserID();
   }
 
   setIsLoading(bool isLoading) {
     _isLoading = isLoading;
     notifyListeners();
   }
+  // DateTime dateTime = dateFormat.parse("2019-07-19 8:40:23");
 
 // Date Picker also set the Start and End Date
   void selectStartDate(BuildContext context, bool isStartDate) async {
@@ -101,14 +110,18 @@ class ReportViewModel extends BaseViewModel implements Initialisable{
   }
 
   void errorListener(HTMLWeb web) {
-    html = web.htmlData;
+    var header =  userId;
+    var strtDate= formatDate(startDate, [yyyy, '-', mm, '-', dd]);
+    var edDate =formatDate(endDate, [yyyy, '-', mm, '-', dd]);
+    var html = web.htmlData;
     setIsLoading(false);
     notifyListeners();
-    navigationService.navigateToView(HtmlViewer(
-      data: html,
+    navigationService.navigateToView(
+        HtmlViewer(
+      data: ConstantsMessages.reportsEPoint+"?start_date=$strtDate&end_date=$edDate&geofence_id=$header",
     ));
   }
-
+  // &geofence_id=$userId
   void HtmlView(String start, String end) async {
     Map<String, String> body = {
       'start_date': start,

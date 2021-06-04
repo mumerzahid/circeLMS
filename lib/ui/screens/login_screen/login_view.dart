@@ -14,6 +14,7 @@ class LoginView extends StatelessWidget {
       builder: (context, model, child) => SafeArea(
         top: true,
         child:Scaffold(
+          backgroundColor: Colors.white,
           resizeToAvoidBottomInset: false,
           appBar:
               LoginAppBar(height: MediaQuery.of(context).size.height * 0.33),
@@ -91,7 +92,7 @@ class LoginView extends StatelessWidget {
                             child: Container(
                                 height: MediaQuery.of(context).size.height * 0.09,
                                 child: TextField(
-                                  keyboardType: TextInputType.number,
+                                  keyboardType: TextInputType.text,
                                   onChanged: (value) {
                                     model.verifyUsername(value);
                                   },

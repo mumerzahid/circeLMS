@@ -66,6 +66,12 @@ dependencies:
   date_range_picker: ^1.0.7
   progress_dialog:
   open_file:
+  webview_flutter: ^2.0.8
+#  zoom_widget: ^0.1.3
+  pinch_zoom: ^0.1.0-nullsafety.0
+  firebase_core:
+  flutter_local_notifications:
+  firebase_messaging:
 
 
 
@@ -81,7 +87,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/CRICE.png"
+  image_path: "assets/images/launcher-logo.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -22,98 +22,101 @@ class CustomAppBar extends PreferredSize {
   Widget build(BuildContext context) {
     return SafeArea(
       top: true,
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(
-              left: MediaQuery.of(context).size.width * 0.04,
-              top: MediaQuery.of(context).size.width * 0.02, //10
-              right: MediaQuery.of(context).size.width * 0.02,
-              bottom: MediaQuery.of(context).size.width * 0.02, //10
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                    flex: 3,
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () => Scaffold.of(context).openDrawer(),
-                      child: Align(
-                          alignment: Alignment.centerLeft,
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                left: MediaQuery.of(context).size.width * 0.04,
+                top: MediaQuery.of(context).size.width * 0.02, //10
+                right: MediaQuery.of(context).size.width * 0.02,
+                bottom: MediaQuery.of(context).size.width * 0.02, //10
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                      flex: 3,
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () => Scaffold.of(context).openDrawer(),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Image.asset(
+                              'assets/images/menu.png',
+                              height:
+                                  MediaQuery.of(context).size.height * 0.03, //23
+                              width:
+                                  MediaQuery.of(context).size.width * 0.05, //23
+                            )),
+                      )),
+                  Expanded(
+                    flex: 4,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
                           child: Image.asset(
-                            'assets/images/menu.png',
+                            'assets/images/Login2.png',
+                            // width: MediaQuery.of(context).size.width *0.2, //100
+                            height: MediaQuery.of(context).size.height * 0.1, //60
+                          ),
+                        ),
+                        Expanded(
+                          child: Image.asset(
+                            'assets/images/Login1.png',
+                            // width: MediaQuery.of(context).size.width *0.15, //50
                             height:
-                                MediaQuery.of(context).size.height * 0.03, //23
-                            width:
-                                MediaQuery.of(context).size.width * 0.05, //23
-                          )),
-                    )),
-                Expanded(
-                  flex: 4,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Expanded(
-                        child: Image.asset(
-                          'assets/images/Login2.png',
-                          // width: MediaQuery.of(context).size.width *0.2, //100
-                          height: MediaQuery.of(context).size.height * 0.1, //60
+                                MediaQuery.of(context).size.height * 0.05, //35
+                          ),
                         ),
-                      ),
-                      Expanded(
-                        child: Image.asset(
-                          'assets/images/Login1.png',
-                          // width: MediaQuery.of(context).size.width *0.15, //50
-                          height:
-                              MediaQuery.of(context).size.height * 0.05, //35
+                        Expanded(
+                          child: Image.asset('assets/images/CRICE.png',
+                              // width: MediaQuery.of(context).size.width *0.1, //70
+                              height: MediaQuery.of(context).size.height * 0.1),
                         ),
-                      ),
-                      Expanded(
-                        child: Image.asset('assets/images/CRICE.png',
-                            // width: MediaQuery.of(context).size.width *0.1, //70
-                            height: MediaQuery.of(context).size.height * 0.1),
-                      ),
-                    ],
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Column(children: [
+              Container(
+                height: 1,
+                color: const Color.fromRGBO(146, 204, 181, 1),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.05, //45
+                child: Center(
+                    child: Text(
+                  sName,
+                  style: TextStyle(
+                    fontSize: 19,
+                    color: const Color.fromRGBO(107, 126, 130, 1),
                   ),
-                )
-              ],
-            ),
-          ),
-          Column(children: [
-            Container(
-              height: 1,
-              color: const Color.fromRGBO(146, 204, 181, 1),
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.05, //45
-              child: Center(
-                  child: Text(
-                sName,
-                style: TextStyle(
-                  fontSize: 19,
-                  color: const Color.fromRGBO(107, 126, 130, 1),
-                ),
-              )),
-            ),
-            Container(
-              height: 1,
-              color: const Color.fromRGBO(146, 204, 181, 1),
-            ),
-          ]),
-          fCall
-              ? Padding(
-                  padding: EdgeInsets.only(
-                    // horizontal:MediaQuery.of(context).size.width * 0.01,
-                    // vertical: MediaQuery.of(context).size.height * 0.07,
-                    top: MediaQuery.of(context).size.height * 0.06,
-                    left: MediaQuery.of(context).size.width * 0.017,
-                    right: MediaQuery.of(context).size.width * 0.015,
-                  ),
-                  child: CustomButtonBar(
-                      callback: topNavigationCallBack, vScreen: vScreen))
-              : SizedBox()
-        ],
+                )),
+              ),
+              Container(
+                height: 1,
+                color: const Color.fromRGBO(146, 204, 181, 1),
+              ),
+            ]),
+            fCall
+                ? Padding(
+                    padding: EdgeInsets.only(
+                      // horizontal:MediaQuery.of(context).size.width * 0.01,
+                      // vertical: MediaQuery.of(context).size.height * 0.07,
+                      top: MediaQuery.of(context).size.height * 0.06,
+                      left: MediaQuery.of(context).size.width * 0.017,
+                      right: MediaQuery.of(context).size.width * 0.015,
+                    ),
+                    child: CustomButtonBar(
+                        callback: topNavigationCallBack, vScreen: vScreen))
+                : SizedBox()
+          ],
+        ),
       ),
     );
   }

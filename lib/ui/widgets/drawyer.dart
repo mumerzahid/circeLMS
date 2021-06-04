@@ -1,3 +1,102 @@
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:nutri_bar/app/locator.dart';
+// import 'package:nutri_bar/app/router.dart' as router;
+// import 'package:nutri_bar/utils/paths.dart';
+// import 'package:stacked_services/stacked_services.dart';
+// import 'app/snack_bar_style_ui.dart';
+// final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+// FlutterLocalNotificationsPlugin();
+// AndroidNotificationChannel channel = AndroidNotificationChannel(
+//   'high_importance_channel', // id
+//   'High Importance Notifications', // title
+//   'This channel is used for important notifications.', // description
+//   importance: Importance.high,
+// );
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp();
+//   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+//   await flutterLocalNotificationsPlugin
+//       .resolvePlatformSpecificImplementation<
+//       AndroidFlutterLocalNotificationsPlugin>()
+//       ?.createNotificationChannel(channel);
+//   setupLocator();
+//   setupSnackbarUi();
+//   runApp(MyApp());
+// }
+// class MyApp extends StatefulWidget {
+//   @override
+//   _MyAppState createState() => _MyAppState();
+// }
+// class _MyAppState extends State<MyApp> {
+//   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+//   @override
+//   void initState() {
+//     initNotification();
+//     getToken();
+//     firebaseNotification();
+//     super.initState();
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: '',
+//       debugShowCheckedModeBanner: false,
+//       initialRoute: Paths.splashScreen,
+//       onGenerateRoute: router.generateRoute,
+//       navigatorKey: StackedService.navigatorKey,
+//       theme: ThemeData(
+//         primaryColor: Color(0xff413A34),
+//         fontFamily: "Gotham",
+//       ),
+//     );
+//   }
+//   void firebaseNotification() {
+//     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+//       RemoteNotification notification = message.notification;
+//       AndroidNotification android = message.notification?.android;
+//       if (notification != null) {
+//         _handleNotification(message);
+//       }
+//     });
+//   }
+//   getToken() async {
+//     String token = await FirebaseMessaging.instance.getToken();
+//     print(token);
+//   }
+// }
+// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
+// Future<void> initNotification() async {
+//   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+//   FlutterLocalNotificationsPlugin();
+//   var initializationSettingsAndroid = AndroidInitializationSettings("@mipmap/launcher_icon");
+//   var initializationSettingsIOS = IOSInitializationSettings();
+//   var initializationSettings = InitializationSettings(
+//       android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+//   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+// }
+// void _handleNotification(RemoteMessage message) {
+//   var check = message.data["delete"] as String;
+//   if (check == "true") {
+//   } else {
+//     _showNotification(
+//         message.notification.title,message.notification.body);
+//   }
+// }
+// Future<void> _showNotification(String title, String body) async {
+//   var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+//       'your channel id', 'your channel name', 'your channel description',
+//       importance: Importance.max, priority: Priority.high, ticker: 'ticker');
+//   var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+//   var platformChannelSpecifics = NotificationDetails(
+//       android: androidPlatformChannelSpecifics,
+//       iOS: iOSPlatformChannelSpecifics);
+//   await flutterLocalNotificationsPlugin
+//       .show(0, title, body, platformChannelSpecifics, payload: 'item x');
+// }
 // import 'package:crice_hospital_app/app/locator.dart';
 // import 'package:crice_hospital_app/constants/constants_messages.dart';
 // import 'package:crice_hospital_app/constants/route_path.dart';

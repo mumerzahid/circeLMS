@@ -68,6 +68,7 @@ class Geofence {
   String popupMessage;
   String phoneNumber;
   String additionalEmails;
+  String fcmToken;
   String authToken;
 
   Geofence(
@@ -91,6 +92,7 @@ class Geofence {
         this.popupMessage,
         this.phoneNumber,
         this.additionalEmails,
+        this.fcmToken,
         this.authToken});
 
   Geofence.fromJson(Map<String, dynamic> json) {
@@ -114,6 +116,7 @@ class Geofence {
     popupMessage = json['popup_message'] ?? json['popup_message'] ?? "";
     phoneNumber = json['phone_number'] ?? json['phone_number'] ?? "";
     additionalEmails = json['additional_emails'] ?? json['additional_emails'] ?? "";
+    fcmToken = json['fcm_token'] ?? json['fcm_token'] ?? "";
     authToken = json['auth_token'] ?? json['auth_token'] ?? "";
   }
 
