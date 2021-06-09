@@ -10,7 +10,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class ResetViewModel extends BaseViewModel {
-
   final Api _api = locator<Api>();
   final ValidationService _validationService = locator<ValidationService>();
   TextEditingController emailController = TextEditingController();
@@ -40,6 +39,7 @@ class ResetViewModel extends BaseViewModel {
     }
     return false;
   }
+
   void snackBar(String Error) {
     _snackbarService.showCustomSnackBar(
       variant: SnackbarType.universal,
@@ -59,15 +59,14 @@ class ResetViewModel extends BaseViewModel {
       print("Submit?");
       Fluttertoast.showToast(msg: reset.message);
       print(reset.message);
-    }
-    else
-    {
+    } else {
       _emailFError = reset.message;
       snackBar(_emailFError);
     }
     emailController.clear();
     setIsLoading(false);
   }
+
   void resetPassword(String email) async {
     _emailFError = null;
     setIsLoading(true);
@@ -75,13 +74,12 @@ class ResetViewModel extends BaseViewModel {
       Map<String, String> body = {
         'email': email,
       };
-      _api.resetPassword(body).then((value) =>
-      {
-        resetListner(value),
-      });
+      _api.resetPassword(body).then((value) => {
+            resetListner(value),
+          });
       // } else {
       //   setIsLoading(false);
       // }
     }
   }
-  }
+}

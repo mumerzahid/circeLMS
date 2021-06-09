@@ -1,4 +1,3 @@
-
 import 'package:crice_hospital_app/ui/widgets/custom_button_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -45,8 +44,8 @@ class CustomAppBar extends PreferredSize {
                             alignment: Alignment.centerLeft,
                             child: Image.asset(
                               'assets/images/menu.png',
-                              height:
-                                  MediaQuery.of(context).size.height * 0.03, //23
+                              height: MediaQuery.of(context).size.height *
+                                  0.03, //23
                               width:
                                   MediaQuery.of(context).size.width * 0.05, //23
                             )),
@@ -60,7 +59,8 @@ class CustomAppBar extends PreferredSize {
                           child: Image.asset(
                             'assets/images/Login2.png',
                             // width: MediaQuery.of(context).size.width *0.2, //100
-                            height: MediaQuery.of(context).size.height * 0.1, //60
+                            height:
+                                MediaQuery.of(context).size.height * 0.1, //60
                           ),
                         ),
                         Expanded(

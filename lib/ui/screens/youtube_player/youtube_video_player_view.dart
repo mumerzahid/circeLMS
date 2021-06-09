@@ -1,8 +1,4 @@
-import 'package:crice_hospital_app/ui/screens/settings_screen/settings_screen_viewmodel.dart';
 import 'package:crice_hospital_app/ui/screens/youtube_player/youtube_video_player_viewmodel.dart';
-import 'package:crice_hospital_app/ui/widgets/custom_app_bar.dart';
-import 'package:crice_hospital_app/ui/widgets/drawyer.dart';
-import 'package:crice_hospital_app/ui/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';

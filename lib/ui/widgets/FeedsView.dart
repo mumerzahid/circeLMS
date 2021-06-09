@@ -25,16 +25,26 @@ class DashboardFeeds extends StatelessWidget {
           centerTitle: true,
         ),
         body: SingleChildScrollView(
-          child: Container(
+          child: htmlView == null || htmlView.isEmpty? Padding(
+            padding: EdgeInsets.symmetric(
+              vertical:MediaQuery.of(context).size.width * 0.9
+            ),
+            child: Center(
+              child: Text("No View!",
+                style: TextStyle(
+                  fontFamily: 'Open Sans',
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16,
+                  color: const Color.fromRGBO(
+                      107, 126, 130, 1),
+                ),),
+            ),
+          ):Container(
             // width: MediaQuery.of(context).size.width,
             child: Padding(
               padding: EdgeInsets.all(3),
-              child: Html(
+              child:Html(
                 data: htmlView
-                // data: model
-                //     .feedlist[
-                // index]
-                //     .content,
               ),
             ),
           ),

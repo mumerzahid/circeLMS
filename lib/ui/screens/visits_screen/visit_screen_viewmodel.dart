@@ -1,6 +1,5 @@
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/constants/constants_messages.dart';
-import 'package:crice_hospital_app/model/user.dart';
 import 'package:crice_hospital_app/model/visits.dart';
 import 'package:crice_hospital_app/services/api.dart';
 import 'package:crice_hospital_app/services/local_storage.dart';
@@ -9,18 +8,16 @@ import 'package:crice_hospital_app/services/validation_service.dart';
 import 'package:date_format/date_format.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:crice_hospital_app/constants/route_path.dart'as routes;
 
-class VisitScreenViewModel extends FutureViewModel{
-  var  apiReturn;
+class VisitScreenViewModel extends FutureViewModel {
+  var apiReturn;
   final navigationService = locator<NavigationService>();
-  final ValidationService _validationService=locator<ValidationService>();
+  final ValidationService _validationService = locator<ValidationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
   final DialogService _dialogService = locator<DialogService>();
   final Api api = locator<Api>();
-  final LocalStorage _localStorage =locator<LocalStorage>();
+  final LocalStorage _localStorage = locator<LocalStorage>();
   DateTime currentDate = DateTime.now();
-
 
   final Api _api = locator<Api>();
   List<Visits> visits = new List();
@@ -39,9 +36,13 @@ class VisitScreenViewModel extends FutureViewModel{
 
   String get passError => _passError;
 
-    bool _isLoading = true;
+  bool _isLoading = true;
 
-    bool get isLoading => _isLoading;
+  bool get isLoading => _isLoading;
+
+  bool _screenLoading = true;
+
+  bool get screenLoading => _screenLoading;
 
   setIsLoading(bool isLoading) {
     _isLoading = isLoading;
@@ -54,39 +55,33 @@ class VisitScreenViewModel extends FutureViewModel{
 
       visits = visit.data.visits;
       print(visits);
+      _screenLoading =false;
       notifyListeners();
       setIsLoading(false);
-
-    }
-    else
-    {
+    } else {
       _passError = visit.message;
       snackBar(_passError);
     }
     // emailController.clear();
     // passwordController.clear();
     setIsLoading(false);
+    _screenLoading =false;
   }
-
 
   bool validationMethod(String email, String password) {
     if (!_validationService.checkEmpty(email)) {
       _emailError = ConstantsMessages.emailEmpty;
       snackBar(_emailError);
-    }
-    else if (!_validationService.checkEmailPattern(email)) {
+    } else if (!_validationService.checkEmailPattern(email)) {
       _emailError = ConstantsMessages.emailInvalid;
       snackBar(_emailError);
-    }
-    else if (!_validationService.checkEmpty(password)) {
+    } else if (!_validationService.checkEmpty(password)) {
       _passError = ConstantsMessages.passwordEmpty;
       snackBar(_passError);
-    }
-    else if (!_validationService.passwordLength(password)) {
+    } else if (!_validationService.passwordLength(password)) {
       _passError = ConstantsMessages.passwordLength;
       snackBar(_passError);
-    }
-    else {
+    } else {
       return true;
     }
     return false;
@@ -105,14 +100,12 @@ class VisitScreenViewModel extends FutureViewModel{
       onMainButtonTapped: () => print('Undo the action!'),
     );
   }
+
   @override
   Future futureToRun() {
-     checkInDate= formatDate(currentDate, [dd, '/', mm, '/', yyyy]);
-    Map<String, String> body = {
-      'checkin_date': currentDate.toString(),
-    };
+    checkInDate = formatDate(currentDate, [dd, '/', mm, '/', yyyy]);
     return _api.getVisits(checkInDate).then((value) => {
-      errorListener(value),
-    });
+          errorListener(value),
+        });
   }
 }

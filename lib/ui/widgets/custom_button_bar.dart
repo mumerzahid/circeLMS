@@ -5,9 +5,7 @@ class CustomButtonBar extends StatelessWidget {
   final Function callback;
   final String vScreen;
 
-
-   CustomButtonBar({Key key, this.callback, this.vScreen})
-      : super(key: key);
+  CustomButtonBar({Key key, this.callback, this.vScreen}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(

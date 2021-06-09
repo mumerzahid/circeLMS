@@ -21,9 +21,8 @@ class LoginViewModel extends BaseViewModel {
   final ValidationService _validationService = locator<ValidationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
   final DialogService _dialogService = locator<DialogService>();
-  final LocalStorage _localStorage =locator<LocalStorage>();
+  final LocalStorage _localStorage = locator<LocalStorage>();
   // LocalStorage localStorage = LocalStorage();
-
 
   final Api _api = locator<Api>();
 
@@ -50,70 +49,52 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void obsecureValue(){
+  void obsecureValue() {
     _obsecureText = !_obsecureText;
     print(_obsecureText);
     notifyListeners();
   }
 
   bool isEmail(String string) {
-    const pattern = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-    final regExp = RegExp(pattern,caseSensitive: true);
+    const pattern =
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+    final regExp = RegExp(pattern, caseSensitive: true);
 
     if (!regExp.hasMatch(string)) {
       print("Print False");
-      _email= false;
+      _email = false;
     }
     print("Print False");
-    if(regExp.hasMatch(string) || (string.isEmpty || string == null ))
-    _email = true;
+    if (regExp.hasMatch(string) || (string.isEmpty || string == null))
+      _email = true;
     notifyListeners();
   }
-
-  // bool checkEmailPattern(String emailPattern) {
-  //   return RegExp(
-  //       r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-  //       caseSensitive: true)
-  //       .hasMatch(emailPattern);
-  // }
 
   void errorListener(User loginModel) {
     if (loginModel.success) {
       print("Successfully");
       print(loginModel.data.geofence.id);
       _localStorage.saveAuthToken(loginModel.data.geofence.authToken);
-     // var fcm= _localStorage.saveFcmToken(loginModel.data.geofence.fcmToken);
       _localStorage.saveUserID(loginModel.data.geofence.id);
-
-      // print("Geofence_id :" + _localStorage.saveUserID(loginModel.data.geofence.id));
-      // print("Login User Id: " + _localStorage.saveUserID(loginModel.data.geofence.id.toString()));
+      _localStorage.saveMobNum(loginModel.data.geofence.phoneNumber);
       _localStorage.saveLoginStatus(true);
-      // Map<String, String> body = {
-      //   'fcm-token': _localStorage.getFcmToken()
-      // };
-      // _api.fcmToken(body);
-      print("Login Status Saved as: " + _localStorage.getLoginStatus().toString());
-      // print("Login UserID Saved as: " + _localStorage.getUserID());
+      print("Login Status Saved as: " +
+          _localStorage.getLoginStatus().toString());
+      _api.fcmToken();
       _navigationService.pushNamedAndRemoveUntil(routes.SwitcherRoute);
       emailController.clear();
       passwordController.clear();
       setIsLoading(false);
       snackBar(loginModel.message);
-      // Fluttertoast.showToast(msg: loginModel.message);
-    }
-    else
-      {
-        setIsLoading(false);
-        emailController.clear();
-        passwordController.clear();
+    } else {
+      setIsLoading(false);
+      emailController.clear();
+      passwordController.clear();
       _passError = loginModel.message;
       _localStorage.saveLoginStatus(false);
       snackBar(_passError);
     }
-
   }
-
-
 
   Future<bool> navigation({bool success = true}) async {
     _navigationService.navigateTo(routes.SwitcherRoute);
@@ -123,30 +104,26 @@ class LoginViewModel extends BaseViewModel {
     if (!_validationService.checkEmpty(email)) {
       _emailError = ConstantsMessages.emailEmpty;
       snackBar(_emailError);
-    }
-    else if (!_validationService.checkEmailPattern(email)) {
+    } else if (!_validationService.checkEmailPattern(email)) {
       _emailError = ConstantsMessages.emailInvalid;
       snackBar(_emailError);
-    }
-    else if (!_validationService.checkEmpty(password)) {
+    } else if (!_validationService.checkEmpty(password)) {
       _passError = ConstantsMessages.passwordEmpty;
       snackBar(_passError);
-    }
-    else if (!_validationService.passwordLength(password)) {
+    } else if (!_validationService.passwordLength(password)) {
       _passError = ConstantsMessages.passwordLength;
       snackBar(_passError);
-    }
-    else {
+    } else {
       _localStorage.saveLoginStatus(true);
       return true;
     }
     return false;
   }
 
-  void snackBar(String Error) {
+  void snackBar(String error) {
     _snackbarService.showCustomSnackBar(
       variant: SnackbarType.white,
-      message: Error,
+      message: error,
       duration: Duration(seconds: 2),
       onTap: (_) {
         print('snackbar tapped');
@@ -158,15 +135,16 @@ class LoginViewModel extends BaseViewModel {
 
   //
   void verifyUsername(String value) {
-    if (value.length<6) {
+    if (value.length < 6) {
       password = false;
     }
-    if((value.isEmpty || value == null) || value.length>5){
+    if ((value.isEmpty || value == null) || value.length > 5) {
       password = true;
     }
     notifyListeners();
   }
-  void toResetNav(){
+
+  void toResetNav() {
     _navigationService.navigateTo(routes.ResetRoute);
   }
 
@@ -180,8 +158,7 @@ class LoginViewModel extends BaseViewModel {
         'password': password.trim(),
       };
       _api.login(body).then((value) => {
-        errorListener(value),
-
+            errorListener(value),
           });
     } else {
       setIsLoading(false);

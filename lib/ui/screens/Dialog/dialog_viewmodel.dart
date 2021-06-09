@@ -9,8 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class DialogViewModel extends BaseViewModel{
-
+class DialogViewModel extends BaseViewModel {
   final Api _api = locator<Api>();
   final ValidationService _validationService = locator<ValidationService>();
   TextEditingController emailController = TextEditingController();
@@ -34,34 +33,33 @@ class DialogViewModel extends BaseViewModel{
     notifyListeners();
   }
 
-
   bool isEmail(String string) {
-    const pattern = r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-    final regExp = RegExp(pattern,caseSensitive: true);
+    const pattern =
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
+    final regExp = RegExp(pattern, caseSensitive: true);
 
     if (!regExp.hasMatch(string)) {
       print("Print False");
-      _email= false;
+      _email = false;
     }
     print("Print False");
-    if(regExp.hasMatch(string) || (string.isEmpty || string == null ))
+    if (regExp.hasMatch(string) || (string.isEmpty || string == null))
       _email = true;
     notifyListeners();
   }
 
   bool validationMethod(String email, context) {
-    if (!_validationService.checkEmpty(email))
-      {
+    if (!_validationService.checkEmpty(email)) {
       _emailFError = ConstantsMessages.emailEmpty;
       // Navigator.of(context, rootNavigator: true).pop();
       snackBar(_emailFError);
       // navigationService.pushNamedAndRemoveUntil(routes.LoginRoute);
-       }
-    else {
+    } else {
       return true;
     }
     return false;
   }
+
   void snackBar(String Error) {
     _snackbarService.showCustomSnackBar(
       variant: SnackbarType.white,
@@ -75,37 +73,30 @@ class DialogViewModel extends BaseViewModel{
     );
   }
 
-
-
-  void resetListner(PasswordReset reset ,context) {
+  void resetListner(PasswordReset reset, context) {
     if (reset.success) {
       print("Submit?");
       Navigator.of(context, rootNavigator: true).pop();
       snackBar(reset.message);
       print(reset.message);
-    }
-    else
-    {
+    } else {
       _emailFError = reset.message;
       snackBar(_emailFError);
     }
     emailController.clear();
     setIsLoading(false);
   }
-  void resetPassword(String email,context) async {
+
+  void resetPassword(String email, context) async {
     _emailFError = null;
     if (validationMethod(email, context)) {
       Map<String, String> body = {
         'email': email,
       };
       setIsLoading(true);
-      _api.resetPassword(body).then((value) =>
-      {
-        resetListner(value,context),
-      });
-      // } else {
-      //   setIsLoading(false);
-      // }
+      _api.resetPassword(body).then((value) => {
+            resetListner(value, context),
+          });
     }
   }
 }

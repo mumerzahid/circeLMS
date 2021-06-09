@@ -50,11 +50,13 @@ class DrawerView extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                child:
-                                    Image.asset("assets/images/CRICE.png",
-                                      height: MediaQuery.of(context).size.width * 0.2,
-                                      width: MediaQuery.of(context).size.width * 0.2,
-                                    ),
+                                child: Image.asset(
+                                  "assets/images/CRICE.png",
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.2,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.2,
+                                ),
                               ),
                             ]),
                       ),
@@ -65,14 +67,14 @@ class DrawerView extends StatelessWidget {
                           // mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Container(),
-                            Row(
-                                children: [
+                            Row(children: [
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.17,
                                 height:
                                     MediaQuery.of(context).size.width * 0.17,
                                 child: Padding(
-                                  padding: EdgeInsets.all(MediaQuery.of(context).size.width *0.03),
+                                  padding: EdgeInsets.all(
+                                      MediaQuery.of(context).size.width * 0.03),
                                   child: Image.asset(
                                     'assets/images/w-logo.png',
                                     // fit: BoxFit.contain,
@@ -93,15 +95,17 @@ class DrawerView extends StatelessWidget {
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.02,
                             ),
-                            Row(
-                                children: [
+                            Row(children: [
                               InkWell(
                                 onTap: () => model.navigationService
                                     .navigateTo(SwitcherRoute),
                                 child: Container(
                                   child: Padding(
-                                      padding: EdgeInsets.all(MediaQuery.of(context).size.width *0.01),
-                                      child: Image.asset("assets/images/guard.png")),
+                                      padding: EdgeInsets.all(
+                                          MediaQuery.of(context).size.width *
+                                              0.01),
+                                      child: Image.asset(
+                                          "assets/images/guard.png")),
                                   height:
                                       MediaQuery.of(context).size.width * 0.1,
                                   width:
@@ -143,11 +147,12 @@ class DrawerView extends StatelessWidget {
                                   SettingsViewModel().navigation();
                                 },
                                 child: Container(
-                                  child:
-                                      Padding(
-                                          padding: EdgeInsets.all(MediaQuery.of(context).size.width *0.01),
-                                          child: Image.asset("assets/images/settings.png")
-                                ),
+                                  child: Padding(
+                                      padding: EdgeInsets.all(
+                                          MediaQuery.of(context).size.width *
+                                              0.01),
+                                      child: Image.asset(
+                                          "assets/images/settings.png")),
                                   height:
                                       MediaQuery.of(context).size.width * 0.1,
                                   width:
@@ -203,15 +208,16 @@ class DrawerView extends StatelessWidget {
                                   topRight: Radius.circular(8.0),
                                   bottomLeft: Radius.circular(8.0),
                                   bottomRight: Radius.circular(8.0),
-                                )),
-                            height: MediaQuery.of(context).size.width * 0.09,
-                            width: MediaQuery.of(context).size.width * 0.09,
+                                )
+                            ),
+                            height: MediaQuery.of(context).size.width * 0.095,
+                            width: MediaQuery.of(context).size.width * 0.095,
                             child: Padding(
-                              padding: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(10),
                               child: InkWell(
                                 onTap: () => {
                                   model.setIsLoading(true),
-                                  Timer(Duration(seconds: 1),(){
+                                  Timer(Duration(milliseconds: 500), () {
                                     model.snackBar("LogOut");
                                     // Fluttertoast.showToast(msg: "Logging out");
                                     model.localStorage.clearSharedPrefrences();
@@ -220,10 +226,7 @@ class DrawerView extends StatelessWidget {
                                     model.setIsLoading(false);
                                   }),
 
-
                                   // model.setIsLoading(false),
-
-
                                 },
                                 child: Image.asset(
                                   "assets/images/log-out.png",

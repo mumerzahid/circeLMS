@@ -4,7 +4,6 @@ import 'package:crice_hospital_app/model/html.dart';
 import 'package:crice_hospital_app/services/api.dart';
 import 'package:crice_hospital_app/services/local_storage.dart';
 import 'package:crice_hospital_app/services/snackbar.dart';
-import 'package:crice_hospital_app/ui/widgets/custom_button_bar.dart';
 import 'package:crice_hospital_app/ui/widgets/html_viewer.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
@@ -13,20 +12,20 @@ import 'package:jiffy/jiffy.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class ReportViewModel extends BaseViewModel implements Initialisable{
+class ReportViewModel extends BaseViewModel implements Initialisable {
   String html;
   int userId;
   String success;
   final Api _api = locator<Api>();
   final NavigationService navigationService = locator<NavigationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
-  final LocalStorage _localStorage =locator<LocalStorage>();
+  final LocalStorage _localStorage = locator<LocalStorage>();
   final yesterday = DateTime.now().subtract(Duration(days: 1));
 
   // String userId;
   DateTime todayDate;
   DateTime currentDate = DateTime.now();
-  DateTime startDate  ;
+  DateTime startDate;
   // = DateTime(DateTime.now().day, DateTime.now().month, DateTime.now().year);
   DateTime endDate;
 
@@ -40,11 +39,10 @@ class ReportViewModel extends BaseViewModel implements Initialisable{
 
   bool get isLoading => _isLoading;
 
-
   @override
   Future<void> initialise() async {
     userId = await _localStorage.getUserID();
-    startDate= yesterday;
+    startDate = yesterday;
     endDate = currentDate;
     notifyListeners();
     // userId = _localStorage.getUserID();
@@ -59,32 +57,28 @@ class ReportViewModel extends BaseViewModel implements Initialisable{
 // Date Picker also set the Start and End Date
   void selectStartDate(BuildContext context, bool isStartDate) async {
     DateTime pickedDate = await showDatePicker(
-
         context: context,
-        initialDate:currentDate,
+        initialDate: currentDate,
         firstDate: Jiffy().subtract(months: 3).dateTime,
         // DateTime.now().subtract(Duration()),
-        lastDate: currentDate
-    );
+        lastDate: currentDate);
 
-    if (pickedDate != null ) {
+    if (pickedDate != null) {
       if (isStartDate == true) {
         startDateBoolean = true;
-        if(pickedDate.isAfter(endDate))
-          {
-            pickedDate =yesterday;
-            endDate=currentDate;
-            snackBar("Start date can not be greater than end date");
-          }
+        if (pickedDate.isAfter(endDate)) {
+          pickedDate = yesterday;
+          endDate = currentDate;
+          snackBar("Start date can not be greater than end date");
+        }
         startDate = pickedDate;
         print(startDate);
       } else {
         endDateBoolean = true;
-        if(pickedDate.isBefore(startDate))
-          {
-            pickedDate=currentDate;
-            snackBar("End date can not be smaller than start date");
-          }
+        if (pickedDate.isBefore(startDate)) {
+          pickedDate = currentDate;
+          snackBar("End date can not be smaller than start date");
+        }
         endDate = pickedDate;
       }
       notifyListeners();
@@ -110,17 +104,18 @@ class ReportViewModel extends BaseViewModel implements Initialisable{
   }
 
   void errorListener(HTMLWeb web) {
-    var header =  userId;
-    var strtDate= formatDate(startDate, [yyyy, '-', mm, '-', dd]);
-    var edDate =formatDate(endDate, [yyyy, '-', mm, '-', dd]);
-    var html = web.htmlData;
+    var userID = userId;
+    var strtDate = formatDate(startDate, [yyyy, '-', mm, '-', dd]);
+    var edDate = formatDate(endDate, [yyyy, '-', mm, '-', dd]);
     setIsLoading(false);
     notifyListeners();
     navigationService.navigateToView(
         HtmlViewer(
-      data: ConstantsMessages.reportsEPoint+"?start_date=$strtDate&end_date=$edDate&geofence_id=$header",
+      data: ConstantsMessages.reportsEPoint +
+          "?start_date=$strtDate&end_date=$edDate&geofence_id=$userID",
     ));
   }
+
   // &geofence_id=$userId
   void HtmlView(String start, String end) async {
     Map<String, String> body = {
@@ -128,11 +123,7 @@ class ReportViewModel extends BaseViewModel implements Initialisable{
       'end_date': end,
     };
     _api.getReportsHTML(body).then((value) => {
-          if (value != null) {
-            errorListener(value)
-          }
+          if (value != null) {errorListener(value)}
         });
   }
-
-
 }

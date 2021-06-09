@@ -25,15 +25,15 @@ class TextFieldWidget extends StatelessWidget {
       padding: EdgeInsets.only(
           left: MediaQuery.of(context).size.width * 0.1,
           right: MediaQuery.of(context).size.width * 0.1),
-      child: Column(
-          children: [
+      child: Column(children: [
         Theme(
           data: new ThemeData(
             primaryColor: Colors.grey,
             primaryColorDark: Colors.blue,
           ),
           child: Container(
-            decoration: BoxDecoration(border: Border.all(color: Colors.grey,width: 0.5)),
+            decoration: BoxDecoration(
+                border: Border.all(color: Colors.grey, width: 0.5)),
             child: Padding(
               padding: EdgeInsets.only(
                 left: MediaQuery.of(context).size.width * 0.01,
@@ -71,7 +71,8 @@ class TextFieldWidget extends StatelessWidget {
                   ),
                   hintText: hintText,
                   hintStyle: TextStyle(
-                      color: const Color.fromRGBO(107, 126, 130, 1), fontSize: 14),
+                      color: const Color.fromRGBO(107, 126, 130, 1),
+                      fontSize: 14),
                   // validator: (val) => val.length < 6 ? 'Password too short.' : null,
                   // onSaved: (val) => _password = val,
                 ),

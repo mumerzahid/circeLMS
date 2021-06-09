@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "88524401010",
+    "project_id": "crice-cams",
+    "storage_bucket": "crice-cams.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:88524401010:android:050564edf78cf1443615eb",
+        "android_client_info": {
+          "package_name": "com.ar.cricehospital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "88524401010-jo7venebmi6eelhfgdqtpfen4qgvd7l6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ar.cricehospital",
+            "certificate_hash": "38d833610ada142fbbce2eaba4f7281058df0a6e"
+          }
+        },
+        {
+          "client_id": "88524401010-pi3tcoufnp6987t1qpv2b2kq8remjci7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwPbBY5zTOm0Zg9yLpn1tu08BhAmcauac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "88524401010-pi3tcoufnp6987t1qpv2b2kq8remjci7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

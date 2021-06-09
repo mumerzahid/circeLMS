@@ -10,12 +10,11 @@ import 'package:stacked/stacked.dart';
 import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:stacked_services/stacked_services.dart';
 
-class SettingsViewModel extends BaseViewModel {
-  final _localStorage = locator<LocalStorage>();
+class SettingsViewModel extends BaseViewModel implements Initialisable {
+  final localStorage = locator<LocalStorage>();
   final _navigationService = locator<NavigationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
-  final ValidationService _validationService = locator<
-      ValidationService>(); // final MyNavigationService _navigationService =locator<MyNavigationService>();
+  final ValidationService _validationService = locator<ValidationService>();
   TextEditingController mobileController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final Api _api = locator<Api>();
@@ -23,6 +22,7 @@ class SettingsViewModel extends BaseViewModel {
   String pass;
   String phone;
   String _numberError;
+  String mobileNumber;
 
   String get numberError => _numberError;
 
@@ -47,11 +47,17 @@ class SettingsViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void errorListener(Settings update) {
+  void errorListener(Settings update)  {
     if (update.success) {
       print("Settings");
-      _localStorage.clearSharedPrefrences();
-      _navigationService.pushNamedAndRemoveUntil(routes.LoginRoute);
+      localStorage.saveMobNum(mobileController.text);
+       // mobileController.text = mobileNumber;
+      // print(mobileController.text);
+      mobileNumber = LocalStorage.localStorage.getMobNum();
+      snackBar("Updated successfully!");
+      notifyListeners();
+      // _localStorage.clearSharedPrefrences();
+      // _navigationService.pushNamedAndRemoveUntil(routes.LoginRoute);
     } else {
       _passError = update.message;
       snackBar(_passError);
@@ -68,7 +74,7 @@ class SettingsViewModel extends BaseViewModel {
   bool validationMethod(String password, String phoneNumber) {
     bool validPhoneNumber = true;
     bool validPassword = true;
-    if(phoneNumber.isNotEmpty){
+    if (phoneNumber.isNotEmpty) {
       if (!_validationService.phoneNumberLength(phoneNumber)) {
         _numberError = ConstantsMessages.phoneNumberLength;
         snackBar(_numberError);
@@ -83,25 +89,23 @@ class SettingsViewModel extends BaseViewModel {
         validPassword = false;
       }
     }
-    if((password.isEmpty ||  password == null) && (phoneNumber.isEmpty || phoneNumber == null))
-    {
-      validPassword=false;
+    if ((password.isEmpty || password == null) &&
+        (phoneNumber.isEmpty || phoneNumber == null)) {
+      validPassword = false;
       snackBar("Please fill the given fields");
       return false;
     }
-    if(validPhoneNumber == true && validPassword ==true){
+    if (validPhoneNumber == true && validPassword == true) {
       return true;
-    }
-    else
-      {
+    } else {
       return false;
     }
   }
 
-  void snackBar(String Error) {
+  void snackBar(String error) {
     _snackbarService.showCustomSnackBar(
-      variant: SnackbarType.white,
-      message: Error,
+      variant: SnackbarType.universal,
+      message: error,
       duration: Duration(seconds: 1),
       onTap: (_) {
         print('snackbar tapped');
@@ -123,13 +127,18 @@ class SettingsViewModel extends BaseViewModel {
         'password': password,
         'phone_number': phoneNumber,
       };
-      if(password.isEmpty || password == null)
-      body.remove('password');
+      if (password.isEmpty || password == null) body.remove('password');
       _api.updatePassword(body).then((value) => {
             errorListener(value),
           });
     } else {
       setIsLoading(false);
     }
+  }
+
+  @override
+  void initialise() {
+    mobileNumber = LocalStorage.localStorage.getMobNum();
+    notifyListeners();
   }
 }

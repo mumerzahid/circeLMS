@@ -1,35 +1,18 @@
-import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/constants/constants_messages.dart';
-import 'package:crice_hospital_app/services/api.dart';
 import 'package:crice_hospital_app/ui/screens/youtube_player/youtube_video_player_view.dart';
-import 'package:crice_hospital_app/ui/widgets/html_viewer.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'dashboard_viewmodel.dart';
 import 'package:date_format/date_format.dart';
 import 'package:crice_hospital_app/ui/widgets/FeedsView.dart';
 
-// void main(){
-//   _initializeFlutterDownloader();
-//   runApp(DashboardView());
-// }
-//
-// _initializeFlutterDownloader()async{
-//   WidgetsFlutterBinding.ensureInitialized();
-//   await FlutterDownloader.initialize();
-// }
 class DashboardView extends StatelessWidget {
-  final Api _api = locator<Api>();
-  final NavigationService _navigationService = locator<NavigationService>();
   Dio dio = Dio();
 
   @override
   Widget build(BuildContext context) {
-    var dashboardviewmodel =
-    DashboardViewModel();
     return ViewModelBuilder<DashboardViewModel>.reactive(
       builder: (context, model, child) {
         return Scaffold(
@@ -62,7 +45,8 @@ class DashboardView extends StatelessWidget {
                                     fontFamily: 'Open Sans',
                                     fontWeight: FontWeight.w700,
                                     fontSize: 16,
-                                    color: const Color.fromRGBO(255, 255, 255, 1),
+                                    color:
+                                        const Color.fromRGBO(255, 255, 255, 1),
                                   ),
                                 ),
                               ),
@@ -80,25 +64,30 @@ class DashboardView extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     String myString = model.feedlist[index]
                                         .updatedAt; //convert Date into Date Formate
-                                    DateTime dateTime = DateTime.parse(myString);
+                                    DateTime dateTime =
+                                        DateTime.parse(myString);
                                     return Padding(
                                       padding: EdgeInsets.only(
-                                          left:
-                                              MediaQuery.of(context).size.height *
-                                                  0.02,
-                                          right:
-                                              MediaQuery.of(context).size.height *
-                                                  0.02,
-                                          bottom:
-                                              MediaQuery.of(context).size.height *
-                                                  0.02),
+                                          left: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.02,
+                                          right: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.02,
+                                          bottom: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.02),
                                       child: Card(
                                         child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(3.0),
+                                          borderRadius:
+                                              BorderRadius.circular(3.0),
                                           child: Container(
-                                            width:
-                                                MediaQuery.of(context).size.width,
-                                            // height: MediaQuery.of(context).size.height * 0.13,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             decoration: BoxDecoration(
                                               boxShadow: [
                                                 BoxShadow(
@@ -128,20 +117,27 @@ class DashboardView extends StatelessWidget {
                                                         child: InkWell(
                                                           onTap: () =>
                                                               Navigator.push(
-                                                              context,
-                                                              MaterialPageRoute(builder: (context) => DashboardFeeds(htmlView: model
-                                                                  .feedlist[
-                                                              index]
-                                                                  .content,title: model
-                                                                  .feedlist[
-                                                              index]
-                                                                  .newsFeedTitle,)),
-                                                            ),
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        DashboardFeeds(
+                                                                          htmlView: model
+                                                                              .feedlist[index]
+                                                                              .content,
+                                                                          title: model
+                                                                              .feedlist[index]
+                                                                              .newsFeedTitle,
+                                                                        )),
+                                                          ),
                                                           child: Padding(
                                                             padding:
-                                                                EdgeInsets.all(7),
+                                                                EdgeInsets.all(
+                                                                    7),
                                                             child: Text(
-                                                              model.feedlist[index]
+                                                              model
+                                                                  .feedlist[
+                                                                      index]
                                                                   .newsFeedTitle,
                                                               style: TextStyle(
                                                                 decoration:
@@ -150,7 +146,8 @@ class DashboardView extends StatelessWidget {
                                                                 fontFamily:
                                                                     'Open Sans',
                                                                 fontWeight:
-                                                                    FontWeight.w700,
+                                                                    FontWeight
+                                                                        .w700,
                                                                 fontSize: 13,
                                                                 color: const Color
                                                                         .fromRGBO(
@@ -169,7 +166,8 @@ class DashboardView extends StatelessWidget {
                                                               alignment: Alignment
                                                                   .centerRight,
                                                               child: InkWell(
-                                                                onTap: () async {
+                                                                onTap:
+                                                                    () async {
                                                                   model
                                                                           .feedlist[
                                                                               index]
@@ -177,28 +175,35 @@ class DashboardView extends StatelessWidget {
                                                                           .isEmpty
                                                                       ? model.snackBar(
                                                                           "No attachments")
-                                                                      :
-                                                                  model.downloadFile(
-                                                                    context,
-                                                                          ConstantsMessages.fBaseURL+model
-                                                                              .feedlist[
-                                                                                  index]
-                                                                              .documentDownloadUrl,
-                                                                    model.feedlist[index].documentFileName == '' || model.feedlist[index].documentFileName ==  null? "Report $index.pdf" :model.feedlist[index].documentFileName,
-                                                                          );
+                                                                      : model
+                                                                          .downloadFile(
+                                                                          context,
+                                                                          ConstantsMessages.fBaseURL +
+                                                                              model.feedlist[index].documentDownloadUrl,
+                                                                          model.feedlist[index].documentFileName == '' || model.feedlist[index].documentFileName == null
+                                                                              ? "Report $index.pdf"
+                                                                              : model.feedlist[index].documentFileName,
+                                                                        );
                                                                   SizedBox();
                                                                 },
-                                                                child: model.feedlist[index].documentDownloadUrl.isEmpty?SizedBox():Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(4),
-                                                                  child:
-                                                                      Image.asset(
-                                                                    "assets/images/download.png",
-                                                                    width: 27,
-                                                                    height: 27,
-                                                                  ),
-                                                                ),
+                                                                child: model
+                                                                        .feedlist[
+                                                                            index]
+                                                                        .documentDownloadUrl
+                                                                        .isEmpty
+                                                                    ? SizedBox()
+                                                                    : Padding(
+                                                                        padding:
+                                                                            EdgeInsets.all(4),
+                                                                        child: Image
+                                                                            .asset(
+                                                                          "assets/images/download.png",
+                                                                          width:
+                                                                              27,
+                                                                          height:
+                                                                              27,
+                                                                        ),
+                                                                      ),
                                                               )))
                                                     ],
                                                   ),
@@ -210,7 +215,8 @@ class DashboardView extends StatelessWidget {
                                                           Alignment.bottomRight,
                                                       child: Text(
                                                         "Date: " +
-                                                            formatDate(dateTime, [
+                                                            formatDate(
+                                                                dateTime, [
                                                               dd,
                                                               '-',
                                                               mm,
@@ -218,13 +224,14 @@ class DashboardView extends StatelessWidget {
                                                               yyyy
                                                             ]),
                                                         style: TextStyle(
-                                                          fontFamily: 'Open Sans',
+                                                          fontFamily:
+                                                              'Open Sans',
                                                           fontWeight:
                                                               FontWeight.w700,
                                                           fontSize: 12,
-                                                          color:
-                                                              const Color.fromRGBO(
-                                                                  107, 126, 130, 1),
+                                                          color: const Color
+                                                                  .fromRGBO(
+                                                              107, 126, 130, 1),
                                                         ),
                                                       )),
                                                 ],
@@ -239,7 +246,9 @@ class DashboardView extends StatelessWidget {
                                   ,
                                 ),
                           Padding(
-                            padding: EdgeInsets.symmetric(vertical: 20,),
+                            padding: EdgeInsets.symmetric(
+                              vertical: 20,
+                            ),
                             child: Container(
                               height: 30,
                               width: MediaQuery.of(context).size.width * 0.45,
@@ -257,7 +266,8 @@ class DashboardView extends StatelessWidget {
                                     fontFamily: 'Open Sans',
                                     fontWeight: FontWeight.w700,
                                     fontSize: 16,
-                                    color: const Color.fromRGBO(255, 255, 255, 1),
+                                    color:
+                                        const Color.fromRGBO(255, 255, 255, 1),
                                   ),
                                 ),
                               ),
@@ -277,7 +287,8 @@ class DashboardView extends StatelessWidget {
                                   itemBuilder: (context, index) {
                                     String myString = model.trList[index]
                                         .updatedAt; // convert date into Date Format
-                                    DateTime dateTime = DateTime.parse(myString);
+                                    DateTime dateTime =
+                                        DateTime.parse(myString);
                                     model.splittingString(
                                         model.trList[index].documentFileName);
                                     return Padding(
@@ -291,35 +302,26 @@ class DashboardView extends StatelessWidget {
                                                 Container(
                                                     color: const Color.fromRGBO(
                                                         246, 246, 246, 1),
-                                                    height: MediaQuery.of(context)
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.2,
+                                                    width:
+                                                        MediaQuery.of(context)
                                                             .size
-                                                            .height *
-                                                        0.2,
-                                                    width: MediaQuery.of(context)
-                                                        .size
-                                                        .width,
+                                                            .width,
                                                     child: model
                                                             .trList[index]
                                                             .traningVideoLink
                                                             .isEmpty
                                                         ? InkWell(
-                                                            // onTap: () => model
-                                                            //         .trList[index]
-                                                            //         .documentDownloadUrl
-                                                            //         .isEmpty
-                                                            //     ? Fluttertoast.showToast(
-                                                            //         msg: "Invalid Link")
-                                                            //     : model.downloadFile(
-                                                            //         model.trList[index]
-                                                            //             .documentDownloadUrl,
-                                                            //         index,
-                                                            //         true),
                                                             child: Icon(
                                                               Icons
                                                                   .attachment_sharp,
                                                               size: 80,
-                                                              color:
-                                                                  Color.fromRGBO(
+                                                              color: Color
+                                                                  .fromRGBO(
                                                                       107,
                                                                       126,
                                                                       130,
@@ -333,17 +335,15 @@ class DashboardView extends StatelessWidget {
                                                                     MaterialPageRoute(
                                                                         builder: (context) =>
                                                                             YoutubeView(
-                                                                              url:
-                                                                                  model.trList[index].traningVideoLink,
-                                                                              title: model.trList[index].traningVideoTitle.isEmpty
-                                                                                  ? "CRICE VIDEOS"
-                                                                                  : model.trList[index].traningVideoTitle,
+                                                                              url: model.trList[index].traningVideoLink,
+                                                                              title: model.trList[index].traningVideoTitle.isEmpty ? "CRICE VIDEOS" : model.trList[index].traningVideoTitle,
                                                                             ))),
                                                             child: Icon(
-                                                              Icons.video_library,
+                                                              Icons
+                                                                  .video_library,
                                                               size: 80,
-                                                              color:
-                                                                  Color.fromRGBO(
+                                                              color: Color
+                                                                  .fromRGBO(
                                                                       107,
                                                                       126,
                                                                       130,
@@ -358,99 +358,100 @@ class DashboardView extends StatelessWidget {
                                                         .traningVideoTitle,
                                                     style: TextStyle(
                                                       fontFamily: 'Open Sans',
-                                                      fontWeight: FontWeight.w700,
+                                                      fontWeight:
+                                                          FontWeight.w700,
                                                       fontSize: 13,
-                                                      color: const Color.fromRGBO(
-                                                          107, 126, 130, 1),
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              107, 126, 130, 1),
                                                     ),
                                                   ),
-                                                  trailing:
-                                                      model
-                                                              .trList[index]
-                                                              .documentDownloadUrl
-                                                              .isNotEmpty
-                                                          ? InkWell(
-                                                        onTap: () => model
-                                                            .trList[
-                                                        index]
-                                                            .documentDownloadUrl
-                                                            .isEmpty
-                                                            ? Fluttertoast.showToast(
-                                                            msg:
-                                                            "Invalid Link")
-                                                            :
-                                                        // model.downloadFile(
-                                                        //     model
-                                                        //         .trList[index]
-                                                        //         .documentDownloadUrl,
-                                                        //     index,
-                                                        //     true
-                                                        // ),
-                                                        model.downloadFile(context,ConstantsMessages.fBaseURL+model.trList[index].documentDownloadUrl, model.trList[index].documentFileName)
-                                                            .then((onValue) {}),
-                                                            child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .min,
-                                                                children: [
-                                                                  Text(
-                                                                    "Document",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      decoration:
-                                                                          TextDecoration
-                                                                              .underline,
-                                                                      fontFamily:
-                                                                          'Open Sans',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
-                                                                      fontSize: 13,
-                                                                      color: const Color
-                                                                              .fromRGBO(
-                                                                          107,
-                                                                          126,
-                                                                          130,
-                                                                          1),
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    " :",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'Open Sans',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
-                                                                      fontSize: 13,
-                                                                      color: const Color
-                                                                              .fromRGBO(
-                                                                          107,
-                                                                          126,
-                                                                          130,
-                                                                          1),
-                                                                    ),
-                                                                  ),
-                                                                  Padding(
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .all(8),
-                                                                    child: Icon(
-                                                                      Icons
-                                                                          .download_sharp,
-                                                                      size: 30,
-                                                                    ),
-                                                                  ),
-                                                        // Text(
-                                                        //   model.downloadStatusView(dashboardviewmodel),
-                                                        //   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-                                                        // ),
-
-                                                                ],
+                                                  trailing: model
+                                                          .trList[index]
+                                                          .documentDownloadUrl
+                                                          .isNotEmpty
+                                                      ? InkWell(
+                                                          onTap: () => model
+                                                                  .trList[index]
+                                                                  .documentDownloadUrl
+                                                                  .isEmpty
+                                                              ? Fluttertoast
+                                                                  .showToast(
+                                                                      msg:
+                                                                          "Invalid Link")
+                                                              : model
+                                                                  .downloadFile(
+                                                                      context,
+                                                                      ConstantsMessages
+                                                                              .fBaseURL +
+                                                                          model
+                                                                              .trList[
+                                                                                  index]
+                                                                              .documentDownloadUrl,
+                                                                      model
+                                                                          .trList[
+                                                                              index]
+                                                                          .documentFileName)
+                                                                  .then(
+                                                                      (onValue) {}),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              Text(
+                                                                "Document",
+                                                                style:
+                                                                    TextStyle(
+                                                                  decoration:
+                                                                      TextDecoration
+                                                                          .underline,
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                  fontSize: 13,
+                                                                  color: const Color
+                                                                          .fromRGBO(
+                                                                      107,
+                                                                      126,
+                                                                      130,
+                                                                      1),
+                                                                ),
                                                               ),
-                                                          )
-                                                          : SizedBox(),
+                                                              Text(
+                                                                " :",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                  fontSize: 13,
+                                                                  color: const Color
+                                                                          .fromRGBO(
+                                                                      107,
+                                                                      126,
+                                                                      130,
+                                                                      1),
+                                                                ),
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(8),
+                                                                child: Icon(
+                                                                  Icons
+                                                                      .download_sharp,
+                                                                  size: 30,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        )
+                                                      : SizedBox(),
                                                 ),
                                                 Divider(
                                                   color: Colors.grey,
@@ -459,10 +460,12 @@ class DashboardView extends StatelessWidget {
                                                   alignment:
                                                       Alignment.centerRight,
                                                   child: Padding(
-                                                      padding: EdgeInsets.all(10),
+                                                      padding:
+                                                          EdgeInsets.all(10),
                                                       child: Text(
                                                         "Date: " +
-                                                            formatDate(dateTime, [
+                                                            formatDate(
+                                                                dateTime, [
                                                               dd,
                                                               '-',
                                                               mm,
@@ -470,7 +473,8 @@ class DashboardView extends StatelessWidget {
                                                               yyyy
                                                             ]),
                                                         style: TextStyle(
-                                                          fontFamily: 'Open Sans',
+                                                          fontFamily:
+                                                              'Open Sans',
                                                           fontWeight:
                                                               FontWeight.w700,
                                                           fontSize: 12,
@@ -497,17 +501,4 @@ class DashboardView extends StatelessWidget {
       viewModelBuilder: () => DashboardViewModel(),
     );
   }
-
-  // Widget downloadProgress() {
-  //   var dashboardviewmoedl =
-  //   locator<DashboardViewModel>();
-  //
-  //   return Text(
-  //     downloadStatus(dashboardviewmoedl),
-  //     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-  //   );
-  // }
-
-
-
 }

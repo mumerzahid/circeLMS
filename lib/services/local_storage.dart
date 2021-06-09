@@ -1,5 +1,8 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../main.dart';
 
 @lazySingleton
 class LocalStorage {
@@ -16,7 +19,7 @@ class LocalStorage {
   init() async {
     preferences = await SharedPreferences.getInstance();
   }
-
+  String mobileNumberKey = "MobileNumberKey"; //" +00 000 00000";
   String IS_LOGIN = 'isLogin';
   final String authToken = "token";
   final String fcmToken ="token";
@@ -28,24 +31,35 @@ class LocalStorage {
   }
 
   getAuthToken() async {
-    // var _preferences = await SharedPreferences.getInstance();
     return preferences.getString(authToken);
   }
   void saveFcmToken(String token) async {
-    // var _preferences = await SharedPreferences.getInstance();
     preferences.setString(fcmToken, token);
   }
-
-  getFcmToken() async {
-    // var _preferences = await SharedPreferences.getInstance();
-    return preferences.getString(fcmToken);
+  getFirebaseToken() async {
+    firebaseToken = await FirebaseMessaging.instance.getToken();
+    print("FireBaseToken "+firebaseToken);
+    return firebaseToken;
   }
 
-  removeAuthToken() async {
+  void saveMobNum(String mob) async {
     // var _preferences = await SharedPreferences.getInstance();
-    bool value = await preferences.clear();
-    return value;
+    preferences.setString(mobileNumberKey, mob);
   }
+  String getMobNum() {
+   return preferences.getString(mobileNumberKey)==null?" +00 000 00000":preferences.getString(mobileNumberKey);
+   // print(preferences.getString(mobileNumberKey));
+  }
+  // getFcmToken() async {
+  //   // var _preferences = await SharedPreferences.getInstance();
+  //   return preferences.getString(fcmToken);
+  // }
+  //
+  // removeAuthToken() async {
+  //   // var _preferences = await SharedPreferences.getInstance();
+  //   bool value = await preferences.clear();
+  //   return value;
+  // }
 
   saveLoginStatus(bool isLogin)async{
     // var _preferences = await SharedPreferences.getInstance();

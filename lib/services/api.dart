@@ -50,6 +50,7 @@ import 'dart:io';
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/model/dashboard.dart';
+import 'package:crice_hospital_app/model/hospital_notification.dart';
 import 'package:crice_hospital_app/model/html.dart';
 import 'package:crice_hospital_app/model/reset_password.dart';
 import 'package:crice_hospital_app/model/settings.dart';
@@ -219,9 +220,18 @@ class Api {
   }
 
   @override
-  Future fcmToken(Map<String, String> body) async {
+  Future fcmToken() async {
+    String token = await _localStorage.getAuthToken();
+    String firebaseToken = await LocalStorage.localStorage.getFirebaseToken();
+    print("Firebase token from api:" + firebaseToken);
+    // var body = firebaseToken;
+    var header = {'Auth-Token': token};
+    Map<String,String> body={
+      'fcm_token': firebaseToken
+
+    };
     final response =
-    await client.post(Uri.parse(ConstantsMessages.fcmTokenPoints), body: body);
+    await client.post(Uri.parse(ConstantsMessages.fcmToken), body: body,headers: header);
 
     print(response);
     if (response.statusCode == 200) {
@@ -234,7 +244,31 @@ class Api {
         throw Exception(response.reasonPhrase);
     }
   }
-  // Future downloadDocument(Dio dio, String url, String savePath) async {
+
+  @override
+  Future<NotificationsModel> getNotifications() async {
+
+    String token = await _localStorage.getAuthToken();
+    print(token);
+    print("notifications");
+    var header = {'Auth-Token': token};
+    final response = await client.get(
+      Uri.parse(ConstantsMessages.notificationsURL),
+      headers: header,
+    );
+    print(response);
+    if (response.statusCode == 200) {
+      print(response.statusCode);
+
+      return NotificationsModel.fromJson(json.decode(response.body));
+    } else {
+      if (response.body != null)
+        return NotificationsModel.fromJson(json.decode(response.body));
+      else
+        throw Exception(response.reasonPhrase);
+    }
+  }
+// Future downloadDocument(Dio dio, String url, String savePath) async {
   //   //get pdf from link
   //   try {
   //     Response response = await dio.get(

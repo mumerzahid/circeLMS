@@ -1,7 +1,4 @@
-import 'package:crice_hospital_app/ui/download_popup/download_popup_view.dart';
-import 'package:crice_hospital_app/ui/screens/Dialog/dialog_view.dart';
 import 'package:crice_hospital_app/ui/screens/report/report_viewmodel.dart';
-import 'package:crice_hospital_app/ui/widgets/custom_button_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:stacked/stacked.dart';
@@ -148,8 +145,7 @@ class ReportView extends StatelessWidget {
                                         if (model.startDate == null &&
                                                 model.endDate == null ||
                                             model.startDate.isAtSameMomentAs(
-                                                model.endDate)
-                                            ||
+                                                model.endDate) ||
                                             (model.startDate
                                                 .isAfter(model.endDate))) {
                                           model.snackBar(
@@ -318,25 +314,25 @@ class ReportView extends StatelessWidget {
                                 // ):
                                 Container(
                                   // color: const Color.fromRGBO(134, 227, 220, 1),
-                                    height: 35,
-                                    width: 150,
-                                    color: Colors.transparent,
-                                    // child: ElevatedButton(
-                                    //   style: ElevatedButton.styleFrom(
-                                    //     primary: Colors.grey // background
-                                    //   ),
-                                    //   onPressed: null,
-                                    //   child: Text(
-                                    //     "Download",
-                                    //     style: TextStyle(
-                                    //       fontFamily: 'Open Sans',
-                                    //       // fontWeight: FontWeight.w700,
-                                    //       fontSize: 16,
-                                    //       color: const Color.fromRGBO(
-                                    //           255, 255, 255, 1),
-                                    //     ),
-                                    //   ),
-                                    // )
+                                  height: 35,
+                                  width: 150,
+                                  color: Colors.transparent,
+                                  // child: ElevatedButton(
+                                  //   style: ElevatedButton.styleFrom(
+                                  //     primary: Colors.grey // background
+                                  //   ),
+                                  //   onPressed: null,
+                                  //   child: Text(
+                                  //     "Download",
+                                  //     style: TextStyle(
+                                  //       fontFamily: 'Open Sans',
+                                  //       // fontWeight: FontWeight.w700,
+                                  //       fontSize: 16,
+                                  //       color: const Color.fromRGBO(
+                                  //           255, 255, 255, 1),
+                                  //     ),
+                                  //   ),
+                                  // )
                                 )
                               ],
                             ),

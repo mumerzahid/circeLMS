@@ -24,6 +24,12 @@ class CustomButton extends StatelessWidget {
                   width: 3,
                   color: const Color.fromRGBO(25, 87, 94, 1),
                 ),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(5.0),
+                  topRight: Radius.circular(5.0),
+                  bottomLeft: Radius.circular(5.0),
+                  bottomRight: Radius.circular(5.0),
+                ),
                 boxShadow: [
                   BoxShadow(
                     color: Color.fromRGBO(0, 0, 0, 0.1),

@@ -19,6 +19,7 @@ class ConstantsMessages {
   static String endDPoint = "dashboard";
   static String reportsEPoint ="http://79.143.187.147:3000/visits/hospital_facility_report_mob";
   static String fcmTokenPoints = "update_fcm_token";
+  static String endNPoint = "geofence_notifications";
   static bool loginStatus = false;
 
   static String loginURL =   baseUrl + midPoint + endLPoint;
@@ -27,5 +28,6 @@ class ConstantsMessages {
   static String visitsURL =  baseUrl + endVPoint + "?&&checkin_date=";
   static String dashBoardURL = baseUrl + endDPoint;
   static String reportsURL = reportsEPoint;
+  static String notificationsURL = baseUrl + endNPoint;
   static String fcmToken = baseUrl+midPoint+fcmTokenPoints;
 }

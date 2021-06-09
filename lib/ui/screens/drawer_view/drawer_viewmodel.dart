@@ -8,13 +8,11 @@ import 'package:crice_hospital_app/services/local_storage.dart';
 import 'package:crice_hospital_app/services/snackbar.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-// import 'package:crice_hospital_app/constants/route_path.dart' as routes;
-// import 'package:stacked_services/stacked_services.dart';
 
-class DrawerViewModel extends BaseViewModel{
+class DrawerViewModel extends BaseViewModel {
   final NavigationService navigationService = locator<NavigationService>();
   final LocalStorage localStorage = locator<LocalStorage>();
-  final SnackbarService snackbarService =locator<SnackbarService>();
+  final SnackbarService snackbarService = locator<SnackbarService>();
 
   bool _isLoading = false;
 
@@ -24,6 +22,7 @@ class DrawerViewModel extends BaseViewModel{
     _isLoading = isLoading;
     notifyListeners();
   }
+
   void snackBar(String Error) {
     snackbarService.showCustomSnackBar(
       variant: SnackbarType.white,

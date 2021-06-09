@@ -1,7 +1,7 @@
 import 'package:stacked/stacked.dart';
 
 class ScreenSwitcherViewModel extends BaseViewModel {
-  bool loader =true;
+  bool loader = true;
   int indexPosition = 0;
   String currentScreen = "DASHBOARD";
   String valuePressedString = "DASHBOARD";
