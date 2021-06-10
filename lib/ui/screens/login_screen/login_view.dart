@@ -9,7 +9,6 @@ class LoginView extends StatelessWidget {
   const LoginView({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final loader = false;
     return ViewModelBuilder<LoginViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
         top: true,

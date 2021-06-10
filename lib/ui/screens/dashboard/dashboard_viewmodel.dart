@@ -50,7 +50,7 @@ class DashboardViewModel extends FutureViewModel {
   String get downloadedFile => _downloadedFile;
 
   void errorListener(DashboardModel dashboard) {
-    if (dashboard.success) {
+    if (dashboard.success && dashboard.data != null) {
       print("Successfully Dashoard");
       feedlist = dashboard.data.feeds;
       loader();
@@ -58,8 +58,17 @@ class DashboardViewModel extends FutureViewModel {
       loader();
       notifyListeners();
     } else {
+      loader();
       _passError = dashboard.message;
+      snackBar(_passError);
     }
+  }
+
+  bool dataStatus(){
+    if(feedlist.isEmpty && trList.isEmpty){
+      return false;
+    }
+    return true;
   }
 
   void snackBar(String Error) {

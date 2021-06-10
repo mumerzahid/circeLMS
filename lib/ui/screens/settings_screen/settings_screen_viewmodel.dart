@@ -50,10 +50,11 @@ class SettingsViewModel extends BaseViewModel implements Initialisable {
   void errorListener(Settings update)  {
     if (update.success) {
       print("Settings");
-      localStorage.saveMobNum(mobileController.text);
+      // localStorage.saveMobNum(mobileController.text);
        // mobileController.text = mobileNumber;
       // print(mobileController.text);
       mobileNumber = LocalStorage.localStorage.getMobNum();
+      mobileController.text =mobileNumber;
       snackBar("Updated successfully!");
       notifyListeners();
       // _localStorage.clearSharedPrefrences();
@@ -62,7 +63,6 @@ class SettingsViewModel extends BaseViewModel implements Initialisable {
       _passError = update.message;
       snackBar(_passError);
     }
-    mobileController.clear();
     passwordController.clear();
     setIsLoading(false);
   }
@@ -127,7 +127,13 @@ class SettingsViewModel extends BaseViewModel implements Initialisable {
         'password': password,
         'phone_number': phoneNumber,
       };
-      if (password.isEmpty || password == null) body.remove('password');
+      if (password.isEmpty || password == null) {
+        body.remove('password');
+      }
+      else
+        {
+          body.remove('phone_number');
+        }
       _api.updatePassword(body).then((value) => {
             errorListener(value),
           });
@@ -139,6 +145,7 @@ class SettingsViewModel extends BaseViewModel implements Initialisable {
   @override
   void initialise() {
     mobileNumber = LocalStorage.localStorage.getMobNum();
+    mobileController.text =mobileNumber;
     notifyListeners();
   }
 }

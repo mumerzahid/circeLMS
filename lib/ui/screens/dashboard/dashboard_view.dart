@@ -15,7 +15,27 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<DashboardViewModel>.reactive(
       builder: (context, model, child) {
-        return Scaffold(
+        return model.trList.isEmpty|| model.feedlist.isEmpty ?model.isLoading?Center(child: CircularProgressIndicator()): RefreshIndicator(
+          onRefresh: model.futureToRun,
+          child:
+          ListView(scrollDirection: Axis.vertical, children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.width * 0.5),
+              child: Center(
+                child: Text(
+                  "No dashboard data!",
+                  style: TextStyle(
+                    fontFamily: 'Open Sans',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16,
+                    color: const Color.fromRGBO(107, 126, 130, 1),
+                  ),
+                ),
+              ),
+            ),
+          ]),
+        ) :Scaffold(
           backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
           body: RefreshIndicator(
             onRefresh: model.futureToRun,
@@ -23,7 +43,7 @@ class DashboardView extends StatelessWidget {
               child: model.isLoading
                   ? CircularProgressIndicator()
                   : SingleChildScrollView(
-                      child: Column(
+                      child: !model.dataStatus() ? SizedBox() : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
@@ -40,7 +60,7 @@ class DashboardView extends StatelessWidget {
                                   )),
                               child: Center(
                                 child: Text(
-                                  "News Feeds",
+                                  "New Feeds",
                                   style: TextStyle(
                                     fontFamily: 'Open Sans',
                                     fontWeight: FontWeight.w700,

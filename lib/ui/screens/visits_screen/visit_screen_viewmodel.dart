@@ -87,16 +87,15 @@ class VisitScreenViewModel extends FutureViewModel {
     return false;
   }
 
-  void snackBar(String Error) {
+  void snackBar(String error) {
     _snackbarService.showCustomSnackBar(
-      variant: SnackbarType.white,
-      message: Error,
-      title: Error,
+      variant: SnackbarType.universal,
+      message: error,
       duration: Duration(seconds: 2),
       onTap: (_) {
         print('snackbar tapped');
       },
-      mainButtonTitle: 'Undo',
+      mainButtonTitle: '',
       onMainButtonTapped: () => print('Undo the action!'),
     );
   }

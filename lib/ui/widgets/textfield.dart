@@ -62,8 +62,8 @@ class TextFieldWidget extends StatelessWidget {
                       child: Icon(
                         suffixIcon != null
                             ? obscureText
-                                ? Icons.visibility
-                                : Icons.visibility_off
+                                ? Icons.visibility_off
+                                : Icons.visibility
                             : null,
                         color: const Color.fromRGBO(146, 204, 180, 1),
                       ),
@@ -71,7 +71,7 @@ class TextFieldWidget extends StatelessWidget {
                   ),
                   hintText: hintText,
                   hintStyle: TextStyle(
-                      color: const Color.fromRGBO(107, 126, 130, 1),
+                      color: const Color.fromRGBO(108, 127, 131, 5),
                       fontSize: 14),
                   // validator: (val) => val.length < 6 ? 'Password too short.' : null,
                   // onSaved: (val) => _password = val,

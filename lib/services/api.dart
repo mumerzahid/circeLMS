@@ -165,6 +165,7 @@ class Api {
 
   @override
   Future<DashboardModel> getDashboardData() async {
+    DashboardModel dashboardModel = DashboardModel();
 
     String token = await _localStorage.getAuthToken();
     print(token);
@@ -178,46 +179,52 @@ class Api {
     if (response.statusCode == 200) {
       print(response.statusCode);
 
-      return DashboardModel.fromJson(json.decode(response.body));
+      dashboardModel = DashboardModel.fromJson(json.decode(response.  body));
+      // return DashboardModel.fromJson(json.decode(response.body));
     } else {
-      if (response.body != null)
-        return DashboardModel.fromJson(json.decode(response.body));
-      else
+      if (response.body != null) {
+        dashboardModel = DashboardModel.fromJson(json.decode(response.body));
+        // return DashboardModel.fromJson(json.decode(response.body));
+      }
+      else {
         throw Exception(response.reasonPhrase);
+      }
     }
+
+    return dashboardModel;
   }
 
-  @override
-  Future<HTMLWeb> getReportsHTML(Map<String,String> bodyMap) async {
-
-    // int userId = await _localStorage.getUserID();
-    // // print(token);
-    // var header = {'id': userId};
-    // Uri uri = Uri.parse(ConstantsMessages.reportsURL);
-    // uri.replace(queryParameters: bodyMap);
-    // final bodyjson = json.encode(bodyMap);
-    final response = await client.get(Uri.parse(ConstantsMessages.reportsURL),
-        // body: bodyMap,
-        // headers: header
-    );
-    print(response);
-    if (response.statusCode == 200) {
-      print(response.statusCode);
-
-      var htmlWeb = HTMLWeb();
-
-      htmlWeb.htmlData = response.body;
-      return htmlWeb;
-    } else {
-      if (response.body != null){
-        var htmlWeb = HTMLWeb();
-
-        htmlWeb.htmlData = null;
-        return htmlWeb;
-      } else
-        throw Exception(response.reasonPhrase);
-    }
-  }
+  // @override
+  // Future<HTMLWeb> getReportsHTML(Map<String,String> bodyMap) async {
+  //
+  //   // int userId = await _localStorage.getUserID();
+  //   // // print(token);
+  //   // var header = {'id': userId};
+  //   // Uri uri = Uri.parse(ConstantsMessages.reportsURL);
+  //   // uri.replace(queryParameters: bodyMap);
+  //   // final bodyjson = json.encode(bodyMap);
+  //   final response = await client.get(Uri.parse(ConstantsMessages.reportsURL),
+  //       // body: bodyMap,
+  //       // headers: header
+  //   );
+  //   print(response);
+  //   if (response.statusCode == 200) {
+  //     print(response.statusCode);
+  //
+  //     var htmlWeb = HTMLWeb();
+  //
+  //     htmlWeb.htmlData = response.body;
+  //     return htmlWeb;
+  //   } else {
+  //     if (response.body != null){
+  //       var htmlWeb = HTMLWeb();
+  //
+  //       htmlWeb.htmlData = null;
+  //       return htmlWeb;
+  //     } else
+  //       throw Exception(response.reasonPhrase);
+  //   }
+  // }
 
   @override
   Future fcmToken() async {

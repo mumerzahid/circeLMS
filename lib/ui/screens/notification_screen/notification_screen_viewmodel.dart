@@ -27,7 +27,7 @@ class NotificationScreenViewModel extends FutureViewModel {
       print("Notifications Successfully");
     } else {
       _loadingScreen =false;
-      snackBar("No updates now!");
+      snackBar(notificationsModel.message);
       notifyListeners();
     }
   }

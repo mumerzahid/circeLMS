@@ -103,7 +103,7 @@ class ReportViewModel extends BaseViewModel implements Initialisable {
     );
   }
 
-  void errorListener(HTMLWeb web) {
+  void webViewCall(startDate, endDate) {
     var userID = userId;
     var strtDate = formatDate(startDate, [yyyy, '-', mm, '-', dd]);
     var edDate = formatDate(endDate, [yyyy, '-', mm, '-', dd]);
@@ -117,13 +117,13 @@ class ReportViewModel extends BaseViewModel implements Initialisable {
   }
 
   // &geofence_id=$userId
-  void HtmlView(String start, String end) async {
-    Map<String, String> body = {
-      'start_date': start,
-      'end_date': end,
-    };
-    _api.getReportsHTML(body).then((value) => {
-          if (value != null) {errorListener(value)}
-        });
-  }
+  // void HtmlView(String start, String end) async {
+  //   Map<String, String> body = {
+  //     'start_date': start,
+  //     'end_date': end,
+  //   };
+  //   _api.getReportsHTML(body).then((value) => {
+  //         if (value != null) {errorListener(value)}
+  //       });
+  // }
 }

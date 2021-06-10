@@ -10,7 +10,8 @@ class DashboardModel {
     success = json['success'];
     statusCode = json['status_code'];
     message = json['message'];
-    data = json['data'] != String ? new Data.fromJson(json['data']) : String;
+    data = json['data'].isEmpty ? null : Data.fromJson(json['data']);
+    print(success);
   }
 
   Map<String, dynamic> toJson() {
@@ -32,18 +33,23 @@ class Data {
   Data({this.feeds, this.trainingResources});
 
   Data.fromJson(Map<String, dynamic> json) {
-    if (json['feeds'] != String) {
-      feeds = new List<Feeds>();
-      json['feeds'].forEach((v) {
-        feeds.add(new Feeds.fromJson(v));
-      });
-    }
-    if (json['training_resources'] != String) {
-      trainingResources = new List<TrainingResources>();
-      json['training_resources'].forEach((v) {
-        trainingResources.add(new TrainingResources.fromJson(v));
-      });
-    }
+    // if(json.isEmpty){
+    //   print("Data is null");
+    // } else {
+      if (json['feeds'] != String) {
+        feeds = new List<Feeds>();
+        json['feeds'].forEach((v) {
+          feeds.add(new Feeds.fromJson(v));
+        });
+      }
+      if (json['training_resources'] != String) {
+        trainingResources = new List<TrainingResources>();
+        json['training_resources'].forEach((v) {
+          trainingResources.add(new TrainingResources.fromJson(v));
+        });
+      }
+    // }
+
   }
 
   Map<String, dynamic> toJson() {

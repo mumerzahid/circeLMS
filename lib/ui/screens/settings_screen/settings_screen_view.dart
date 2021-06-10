@@ -51,7 +51,7 @@ class SettingsView extends StatelessWidget {
                   ),
                   TextFieldWidget(
                     model.mobileController,
-                    model.mobileNumber,
+                    model.mobileController.text,
                     // model.mobileController.text.isEmpty ?" +00 000 00000":model.mobileNumber,
                     TextInputType.phone,
                     false,
@@ -81,7 +81,7 @@ class SettingsView extends StatelessWidget {
                   ),
                   TextFieldWidget(
                       model.passwordController,
-                      " ********",
+                      " Minimum 6 characters",
                       TextInputType.text,
                       model.obscureText,
                       null,

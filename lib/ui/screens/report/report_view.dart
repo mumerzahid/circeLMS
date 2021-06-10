@@ -154,9 +154,9 @@ class ReportView extends StatelessWidget {
                                                 .isBefore(model.endDate) ||
                                             model.startDate != model.endDate) {
                                           model.setIsLoading(true);
-                                          model.HtmlView(
-                                              model.startDate.toString(),
-                                              model.endDate.toString());
+                                          model.webViewCall(
+                                              model.startDate,
+                                              model.endDate);
                                         }
                                       },
                                       // model.filterClick(),
