@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/model/hospital_notification.dart';
 import 'package:crice_hospital_app/services/api.dart';
@@ -22,7 +21,7 @@ class NotificationScreenViewModel extends FutureViewModel {
       notifications =
           notificationsModel.data.hospitalNotifications.reversed.toList();
       _loadingScreen = false;
-      print(notifications);
+      print(notifications[1].createdAt);
       notifyListeners();
       print("Notifications Successfully");
     } else {
@@ -38,10 +37,11 @@ class NotificationScreenViewModel extends FutureViewModel {
     // String day = formatDate(dateTime, [yyyy,'-',mm,'-',dd]);
     if (index > 0) {
       int i = index - 1;
-      day1 = DateTime.parse(notifications[index].createdAt);
+      day1 = DateTime.parse(notifications[i].createdAt).toLocal();
+      print(day1);
       String d1 = formatDate(day1, [yyyy, '-', mm, '-', dd]);
       print("Day one " + d1);
-      day2 = DateTime.parse(notifications[i].createdAt);
+      day2 = DateTime.parse(notifications[index].createdAt).toLocal();
       String d2 = formatDate(day2, [yyyy, '-', mm, '-', dd]);
       print("Day two " + d2);
 
@@ -63,7 +63,7 @@ class NotificationScreenViewModel extends FutureViewModel {
       message: Error,
       duration: Duration(seconds: 2),
       onTap: (_) {
-        print('snackbar tapped');
+        print('Snackbar Tapped');
       },
       mainButtonTitle: '',
       onMainButtonTapped: () => print('Undo the action!'),

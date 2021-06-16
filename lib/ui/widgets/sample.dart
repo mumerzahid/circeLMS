@@ -420,3 +420,32 @@
 //     // }
 //   }
 //
+
+// if (message.data['notification_type'] == '1' || message.data['notification_type'] == 1)
+//   Get.to(ScreenSwitchView(
+//     index: 2,
+//     screenName: "VISITS",
+//   ));
+// else
+//   Get.to(ScreenSwitchView(
+//     index: 3,
+//     screenName: "NOTIFICATIONS",
+//   ));
+// notificationType = message.data['notification_type'];
+
+// if (message.data['notification_type'] == '1' || message.data['notification_type'] == 1)
+//   Get.to(ScreenSwitchView(
+//     index: 2,
+//     screenName: "VISITS",
+//   ));
+// else
+//   Get.to(ScreenSwitchView(
+//     index: 3,
+//     screenName: "NOTIFICATIONS",
+//   ));
+
+// print( message.data.toString());
+// notificationType = message.data['notification_type'];
+// if(notificationType==1){
+//   Get.to(NotificationScreenView());
+// }

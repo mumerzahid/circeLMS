@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/constants/constants_messages.dart';
-import 'package:crice_hospital_app/services/api.dart';
 import 'package:crice_hospital_app/services/local_storage.dart';
+import 'package:crice_hospital_app/ui/screens/screen_switcher/screen_switcher_viewmodel.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -12,15 +12,12 @@ import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:crice_hospital_app/app/router.dart' as router;
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'services/snackbar.dart';
 
-
-final Api _api = locator<Api>();
-final LocalStorage _localStorage = locator<LocalStorage>();
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-FlutterLocalNotificationsPlugin();
-const _kTestingCrashlytics = true;
+    FlutterLocalNotificationsPlugin();
 AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
   'High Importance Notifications', // title
@@ -34,22 +31,21 @@ void main() async {
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-      AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
   setupLocator();
   MySnackBar();
   // WidgetsFlutterBinding.ensureInitialized();
   await LocalStorage.localStorage.init();
   // await FlutterDownloader.initialize(
-  //     debug: true // optional: set false to disable printing logs to console
-  //     );
-  // token = await locator<LocalStorage>().getAuthToken();
+
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-      home: MyApp()
-  )
-  );
+  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
 }
 
 Map<int, Color> color = {
@@ -70,95 +66,120 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-
 class _MyAppState extends State<MyApp> {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
 
   @override
   void initState() {
     // TODO: implement initState
-    initNotification();
+    super.initState();
     // _localStorage.getFirebaseToken();
     firebaseNotification();
     loadData();
-    super.initState();
-
   }
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: Container(
-            // color: Theme.of(context).primaryColor,
-            child: Image.asset(
-              'assets/images/splash_screen.gif',
-              fit: BoxFit.fill,
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-            ),
+      home: Scaffold(
+        body: Container(
+          // color: Theme.of(context).primaryColor,
+          child: Image.asset(
+            'assets/images/splash_screen.gif',
+            fit: BoxFit.fill,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
           ),
         ),
-      );
+      ),
+    );
     // );
   }
-  // @override
-  // Widget build(BuildContext context) {
-  //   MaterialColor colorCustom = MaterialColor(0xff86E3DC, color);
-  //   print(ConstantsMessages.loginStatus);
-  //   return MaterialApp(
-  //     debugShowCheckedModeBanner: false,
-  //     initialRoute: ConstantsMessages.loginStatus
-  //         ? routes.SwitcherRoute
-  //         : routes.LoginRoute,
-  //     onGenerateRoute: router.generateRoute,
-  //     navigatorKey: StackedService.navigatorKey,
-  //     theme: ThemeData(
-  //       primarySwatch: colorCustom,
-  //     ),
-  //   );
-  // }
-  //
-  // getLoginStatus() {
-  //   ConstantsMessages.loginStatus = LocalStorage.localStorage.getLoginStatus();
-  //   print("Login Status: " + ConstantsMessages.loginStatus.toString());
-  // }
 
   void loadData() {
     Timer(Duration(milliseconds: 6000), () {
       navToDashboard();
     });
   }
+
   void navToDashboard() {
     Navigator.pushAndRemoveUntil(
         context,
         PageRouteBuilder(pageBuilder: (c, a1, a2) => AfterSplash()),
-            (Route<dynamic> route) => false);
+        (Route<dynamic> route) => false);
   }
-
 }
-class AfterSplash extends StatefulWidget{
+
+class AfterSplash extends StatefulWidget {
   @override
   _AfterSplashState createState() => _AfterSplashState();
 }
 
 class _AfterSplashState extends State<AfterSplash> {
+  final ScreenSwitcherViewModel _screenSwitcherViewModel =
+  locator<ScreenSwitcherViewModel>();
+  var notificationType;
   @override
   void initState() {
+    super.initState();
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+    var initializationSettingsAndroid =
+    AndroidInitializationSettings("@mipmap/launcher_icon");
+    var initializationSettingsIOS = IOSInitializationSettings();
+    var initializationSettings = InitializationSettings(
+        android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+
+      if (message.data['notification_type'] == '1' || message.data['notification_type'] == 1) {
+        _screenSwitcherViewModel.setIndex(2, "VISITS");
+      }
+      else if(message.data['notification_type'] == '2' || message.data['notification_type'] == 2) {
+        _screenSwitcherViewModel.setIndex(3, "NOTIFICATIONS");
+
+      }
+    });
+    FirebaseMessaging.instance.getInitialMessage().then((message) {
+      if (message != null) {
+        if (message.data['notification_type'] == '1' || message.data['notification_type'] == 1) {
+          _screenSwitcherViewModel.setIndex(2, "VISITS");
+        }
+        else if(message.data['notification_type'] == '2' || message.data['notification_type'] == 2) {
+          _screenSwitcherViewModel.setIndex(3, "NOTIFICATIONS");
+
+        }
+      }
+    });
     getLoginStatus();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
     _initializeFlutterFire();
-    super.initState();
+  }
+  Future onSelectNotification(String payload) async {
+    print(payload);
+    print("on select called");
+    int index=int.parse(payload);
+    if (index == 1) {
+       _screenSwitcherViewModel.setIndex(2, "VISITS");
+    }
+    else if(index == 2){
+      _screenSwitcherViewModel.setIndex(3, "NOTIFICATIONS");
+
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    print("Notification after splash");
     MaterialColor colorCustom = MaterialColor(0xff86E3DC, color);
     print(ConstantsMessages.loginStatus);
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: ConstantsMessages.loginStatus
           ? routes.SwitcherRoute
@@ -176,6 +197,7 @@ class _AfterSplashState extends State<AfterSplash> {
     print("Login Status: " + ConstantsMessages.loginStatus.toString());
   }
 }
+
 void firebaseNotification() {
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     RemoteNotification notification = message.notification;
@@ -185,30 +207,18 @@ void firebaseNotification() {
     }
   });
 }
-// getToken() async {
-//   firebaseToken = await FirebaseMessaging.instance.getToken();
-//   print("FireBaseToken"+firebaseToken);
-// }
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
-Future<void> initNotification() async {
-  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  FlutterLocalNotificationsPlugin();
-  var initializationSettingsAndroid = AndroidInitializationSettings("@mipmap/launcher_icon");
-  var initializationSettingsIOS = IOSInitializationSettings();
-  var initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
-  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 }
 void _handleNotification(RemoteMessage message) {
   var check = message.data["delete"] as String;
   if (check == "true") {
   } else {
-    _showNotification(
-        message.notification.title,message.notification.body);
+    _showNotification(message.notification.title, message.notification.body,message.data['notification_type']);
   }
 }
-Future<void> _showNotification(String title, String body) async {
+
+Future<void> _showNotification(String title, String body, data) async {
   var androidPlatformChannelSpecifics = AndroidNotificationDetails(
       'your channel id', 'your channel name', 'your channel description',
       importance: Importance.max, priority: Priority.high, ticker: 'ticker');
@@ -217,9 +227,10 @@ Future<void> _showNotification(String title, String body) async {
       android: androidPlatformChannelSpecifics,
       iOS: iOSPlatformChannelSpecifics);
   await flutterLocalNotificationsPlugin
-      .show(0, title, body, platformChannelSpecifics, payload: 'item x');
+      .show(0, title, body, platformChannelSpecifics, payload: data);
 }
 
+// crashlytics
 void _initializeFlutterFire() async {
   // Wait for Firebase to initialize
 
@@ -229,8 +240,8 @@ void _initializeFlutterFire() async {
   } else {
     // Else only enable it in non-debug builds.
     // You could additionally extend this to allow users to opt-in.
-    await FirebaseCrashlytics.instance
-        .setCrashlyticsCollectionEnabled(false);
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   }
 }
+
 // "http://schemas.android.com/apk/res/android"

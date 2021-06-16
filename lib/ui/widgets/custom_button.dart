@@ -9,7 +9,8 @@ class CustomButton extends StatelessWidget {
       {Key key,
       @required this.imgUrl,
       @required this.screenName,
-      this.pressed = false})
+      this.pressed = false}
+      )
       : super(key: key);
   @override
   Widget build(BuildContext context) {
