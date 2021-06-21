@@ -38,6 +38,7 @@ class SettingsViewModel extends BaseViewModel implements Initialisable {
   bool get obscureText => _obscureText;
 
   setIsObscureText(bool obscureText) {
+
     _obscureText = obscureText;
     notifyListeners();
   }

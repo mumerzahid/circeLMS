@@ -30,7 +30,7 @@ class ReportView extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Start Date",
+                                        "Start Date:",
                                         style: TextStyle(
                                           fontFamily: 'Open Sans',
                                           fontWeight: FontWeight.w700,
@@ -181,7 +181,7 @@ class ReportView extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "End Date",
+                                        "End Date:",
                                         style: TextStyle(
                                           fontFamily: 'Open Sans',
                                           fontWeight: FontWeight.w700,

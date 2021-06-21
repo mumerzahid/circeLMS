@@ -68,7 +68,7 @@ class SettingsView extends StatelessWidget {
                       child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "Password",
+                            "New Password",
                             style: TextStyle(
                               fontFamily: 'Open Sans',
                               fontWeight: FontWeight.w700,
@@ -85,9 +85,11 @@ class SettingsView extends StatelessWidget {
                       TextInputType.text,
                       model.obscureText,
                       null,
-                      Icons.visibility_off, callFunction: (value) {
+                      Icons.visibility_off,
+                      callFunction: (value) {
                     model.setIsObscureText(value);
-                  }),
+                  }
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),

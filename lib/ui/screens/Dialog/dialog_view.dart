@@ -17,9 +17,9 @@ class DialogView extends StatelessWidget {
     dialogeContext = context;
     return ViewModelBuilder<DialogViewModel>.reactive(
       builder: (context, model, child) => Container(
-        height: MediaQuery.of(context).size.height * 0.35,
+        height: MediaQuery.of(context).size.height * 0.25,
         child: Padding(
-          padding: const EdgeInsets.all(30.0),
+          padding:EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             // crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +29,7 @@ class DialogView extends StatelessWidget {
                 "Forgot Password",
                 style: TextStyle(
                     fontFamily: 'Open Sans',
-                    fontSize: 14,
+                    fontSize: 16,
                     color: const Color.fromRGBO(149, 149, 149, 1)),
               )),
               TextField(
@@ -42,8 +42,8 @@ class DialogView extends StatelessWidget {
                   errorText: model.getVerifiedemail
                       ? null
                       : "Please enter the correct email",
-                  labelText: "EMAIL",
-                  labelStyle: TextStyle(
+                  hintText: "EMAIL",
+                  hintStyle: TextStyle(
                       fontFamily: 'Open Sans',
                       fontSize: 14,
                       color: const Color.fromRGBO(149, 149, 149, 1)),
@@ -56,7 +56,7 @@ class DialogView extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
+                height: MediaQuery.of(context).size.height * 0.03,
               ),
               model.isLoading
                   ? CircularProgressIndicator()

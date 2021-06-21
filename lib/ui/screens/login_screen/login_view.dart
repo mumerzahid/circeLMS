@@ -45,39 +45,42 @@ class LoginView extends StatelessWidget {
                                   width: 50,
                                 ),
                                 Expanded(
-                                  child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.1,
-                                      //   width: MediaQuery.of(context).size.width * 0.7,
-                                      child: TextField(
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        controller: model.emailController,
-                                        onChanged: (string) {
-                                          model.isEmail(string);
-                                        },
-                                        decoration: InputDecoration(
-                                            errorText: model.getVerifiedemail
-                                                ? null
-                                                : "Please enter the right email",
-                                            labelText: "EMAIL",
-                                            //hintText: "Enter Email",
-                                            labelStyle: TextStyle(
-                                                fontFamily: 'Open Sans',
-                                                fontSize: 14,
-                                                color: const Color.fromRGBO(
-                                                    149, 149, 149, 1)),
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: model.getVerifiedemail
-                                                  ? BorderSide(
-                                                      color:
-                                                          const Color.fromRGBO(
-                                                              196, 196, 196, 1))
-                                                  : BorderSide(
-                                                      color: Colors.red),
-                                            )),
-                                      )),
+                                  child: TextField(
+                                    keyboardType:
+                                        TextInputType.emailAddress,
+                                    controller: model.emailController,
+                                    onChanged: (string) {
+                                      model.isEmail(string);
+                                    },
+                                    decoration: InputDecoration(
+                                        helperText: '',
+                                        contentPadding: EdgeInsets.zero,
+                                        errorText: model.getVerifiedemail
+                                            ? null
+                                            : "Please enter the right email",
+                                        // labelText: "EMAIL",
+                                        //hintText: "Enter Email",
+                                        hintText: "Email",
+                                        hintStyle: TextStyle(
+                                          fontSize: 14,
+                                          color: const Color.fromRGBO(
+                                              149, 149, 149, 1),
+                                        ),
+                                        // labelStyle: TextStyle(
+                                        //     fontFamily: 'Open Sans',
+                                        //     fontSize: 14,
+                                        //     color: const Color.fromRGBO(
+                                        //         149, 149, 149, 1)),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: model.getVerifiedemail
+                                              ? BorderSide(
+                                                  color:
+                                                      const Color.fromRGBO(
+                                                          196, 196, 196, 1))
+                                              : BorderSide(
+                                                  color: Colors.red),
+                                        )),
+                                  ),
                                 ),
                               ],
                             ),
@@ -85,6 +88,7 @@ class LoginView extends StatelessWidget {
                             //   height: MediaQuery.of(context).size.height * 0.02,
                             // ),
                             Row(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Image.asset(
                                   "assets/images/key-1.png",
@@ -96,11 +100,10 @@ class LoginView extends StatelessWidget {
                                   width: 50,
                                 ),
                                 Expanded(
-                                  child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height *
-                                              0.09,
-                                      child: TextField(
+                                  child: Stack(
+                                    children:[
+                                      TextField(
+                                        enabled: true,
                                         keyboardType: TextInputType.text,
                                         onChanged: (value) {
                                           model.verifyUsername(value);
@@ -112,16 +115,30 @@ class LoginView extends StatelessWidget {
                                               149, 149, 149, 1),
                                         ),
                                         decoration: InputDecoration(
+                                          helperText: '',
+                                          contentPadding: EdgeInsets.zero,
+                                          // helperText: '',
                                           errorText: model.getVerifiedPassword
                                               ? null
                                               : "Password must contain at least 6 characters",
-                                          labelText: "PASSWORD",
-                                          suffixIcon: InkWell(
-                                              onTap: () =>
-                                                  model.obsecureValue(),
-                                              child: Icon(model.obsecureText
-                                                  ? Icons.visibility_off
-                                                  : Icons.visibility)),
+                                          errorStyle: TextStyle(
+                                          ),
+                                          hintText: "Password",
+                                          hintStyle: TextStyle(
+                                            fontSize: 14,
+                                            color: const Color.fromRGBO(
+                                                149, 149, 149, 1),
+                                          ),
+
+                                          // hintText: "Password",
+                                          // labelText: "PASSWORD",
+                                          // suffixIcon: InkWell(
+                                          //     onTap: () =>
+                                          //
+                                          //     child: Icon(
+                                          //
+                                          //     )
+                                          // ),
                                           labelStyle: TextStyle(
                                               fontFamily: 'Open Sans',
                                               fontSize: 14,
@@ -129,14 +146,29 @@ class LoginView extends StatelessWidget {
                                                   149, 149, 149, 1)),
                                           focusedBorder: UnderlineInputBorder(
                                             borderSide: model
-                                                    .getVerifiedPassword
+                                                .getVerifiedPassword
                                                 ? BorderSide(
-                                                    color: const Color.fromRGBO(
-                                                        196, 196, 196, 1))
+                                                color: const Color.fromRGBO(
+                                                    196, 196, 196, 1))
                                                 : BorderSide(color: Colors.red),
                                           ),
                                         ),
-                                      )),
+                                      ),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: IconButton(
+                                          color: Colors.grey,
+                                          icon: Icon(
+                                              model.obsecureText
+                                                  ? Icons.visibility_off
+                                                  : Icons.visibility
+                                          ), onPressed:()=>{
+                                          model.obsecureValue()
+                                        },
+                                        ),
+                                      ),
+                                    ]
+                                  ),
                                 ),
                               ],
                             ),
@@ -191,6 +223,7 @@ class LoginView extends StatelessWidget {
                             InkWell(
                               splashColor: Colors.transparent,
                               onTap: () => showDialog(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (BuildContext context) {
                                     return Dialog(
@@ -233,3 +266,39 @@ class LoginView extends StatelessWidget {
     );
   }
 }
+
+// Padding(
+//   padding: EdgeInsets.only(
+//     left: MediaQuery.of(context).size.width * 0.01,
+//     right: MediaQuery.of(context).size.width * 0.01,
+//   ),
+//   child: TextField(
+//     decoration: InputDecoration(
+//       focusedBorder: OutlineInputBorder(
+//           borderSide: BorderSide(
+//               color: Color.fromRGBO(112, 112, 112, 1)
+//           )
+//       ),
+//       border: OutlineInputBorder(
+//         borderSide:
+//         BorderSide(color: Color.fromRGBO(177, 177, 177, 1), width: 0.5),
+//       ),
+//       hintText: 'Minimum 6 characters',
+//       hintStyle: Theme.of(context)
+//           .textTheme
+//           .bodyText1
+//           .merge(TextStyle(color: Color.fromRGBO(177, 177, 177, 1))),
+//     ),
+//     keyboardType:TextInputType.text,
+//     onChanged: (text) {},
+//   ),
+// ),
+
+// IconButton(
+// color: Colors.grey,
+// icon: Icon(
+// model.obsecureText
+// ? Icons.visibility_off
+//     : Icons.visibility
+// ), onPressed:()=>model.obsecureValue(),
+// )

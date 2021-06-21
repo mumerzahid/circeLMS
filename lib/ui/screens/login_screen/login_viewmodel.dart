@@ -1,14 +1,11 @@
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/model/user.dart';
-import 'package:crice_hospital_app/model/reset_password.dart';
 import 'package:crice_hospital_app/services/api.dart';
 import 'package:crice_hospital_app/services/local_storage.dart';
 import 'package:crice_hospital_app/services/snackbar.dart';
 import 'package:crice_hospital_app/services/validation_service.dart';
-// import 'package:crice_hospital_app/utils/localstorage.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:stacked/stacked.dart';
 import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:stacked_services/stacked_services.dart';
@@ -16,14 +13,10 @@ import 'package:stacked_services/stacked_services.dart';
 class LoginViewModel extends BaseViewModel {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  // final MyNavigationService _navigationService = locator<MyNavigationService>();
   final _navigationService = locator<NavigationService>();
   final ValidationService _validationService = locator<ValidationService>();
   final SnackbarService _snackbarService = locator<SnackbarService>();
-  final DialogService _dialogService = locator<DialogService>();
   final LocalStorage _localStorage = locator<LocalStorage>();
-  // LocalStorage localStorage = LocalStorage();
-
   final Api _api = locator<Api>();
 
   String _emailError;
@@ -84,7 +77,6 @@ class LoginViewModel extends BaseViewModel {
       _navigationService.pushNamedAndRemoveUntil(routes.SwitcherRoute);
       emailController.clear();
       passwordController.clear();
-      setIsLoading(false);
       snackBar(loginModel.message);
     } else {
       setIsLoading(false);

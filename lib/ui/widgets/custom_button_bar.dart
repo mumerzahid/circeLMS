@@ -42,7 +42,7 @@ class CustomButtonBar extends StatelessWidget {
                 },
                 child: CustomButton(
                   imgUrl: 'assets/images/home.png',
-                  screenName: "Dashboard",
+                  screenName: "DASHBOARD",
                   pressed: vScreen == "DASHBOARD" ? true : false,
                 ),
               ),
@@ -51,11 +51,11 @@ class CustomButtonBar extends StatelessWidget {
               InkWell(
                 onTap: () {
                   callback(1, "REPORTS");
-                  print(Text("Reports"));
+                  print(Text("REPORTS"));
                 },
                 child: CustomButton(
                   imgUrl: 'assets/images/list-bullet.png',
-                  screenName: "Reports",
+                  screenName: "REPORTS",
                   pressed: vScreen == "REPORTS" ? true : false,
                 ),
               ),
@@ -63,11 +63,11 @@ class CustomButtonBar extends StatelessWidget {
               InkWell(
                 onTap: () {
                   callback(2, "VISITS");
-                  print(Text("Visits"));
+                  print(Text("VISITS"));
                 },
                 child: CustomButton(
                   imgUrl: 'assets/images/list-task.png',
-                  screenName: "Visits",
+                  screenName: "VISITS",
                   pressed: vScreen == "VISITS" ? true : false,
                   // pressed: true,
                 ),
@@ -76,11 +76,11 @@ class CustomButtonBar extends StatelessWidget {
               InkWell(
                 onTap: () {
                   callback(3, "NOTIFICATIONS");
-                  print(Text("Notifications"));
+                  print(Text("NOTIFICATIONS"));
                 },
                 child: CustomButton(
                   imgUrl: 'assets/images/bell.png',
-                  screenName: "Notifications",
+                  screenName: "NOTIFICATIONS",
                   pressed: vScreen == "NOTIFICATIONS" ? true : false,
                 ),
               )

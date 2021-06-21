@@ -60,7 +60,7 @@ class DashboardView extends StatelessWidget {
                                   )),
                               child: Center(
                                 child: Text(
-                                  "New Feeds",
+                                  "News Feeds",
                                   style: TextStyle(
                                     fontFamily: 'Open Sans',
                                     fontWeight: FontWeight.w700,
@@ -441,7 +441,7 @@ class DashboardView extends StatelessWidget {
                                                                 ),
                                                               ),
                                                               Text(
-                                                                " :",
+                                                                ":",
                                                                 style:
                                                                     TextStyle(
                                                                   fontFamily:
@@ -462,10 +462,11 @@ class DashboardView extends StatelessWidget {
                                                                 padding:
                                                                     EdgeInsets
                                                                         .all(8),
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .download_sharp,
-                                                                  size: 30,
+                                                                child: Image.asset("assets/images/download.png",
+                                                                  width:
+                                                                  27,
+                                                                  height:
+                                                                  27,
                                                                 ),
                                                               ),
                                                             ],

@@ -9,8 +9,7 @@ class CustomButton extends StatelessWidget {
       {Key key,
       @required this.imgUrl,
       @required this.screenName,
-      this.pressed = false}
-      )
+      this.pressed = false})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -74,8 +73,9 @@ class CustomButton extends StatelessWidget {
             child: Center(
               child: Text(
                 screenName,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 11,
                     color: pressed
                         ? Color.fromRGBO(107, 126, 130, 1)
                         : Color.fromRGBO(146, 204, 180, 1)),

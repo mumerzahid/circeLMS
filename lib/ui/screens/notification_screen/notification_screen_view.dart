@@ -82,7 +82,7 @@ class NotificationScreenView extends StatelessWidget {
                                         child: Center(
                                           child: Text(
                                             model.checkDate(day) == null
-                                                ? DateFormat('dd MMM yyyy', null)
+                                                ? DateFormat('dd MMMM yyyy', null)
                                                     .format(dateTime)
                                                 : model.checkDate(day),
                                             style: TextStyle(

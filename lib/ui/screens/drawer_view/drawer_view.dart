@@ -4,6 +4,7 @@ import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/constants/route_path.dart';
 import 'package:crice_hospital_app/ui/screens/login_screen/login_viewmodel.dart';
 import 'package:crice_hospital_app/ui/screens/settings_screen/settings_screen_viewmodel.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
@@ -32,15 +33,16 @@ class DrawerView extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal:
-                                MediaQuery.of(context).size.width * 0.05,
+                                MediaQuery.of(context).size.width * 0.06,
                             vertical:
-                                MediaQuery.of(context).size.height * 0.02),
+                                MediaQuery.of(context).size.height * 0.03),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               InkWell(
                                 onTap: () => Navigator.pop(context),
                                 child: Container(
+                                  padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
                                   child: Image.asset(
                                     "assets/images/menu.png",
                                     color: Color.fromRGBO(255, 255, 255, 1),

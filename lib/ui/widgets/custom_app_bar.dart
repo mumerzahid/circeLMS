@@ -65,7 +65,7 @@ class CustomAppBar extends PreferredSize {
                         ),
                         Expanded(
                           child: Image.asset(
-                            'assets/images/Login1.png',
+                            'assets/images/Samed_up.png',
                             // width: MediaQuery.of(context).size.width *0.15, //50
                             height:
                                 MediaQuery.of(context).size.height * 0.05, //35

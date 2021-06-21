@@ -2,14 +2,12 @@ import 'dart:async';
 import 'dart:isolate';
 import 'dart:typed_data';
 import 'dart:io';
-import 'package:crice_hospital_app/ui/widgets/file_opening_dialog.dart';
-import 'package:flutter/material.dart';
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/model/dashboard.dart';
 import 'package:crice_hospital_app/services/api.dart';
 import 'package:crice_hospital_app/services/snackbar.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter/cupertino.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:progress_dialog/progress_dialog.dart';
@@ -158,17 +156,18 @@ class DashboardViewModel extends FutureViewModel {
           print("Downloaded File " + _downloadedFile);
           pr.hide();
           if (_downloadPercentage == 100) {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return Dialog(
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(10.0)), //this right here
-                      child: FileOpeningDialog(
-                        path: _downloadedFile,
-                      ));
-                });
+            OpenFile.open(_downloadedFile);
+            // showDialog(
+            //     context: context,
+            //     builder: (BuildContext context) {
+            //       return Dialog(
+            //           shape: RoundedRectangleBorder(
+            //               borderRadius:
+            //                   BorderRadius.circular(10.0)), //this right here
+            //           child: FileOpeningDialog(
+            //             path: _downloadedFile,
+            //           ));
+            //     });
           }
 
           final Uint8List bytes = Uint8List(r.contentLength);

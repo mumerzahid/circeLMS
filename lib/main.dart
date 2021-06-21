@@ -12,7 +12,6 @@ import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:crice_hospital_app/app/router.dart' as router;
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:get/get.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'services/snackbar.dart';
 
@@ -99,7 +98,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void loadData() {
-    Timer(Duration(milliseconds: 6000), () {
+    Timer(Duration(milliseconds: 5000), () {
       navToDashboard();
     });
   }
@@ -179,7 +178,7 @@ class _AfterSplashState extends State<AfterSplash> {
     print("Notification after splash");
     MaterialColor colorCustom = MaterialColor(0xff86E3DC, color);
     print(ConstantsMessages.loginStatus);
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: ConstantsMessages.loginStatus
           ? routes.SwitcherRoute
