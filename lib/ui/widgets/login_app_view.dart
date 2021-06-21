@@ -28,11 +28,11 @@ class LoginAppBar extends PreferredSize {
                     Image.asset(
                       "assets/images/Login2.png",
                       // width: MediaQuery.of(context).size.width * 0.23,
-                      height: MediaQuery.of(context).size.height * 0.08,
+                      height: MediaQuery.of(context).size.height * 0.07,
                     ),
                     Image.asset("assets/images/Samed_up.png",
                         width: MediaQuery.of(context).size.width * 0.25,
-                        height: MediaQuery.of(context).size.height * 0.08),
+                        height: MediaQuery.of(context).size.height * 0.07),
                   ],
                 ),
               ),

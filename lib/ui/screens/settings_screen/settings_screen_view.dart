@@ -37,7 +37,7 @@ class SettingsView extends StatelessWidget {
                     child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          "Mobile Number",
+                          "Mobile Number:",
                           style: TextStyle(
                             fontFamily: 'Open Sans',
                             fontWeight: FontWeight.w700,
@@ -68,7 +68,7 @@ class SettingsView extends StatelessWidget {
                       child: Align(
                           alignment: Alignment.topLeft,
                           child: Text(
-                            "New Password",
+                            "New Password:",
                             style: TextStyle(
                               fontFamily: 'Open Sans',
                               fontWeight: FontWeight.w700,

@@ -30,13 +30,20 @@ class YoutubeView extends StatelessWidget {
                 top: true,
                 child: Scaffold(
                   appBar: AppBar(
+                    leading: InkWell(
+                        onTap: () => Navigator.pop(context),
+                        child: Icon(
+                          Icons.keyboard_backspace_rounded,
+                          color:Colors.white,
+                        )
+                    ),
                     title: Text(
                       title,
                       style: TextStyle(
                           fontFamily: 'Open Sans',
                           fontWeight: FontWeight.w700,
                           fontSize: 16,
-                          color: Colors.black),
+                          color: Colors.white),
                     ),
                     centerTitle: true,
                   ),

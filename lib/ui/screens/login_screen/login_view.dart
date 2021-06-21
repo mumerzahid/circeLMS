@@ -42,7 +42,7 @@ class LoginView extends StatelessWidget {
                                   // height: MediaQuery.of(context).size.height * 0.05,
                                 ),
                                 SizedBox(
-                                  width: 50,
+                                  width: 25,
                                 ),
                                 Expanded(
                                   child: TextField(
@@ -97,7 +97,7 @@ class LoginView extends StatelessWidget {
                                   // height: MediaQuery.of(context).size.height * 0.05,
                                 ),
                                 SizedBox(
-                                  width: 50,
+                                  width: 25,
                                 ),
                                 Expanded(
                                   child: Stack(
@@ -156,12 +156,17 @@ class LoginView extends StatelessWidget {
                                       ),
                                       Align(
                                         alignment: Alignment.centerRight,
-                                        child: IconButton(
+                                        child: model.obsecureText?IconButton(
                                           color: Colors.grey,
                                           icon: Icon(
-                                              model.obsecureText
-                                                  ? Icons.visibility_off
-                                                  : Icons.visibility
+                                               Icons.visibility_off
+                                          ), onPressed:()=>{
+                                          model.obsecureValue()
+                                        },
+                                        ):IconButton(
+                                          color: Color.fromRGBO(146, 204, 180, 1),
+                                          icon: Icon(
+                                              Icons.visibility
                                           ), onPressed:()=>{
                                           model.obsecureValue()
                                         },
@@ -241,7 +246,7 @@ class LoginView extends StatelessWidget {
                                         0.15),
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  "FORGOT PASSWORD ?",
+                                  "FORGOT PASSWORD?",
                                   style: TextStyle(
                                     fontFamily: 'Open Sans',
                                     fontSize: 14,

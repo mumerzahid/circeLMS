@@ -14,13 +14,20 @@ class DashboardFeeds extends StatelessWidget {
       top: true,
       child: Scaffold(
         appBar: AppBar(
+          leading: InkWell(
+              onTap: () => Navigator.pop(context),
+              child: Icon(
+                Icons.keyboard_backspace_rounded,
+                color:Colors.white,
+              )
+          ),
           title: Text(
             title,
             maxLines: 2,
             style: TextStyle(
               fontFamily: 'Open Sans',
               fontSize: 14,
-              color: Colors.black
+              color: Colors.white
                 ) ),
           centerTitle: true,
         ),

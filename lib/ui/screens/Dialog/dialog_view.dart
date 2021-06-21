@@ -1,5 +1,4 @@
 import 'package:crice_hospital_app/app/locator.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -17,7 +16,7 @@ class DialogView extends StatelessWidget {
     dialogeContext = context;
     return ViewModelBuilder<DialogViewModel>.reactive(
       builder: (context, model, child) => Container(
-        height: MediaQuery.of(context).size.height * 0.25,
+        height: MediaQuery.of(context).size.height * 0.27,
         child: Padding(
           padding:EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
           child: Column(
@@ -26,7 +25,7 @@ class DialogView extends StatelessWidget {
             children: [
               Center(
                   child: Text(
-                "Forgot Password",
+                "Forgot Password?",
                 style: TextStyle(
                     fontFamily: 'Open Sans',
                     fontSize: 16,
@@ -42,7 +41,7 @@ class DialogView extends StatelessWidget {
                   errorText: model.getVerifiedemail
                       ? null
                       : "Please enter the correct email",
-                  hintText: "EMAIL",
+                  hintText: "Email",
                   hintStyle: TextStyle(
                       fontFamily: 'Open Sans',
                       fontSize: 14,
@@ -67,7 +66,7 @@ class DialogView extends StatelessWidget {
                             Container(
                               child: ElevatedButton(
                                   child: Text(
-                                    "Cancel",
+                                    "CANCEL",
                                     style: TextStyle(
                                       fontFamily: 'Open Sans',
                                       fontWeight: FontWeight.w700,

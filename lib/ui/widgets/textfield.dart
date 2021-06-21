@@ -81,13 +81,16 @@ class TextFieldWidget extends StatelessWidget {
               ),
               IconButton(
                 onPressed: ()=>callFunction(!obscureText),
-                icon: Icon(
+                icon: obscureText?Icon(
                   suffixIcon != null
-                      ? obscureText
                       ? Icons.visibility_off
-                      : Icons.visibility
                       : null,
-                  color: const Color.fromRGBO(146, 204, 180, 1),
+                  color: Colors.grey,
+                ):Icon(
+                  suffixIcon != null
+                      ? Icons.visibility
+                      : null,
+                  color: Color.fromRGBO(146, 204, 180, 1),
                 ),
               ),
             ]

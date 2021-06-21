@@ -51,30 +51,26 @@ class CustomAppBar extends PreferredSize {
                             )),
                       )),
                   Expanded(
-                    flex: 4,
+                    flex: 5,
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Expanded(
-                          child: Image.asset(
-                            'assets/images/Login2.png',
-                            // width: MediaQuery.of(context).size.width *0.2, //100
-                            height:
-                                MediaQuery.of(context).size.height * 0.1, //60
-                          ),
+                        Image.asset(
+                          'assets/images/Login2.png',
+                          // width: MediaQuery.of(context).size.width *0.2, //100
+                          height:
+                              MediaQuery.of(context).size.height * 0.07, //60
                         ),
-                        Expanded(
-                          child: Image.asset(
-                            'assets/images/Samed_up.png',
-                            // width: MediaQuery.of(context).size.width *0.15, //50
-                            height:
-                                MediaQuery.of(context).size.height * 0.05, //35
-                          ),
+                        Image.asset(
+                          'assets/images/Samed_up.png',
+                          // width: MediaQuery.of(context).size.width *0.15, //50
+                          height:
+                              MediaQuery.of(context).size.height * 0.05, //35
                         ),
                         Expanded(
                           child: Image.asset('assets/images/CRICE.png',
                               // width: MediaQuery.of(context).size.width *0.1, //70
-                              height: MediaQuery.of(context).size.height * 0.1),
+                              height: MediaQuery.of(context).size.height * 0.08),
                         ),
                       ],
                     ),
@@ -82,6 +78,7 @@ class CustomAppBar extends PreferredSize {
                 ],
               ),
             ),
+            SizedBox(height: 10,),
             Column(children: [
               Container(
                 height: 1,
@@ -108,7 +105,7 @@ class CustomAppBar extends PreferredSize {
                     padding: EdgeInsets.only(
                       // horizontal:MediaQuery.of(context).size.width * 0.01,
                       // vertical: MediaQuery.of(context).size.height * 0.07,
-                      top: MediaQuery.of(context).size.height * 0.06,
+                      top: MediaQuery.of(context).size.height * 0.04,
                       left: MediaQuery.of(context).size.width * 0.017,
                       right: MediaQuery.of(context).size.width * 0.015,
                     ),
