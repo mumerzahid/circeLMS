@@ -161,7 +161,7 @@ class ReportView extends StatelessWidget {
                                       },
                                       // model.filterClick(),
                                       child: Text(
-                                        "Filter",
+                                        "FILTER",
                                         style: TextStyle(
                                           fontFamily: 'Open Sans',
                                           fontWeight: FontWeight.w700,

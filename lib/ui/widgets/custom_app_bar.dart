@@ -51,7 +51,7 @@ class CustomAppBar extends PreferredSize {
                             )),
                       )),
                   Expanded(
-                    flex: 5,
+                    flex: 6,
                     child: Row(
                       // mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -59,19 +59,17 @@ class CustomAppBar extends PreferredSize {
                           'assets/images/Login2.png',
                           // width: MediaQuery.of(context).size.width *0.2, //100
                           height:
-                              MediaQuery.of(context).size.height * 0.07, //60
+                              MediaQuery.of(context).size.width * 0.11, //60
                         ),
                         Image.asset(
                           'assets/images/Samed_up.png',
                           // width: MediaQuery.of(context).size.width *0.15, //50
                           height:
-                              MediaQuery.of(context).size.height * 0.05, //35
+                              MediaQuery.of(context).size.width * 0.11, //35
                         ),
-                        Expanded(
-                          child: Image.asset('assets/images/CRICE.png',
-                              // width: MediaQuery.of(context).size.width *0.1, //70
-                              height: MediaQuery.of(context).size.height * 0.08),
-                        ),
+                        Image.asset('assets/images/CRICE.png',
+                            // width: MediaQuery.of(context).size.width *0.1, //70
+                            height: MediaQuery.of(context).size.width * 0.15),
                       ],
                     ),
                   )

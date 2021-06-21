@@ -122,6 +122,7 @@ class SettingsViewModel extends BaseViewModel implements Initialisable {
     setIsLoading(true);
 
     if (validationMethod(password, phoneNumber)) {
+      localStorage.saveMobNum(phoneNumber);
       print(password);
       print(phoneNumber);
       Map<String, String> body = {
