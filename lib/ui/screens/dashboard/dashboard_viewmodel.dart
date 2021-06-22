@@ -196,17 +196,12 @@ class DashboardViewModel extends FutureViewModel {
   }
 
   Future<bool> _checkPermission() async {
-    PermissionStatus permission = await PermissionHandler()
-        .checkPermissionStatus(PermissionGroup.storage);
-    if (permission != PermissionStatus.granted) {
-      Map<PermissionGroup, PermissionStatus> permissions =
-          await PermissionHandler()
-              .requestPermissions([PermissionGroup.storage]);
-      if (permissions[PermissionGroup.storage] == PermissionStatus.granted) {
+    if (Permission.storage.isGranted != null) {
+      if (Permission.storage.isGranted ?? false) {
+        Permission.storage.request();
+      } else {
         return true;
       }
-    } else {
-      return true;
     }
 
     return false;
