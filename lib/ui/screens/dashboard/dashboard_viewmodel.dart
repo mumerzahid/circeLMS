@@ -62,8 +62,8 @@ class DashboardViewModel extends FutureViewModel {
     }
   }
 
-  bool dataStatus(){
-    if(feedlist.isEmpty && trList.isEmpty){
+  bool dataStatus() {
+    if (feedlist.isEmpty && trList.isEmpty) {
       return false;
     }
     return true;
@@ -197,15 +197,28 @@ class DashboardViewModel extends FutureViewModel {
 
   Future<bool> _checkPermission() async {
     if (Permission.storage.isGranted != null) {
-      if (Permission.storage.isGranted ?? false) {
-        Permission.storage.request();
-      } else {
-        return true;
-      }
+      PermissionStatus p = await Permission.storage.request();
+      return p.isGranted;
     }
 
     return false;
   }
+  // Future<bool> _checkPermission() async {
+  //   PermissionStatus permission = await PermissionHandler()
+  //       .checkPermissionStatus(PermissionGroup.storage);
+  //   if (permission != PermissionStatus.granted) {
+  //     Map<PermissionGroup, PermissionStatus> permissions =
+  //         await PermissionHandler()
+  //             .requestPermissions([PermissionGroup.storage]);
+  //     if (permissions[PermissionGroup.storage] == PermissionStatus.granted) {
+  //       return true;
+  //     }
+  //   } else {
+  //     return true;
+  //   }
+
+  //   return false;
+  // }
 
   @override
   Future futureToRun() {
