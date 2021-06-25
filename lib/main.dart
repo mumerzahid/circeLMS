@@ -12,7 +12,7 @@ import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:crice_hospital_app/app/router.dart' as router;
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:rxdart/rxdart.dart';
+// import 'package:rxdart/rxdart.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'services/snackbar.dart';
 
@@ -118,9 +118,9 @@ class _AfterSplashState extends State<AfterSplash> {
   final ScreenSwitcherViewModel _screenSwitcherViewModel =
       locator<ScreenSwitcherViewModel>();
   var notificationType;
-  final BehaviorSubject<ReceivedNotification>
-      didReceiveLocalNotificationSubject =
-      BehaviorSubject<ReceivedNotification>();
+  // final BehaviorSubject<ReceivedNotification>
+  //     didReceiveLocalNotificationSubject =
+  //     BehaviorSubject<ReceivedNotification>();
   @override
   void initState() {
     super.initState();
@@ -130,14 +130,15 @@ class _AfterSplashState extends State<AfterSplash> {
         AndroidInitializationSettings("@mipmap/launcher_icon");
     final IOSInitializationSettings initializationSettingsIOS =
         IOSInitializationSettings(
-            requestAlertPermission: true,
-            requestBadgePermission: false,
-            requestSoundPermission: true,
-            onDidReceiveLocalNotification:
-                (int id, String title, String body, String payload) async {
-              didReceiveLocalNotificationSubject.add(ReceivedNotification(
-                  id: id, title: title, body: body, payload: payload));
-            });
+            // requestAlertPermission: true,
+            // requestBadgePermission: false,
+            // requestSoundPermission: true,
+            // onDidReceiveLocalNotification:
+            //     (int id, String title, String body, String payload) async {
+            //   didReceiveLocalNotificationSubject.add(ReceivedNotification(
+            //       id: id, title: title, body: body, payload: payload));
+            // }
+            );
     // var initializationSettingsIOS = IOSInitializationSettings(
     //   onDidReceiveLocalNotification: onDidReceiveLocalNotification
     // );
@@ -276,15 +277,15 @@ void _initializeFlutterFire() async {
 //     // display a dialog with the notification details, tap ok to go to another page
 //   }
 
-class ReceivedNotification {
-  ReceivedNotification({
-    @required this.id,
-    @required this.title,
-    @required this.body,
-    @required this.payload,
-  });
-  final int id;
-  final String title;
-  final String body;
-  final String payload;
-}
+// class ReceivedNotification {
+//   ReceivedNotification({
+//     @required this.id,
+//     @required this.title,
+//     @required this.body,
+//     @required this.payload,
+//   });
+//   final int id;
+//   final String title;
+//   final String body;
+//   final String payload;
+// }
