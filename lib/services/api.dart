@@ -71,12 +71,11 @@ import 'package:http/http.dart' show Client;
 import 'dart:convert';
 
 import 'package:stacked_services/stacked_services.dart';
+
 @lazySingleton
 class Api {
   var client = Client();
   final LocalStorage _localStorage = locator<LocalStorage>();
-
-
 
   @override
   Future<User> login(Map<String, String> body) async {
@@ -96,8 +95,9 @@ class Api {
   }
 
   @override
-  Future<PasswordReset> resetPassword(Map<String,String> body) async {
-    final response = await client.post(Uri.parse(ConstantsMessages.resetURL), body:body);
+  Future<PasswordReset> resetPassword(Map<String, String> body) async {
+    final response =
+        await client.post(Uri.parse(ConstantsMessages.resetURL), body: body);
     print(response);
     if (response.statusCode == 200) {
       print(response.statusCode);
@@ -111,16 +111,12 @@ class Api {
   }
 
   @override
-  Future<Settings> updatePassword(Map<String,String> body) async {
-
+  Future<Settings> updatePassword(Map<String, String> body) async {
     String token = await _localStorage.getAuthToken();
     print(token);
     var header = {'Auth-Token': token};
-    final response = await client.post(
-        Uri.parse(ConstantsMessages.settingURL),
-        headers: header,
-        body:body
-    );
+    final response = await client.post(Uri.parse(ConstantsMessages.settingURL),
+        headers: header, body: body);
     print(response);
     if (response.statusCode == 200) {
       print(response.statusCode);
@@ -135,7 +131,6 @@ class Api {
 
   @override
   Future<VisitModel> getVisits(body) async {
-
     String token = await _localStorage.getAuthToken();
     print(token);
     print("run again");
@@ -144,9 +139,9 @@ class Api {
     // final params = uri.replace(queryParameters: body);
     // final bodyjson = json.encode(params);
     final response = await client.get(
-        Uri.parse(ConstantsMessages.visitsURL+"$body"),
+      Uri.parse(ConstantsMessages.visitsURL + "$body"),
       // bodyjson,
-        headers: header,
+      headers: header,
     );
     print(response);
     if (response.statusCode == 200) {
@@ -161,7 +156,6 @@ class Api {
         throw Exception(response.reasonPhrase);
     }
   }
-
 
   @override
   Future<DashboardModel> getDashboardData() async {
@@ -179,14 +173,13 @@ class Api {
     if (response.statusCode == 200) {
       print(response.statusCode);
 
-      dashboardModel = DashboardModel.fromJson(json.decode(response.  body));
+      dashboardModel = DashboardModel.fromJson(json.decode(response.body));
       // return DashboardModel.fromJson(json.decode(response.body));
     } else {
       if (response.body != null) {
         dashboardModel = DashboardModel.fromJson(json.decode(response.body));
         // return DashboardModel.fromJson(json.decode(response.body));
-      }
-      else {
+      } else {
         throw Exception(response.reasonPhrase);
       }
     }
@@ -233,12 +226,9 @@ class Api {
     print("Firebase token from api:" + firebaseToken);
     // var body = firebaseToken;
     var header = {'Auth-Token': token};
-    Map<String,String> body={
-      'fcm_token': firebaseToken
-
-    };
-    final response =
-    await client.post(Uri.parse(ConstantsMessages.fcmToken), body: body,headers: header);
+    Map<String, String> body = {'fcm_token': firebaseToken};
+    final response = await client.post(Uri.parse(ConstantsMessages.fcmToken),
+        body: body, headers: header);
 
     print(response);
     if (response.statusCode == 200) {
@@ -254,7 +244,7 @@ class Api {
 
   @override
   Future<NotificationsModel> getNotifications() async {
-
+    HospitalNotifications dashboardModel = HospitalNotifications();
     String token = await _localStorage.getAuthToken();
     print(token);
     print("notifications");
@@ -269,12 +259,40 @@ class Api {
 
       return NotificationsModel.fromJson(json.decode(response.body));
     } else {
-      if (response.body != null)
-        return NotificationsModel.fromJson(json.decode(response.body));
-      else
-        throw Exception(response.reasonPhrase);
+      try {
+        if (response.body != null)
+          return NotificationsModel.fromJson(json.decode(response.body));
+        else
+          return null;
+      } catch (e) {
+        return null;
+      }
     }
   }
+
+  // @override
+  // Future<NotificationsModel> getNotifications() async {
+
+  //   String token = await _localStorage.getAuthToken();
+  //   print(token);
+  //   print("notifications");
+  //   var header = {'Auth-Token': token};
+  //   final response = await client.get(
+  //     Uri.parse(ConstantsMessages.notificationsURL),
+  //     headers: header,
+  //   );
+  //   print(response);
+  //   if (response.statusCode == 200) {
+  //     print(response.statusCode);
+
+  //     return NotificationsModel.fromJson(json.decode(response.body));
+  //   } else {
+  //     if (response.body != null)
+  //       return NotificationsModel.fromJson(json.decode(response.body));
+  //     else
+  //       throw Exception(response.reasonPhrase);
+  //   }
+  // }
 // Future downloadDocument(Dio dio, String url, String savePath) async {
   //   //get pdf from link
   //   try {
@@ -301,6 +319,5 @@ class Api {
   //     print(e);
   //   }
   // }
-
 
 }

@@ -25,7 +25,7 @@ class NotificationScreenViewModel extends FutureViewModel {
       notifyListeners();
       print("Notifications Successfully");
     } else {
-      _loadingScreen =false;
+      _loadingScreen = false;
       snackBar(notificationsModel.message);
       notifyListeners();
     }
@@ -57,6 +57,7 @@ class NotificationScreenViewModel extends FutureViewModel {
       return false;
     }
   }
+
   void snackBar(String Error) {
     _snackbarService.showCustomSnackBar(
       variant: SnackbarType.universal,
@@ -89,7 +90,6 @@ class NotificationScreenViewModel extends FutureViewModel {
   }
 
   String checkDate(String dateString) {
-    
     DateTime checkedTime = DateTime.parse(dateString);
     DateTime currentTime = DateTime.now();
 
@@ -111,7 +111,7 @@ class NotificationScreenViewModel extends FutureViewModel {
   @override
   Future futureToRun() {
     return _api.getNotifications().then((value) => {
-          errorListener(value),
+          if (value == null) {_loadingScreen = false} else errorListener(value),
         });
   }
 }
