@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:crice_hospital_app/app/locator.dart';
-import 'package:crice_hospital_app/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +35,9 @@ class _HtmlViewerState extends State<HtmlViewer> {
             leading: InkWell(
                 onTap: () => Navigator.pop(context),
                 child: Icon(
-                    Icons.keyboard_backspace_rounded,
-                  color:Colors.white,
-                )
-            ),
+                  Icons.keyboard_backspace_rounded,
+                  color: Colors.white,
+                )),
             title: Text(
               "HOSPITAL REPORT",
               style: TextStyle(
@@ -55,8 +53,8 @@ class _HtmlViewerState extends State<HtmlViewer> {
             children: <Widget>[
               widget.data == null
                   ? Center(
-                child: CircularProgressIndicator(),
-              )
+                      child: CircularProgressIndicator(),
+                    )
                   : WebView(
                       allowsInlineMediaPlayback: true,
                       initialUrl: widget.data,
@@ -80,9 +78,7 @@ class _HtmlViewerState extends State<HtmlViewer> {
                     )
                   : SizedBox()
             ],
-          )
-          ),
+          )),
     );
-
   }
 }

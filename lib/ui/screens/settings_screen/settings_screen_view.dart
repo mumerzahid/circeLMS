@@ -52,8 +52,7 @@ class SettingsView extends StatelessWidget {
                   TextFieldWidget(
                     model.mobileController,
                     model.mobileController.text,
-                    // model.mobileController.text.isEmpty ?" +00 000 00000":model.mobileNumber,
-                    TextInputType.phone,
+                    TextInputType.name,
                     false,
                     null,
                     null,

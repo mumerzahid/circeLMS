@@ -40,15 +40,18 @@ class CustomAppBar extends PreferredSize {
                         splashColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () => Scaffold.of(context).openDrawer(),
-                        child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Image.asset(
-                              'assets/images/menu.png',
-                              height: MediaQuery.of(context).size.height *
-                                  0.03, //23
-                              width:
-                                  MediaQuery.of(context).size.width * 0.05, //23
-                            )),
+                        child: Padding(
+                          padding: EdgeInsets.all(5),
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Image.asset(
+                                'assets/images/menu.png',
+                                height: MediaQuery.of(context).size.height *
+                                    0.03, //23
+                                width: MediaQuery.of(context).size.width *
+                                    0.05, //23
+                              )),
+                        ),
                       )),
                   Expanded(
                     flex: 6,
@@ -58,14 +61,12 @@ class CustomAppBar extends PreferredSize {
                         Image.asset(
                           'assets/images/Login2.png',
                           // width: MediaQuery.of(context).size.width *0.2, //100
-                          height:
-                              MediaQuery.of(context).size.width * 0.11, //60
+                          height: MediaQuery.of(context).size.width * 0.11, //60
                         ),
                         Image.asset(
                           'assets/images/Samed_up.png',
                           // width: MediaQuery.of(context).size.width *0.15, //50
-                          height:
-                              MediaQuery.of(context).size.width * 0.11, //35
+                          height: MediaQuery.of(context).size.width * 0.11, //35
                         ),
                         Image.asset('assets/images/CRICE.png',
                             // width: MediaQuery.of(context).size.width *0.1, //70
@@ -76,7 +77,9 @@ class CustomAppBar extends PreferredSize {
                 ],
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Column(children: [
               Container(
                 height: 1,

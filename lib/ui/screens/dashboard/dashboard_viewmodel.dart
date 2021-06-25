@@ -121,7 +121,8 @@ class DashboardViewModel extends FutureViewModel {
 
       final dir = Platform.isAndroid
           ? '/sdcard/download'
-          : (await getApplicationDocumentsDirectory()).path;
+          : (await getTemporaryDirectory()).path;
+      // getApplicationSupportDirectory()
       print(dir);
 
       List<List<int>> chunks = new List();
@@ -155,20 +156,6 @@ class DashboardViewModel extends FutureViewModel {
           _downloadedFile = '$dir/$filename';
           print("Downloaded File " + _downloadedFile);
           pr.hide();
-          if (_downloadPercentage == 100) {
-            OpenFile.open(_downloadedFile);
-            // showDialog(
-            //     context: context,
-            //     builder: (BuildContext context) {
-            //       return Dialog(
-            //           shape: RoundedRectangleBorder(
-            //               borderRadius:
-            //                   BorderRadius.circular(10.0)), //this right here
-            //           child: FileOpeningDialog(
-            //             path: _downloadedFile,
-            //           ));
-            //     });
-          }
 
           final Uint8List bytes = Uint8List(r.contentLength);
           int offset = 0;
@@ -177,6 +164,10 @@ class DashboardViewModel extends FutureViewModel {
             offset += chunk.length;
           }
           await file.writeAsBytes(bytes);
+          completer.complete();
+          if (_downloadPercentage == 100) {
+            OpenFile.open(_downloadedFile);
+          }
 
           // updateDownloadStatus(DownloadStatus.Completed);
           _downloadSubscription?.cancel();
@@ -185,7 +176,6 @@ class DashboardViewModel extends FutureViewModel {
           notifyListeners();
 
           print('DownloadFile: Completed');
-          completer.complete();
 
           return;
         });
@@ -196,29 +186,14 @@ class DashboardViewModel extends FutureViewModel {
   }
 
   Future<bool> _checkPermission() async {
-    if (Permission.storage.isGranted != null) {
-      PermissionStatus p = await Permission.storage.request();
-      return p.isGranted;
+    if (await Permission.storage.request().isGranted) {
+      return true;
+    } else if (await Permission.storage.request().isPermanentlyDenied) {
+      await openAppSettings();
+    } else if (await Permission.storage.request().isDenied) {
+      return false;
     }
-
-    return false;
   }
-  // Future<bool> _checkPermission() async {
-  //   PermissionStatus permission = await PermissionHandler()
-  //       .checkPermissionStatus(PermissionGroup.storage);
-  //   if (permission != PermissionStatus.granted) {
-  //     Map<PermissionGroup, PermissionStatus> permissions =
-  //         await PermissionHandler()
-  //             .requestPermissions([PermissionGroup.storage]);
-  //     if (permissions[PermissionGroup.storage] == PermissionStatus.granted) {
-  //       return true;
-  //     }
-  //   } else {
-  //     return true;
-  //   }
-
-  //   return false;
-  // }
 
   @override
   Future futureToRun() {

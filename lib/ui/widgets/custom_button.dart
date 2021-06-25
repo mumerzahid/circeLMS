@@ -75,7 +75,7 @@ class CustomButton extends StatelessWidget {
                 screenName,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    fontSize: 10,
+                    fontSize: 9,
                     color: pressed
                         ? Color.fromRGBO(107, 126, 130, 1)
                         : Color.fromRGBO(146, 204, 180, 1)),

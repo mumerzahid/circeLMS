@@ -1,6 +1,4 @@
 PODS:
-  - ext_storage (0.0.1):
-    - Flutter
   - Firebase/CoreOnly (8.0.0):
     - FirebaseCore (= 8.0.0)
   - Firebase/Crashlytics (8.0.0):
@@ -103,7 +101,6 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - ext_storage (from `.symlinks/plugins/ext_storage/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
@@ -134,8 +131,6 @@ SPEC REPOS:
     - Toast
 
 EXTERNAL SOURCES:
-  ext_storage:
-    :path: ".symlinks/plugins/ext_storage/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_crashlytics:
@@ -164,7 +159,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter/ios"
 
 SPEC CHECKSUMS:
-  ext_storage: 4eaf3a84d5594106e2ebcc2502248cfde53c8fa1
   Firebase: 73c3e3b216ec1ecbc54d2ffdd4670c65c749edb1
   firebase_core: cda81ae37eda6df2bc2d16027fda527987c4bd33
   firebase_crashlytics: 1dad18971e1bac07bbd560c7a344df391a3a833c
@@ -191,6 +185,6 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   webview_flutter: 9f491a9b5a66f2573946a389b2677987b0ff8c0b
 
-PODFILE CHECKSUM: dadcb87e73caf4b93a6b67db5cb6f41e1a226a9a
+PODFILE CHECKSUM: 189f2b8580cb4e38a0c6ec8869cecb160ce12dc6
 
 COCOAPODS: 1.10.1
