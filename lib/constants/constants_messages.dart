@@ -9,15 +9,16 @@ class ConstantsMessages {
 
 
   //API
-  static String   fBaseURL = "http://79.143.187.147:3000/";
-  static String baseUrl ="http://79.143.187.147:3000/api/v1/geofence/";
+  // static String   fBaseURL = "http://79.143.187.147:3000/";
+  static String   fBaseURL = "https://cricecams.com/";
+  static String baseUrl ="https://cricecams.com/api/v1/geofence/";
   static String midPoint = "auth/";
   static String endLPoint="login";
   static String endRPoint = "reset_password";
   static String endSPoint = "settings";
   static String endVPoint ="visits";
   static String endDPoint = "dashboard";
-  static String reportsEPoint ="http://79.143.187.147:3000/visits/hospital_facility_report_mob";
+  static String reportsEPoint ="https://cricecams.com/visits/hospital_facility_report_mob";
   static String fcmTokenPoints = "update_fcm_token";
   static String endNPoint = "geofence_notifications";
   static bool loginStatus = false;

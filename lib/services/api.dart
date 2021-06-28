@@ -254,7 +254,7 @@ class Api {
 
   @override
   Future<NotificationsModel> getNotifications() async {
-
+    HospitalNotifications dashboardModel = HospitalNotifications();
     String token = await _localStorage.getAuthToken();
     print(token);
     print("notifications");
@@ -269,12 +269,48 @@ class Api {
 
       return NotificationsModel.fromJson(json.decode(response.body));
     } else {
-      if (response.body != null)
-        return NotificationsModel.fromJson(json.decode(response.body));
-      else
-        throw Exception(response.reasonPhrase);
+      try{
+        if (response.body != null)
+          return NotificationsModel.fromJson(json.decode(response.body));
+        else
+            return null;
+      }
+      catch(e){
+        return null;
+      }
+
     }
   }
+  // @override
+  // Future<DashboardModel> getDashboardData() async {
+  //   DashboardModel dashboardModel = DashboardModel();
+  //
+  //   String token = await _localStorage.getAuthToken();
+  //   print(token);
+  //   print("again");
+  //   var header = {'Auth-Token': token};
+  //   final response = await client.get(
+  //     Uri.parse(ConstantsMessages.dashBoardURL),
+  //     headers: header,
+  //   );
+  //   print(response);
+  //   if (response.statusCode == 200) {
+  //     print(response.statusCode);
+  //
+  //     dashboardModel = DashboardModel.fromJson(json.decode(response.  body));
+  //     // return DashboardModel.fromJson(json.decode(response.body));
+  //   } else {
+  //     if (response.body != null) {
+  //       dashboardModel = DashboardModel.fromJson(json.decode(response.body));
+  //       // return DashboardModel.fromJson(json.decode(response.body));
+  //     }
+  //     else {
+  //       throw Exception(response.reasonPhrase);
+  //     }
+  //   }
+  //
+  //   return dashboardModel;
+  // }
 // Future downloadDocument(Dio dio, String url, String savePath) async {
   //   //get pdf from link
   //   try {

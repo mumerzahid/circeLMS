@@ -12,6 +12,7 @@ import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:crice_hospital_app/app/router.dart' as router;
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:rxdart/rxdart.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'services/snackbar.dart';
 
@@ -118,6 +119,8 @@ class _AfterSplashState extends State<AfterSplash> {
   final ScreenSwitcherViewModel _screenSwitcherViewModel =
   locator<ScreenSwitcherViewModel>();
   var notificationType;
+  // final BehaviorSubject<ReceivedNotification> didReceiveLocalNotificationSubject =
+  // BehaviorSubject<ReceivedNotification>();
   @override
   void initState() {
     super.initState();
@@ -125,7 +128,17 @@ class _AfterSplashState extends State<AfterSplash> {
     FlutterLocalNotificationsPlugin();
     var initializationSettingsAndroid =
     AndroidInitializationSettings("@mipmap/launcher_icon");
-    var initializationSettingsIOS = IOSInitializationSettings();
+    // var initializationSettingsIOS = IOSInitializationSettings();
+    var initializationSettingsIOS = IOSInitializationSettings(
+        requestAlertPermission: true,
+        requestBadgePermission: false,
+        requestSoundPermission: true,
+        // onDidReceiveLocalNotification:
+        //     (int id, String title, String body, String payload) async {
+        //   didReceiveLocalNotificationSubject.add(ReceivedNotification(
+        //       id: id, title: title, body: body, payload: payload));
+        // }
+        );
     var initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
@@ -176,15 +189,24 @@ class _AfterSplashState extends State<AfterSplash> {
     print("Notification after splash");
     MaterialColor colorCustom = MaterialColor(0xff86E3DC, color);
     print(ConstantsMessages.loginStatus);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: ConstantsMessages.loginStatus
-          ? routes.SwitcherRoute
-          : routes.LoginRoute,
-      onGenerateRoute: router.generateRoute,
-      navigatorKey: StackedService.navigatorKey,
-      theme: ThemeData(
-        primarySwatch: colorCustom,
+    return GestureDetector(
+      onTap: (){
+        FocusScopeNode currentFocus = FocusScope.of(context);
+
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: ConstantsMessages.loginStatus
+            ? routes.SwitcherRoute
+            : routes.LoginRoute,
+        onGenerateRoute: router.generateRoute,
+        navigatorKey: StackedService.navigatorKey,
+        theme: ThemeData(
+          primarySwatch: colorCustom,
+        ),
       ),
     );
   }
@@ -199,7 +221,7 @@ void firebaseNotification() {
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     RemoteNotification notification = message.notification;
     AndroidNotification android = message.notification?.android;
-    if (notification != null) {
+    if (notification != null && android!= null) {
       _handleNotification(message);
     }
   });
@@ -219,7 +241,11 @@ Future<void> _showNotification(String title, String body, data) async {
   var androidPlatformChannelSpecifics = AndroidNotificationDetails(
       'your channel id', 'your channel name', 'your channel description',
       importance: Importance.max, priority: Priority.high, ticker: 'ticker');
-  var iOSPlatformChannelSpecifics = IOSNotificationDetails();
+  var iOSPlatformChannelSpecifics = IOSNotificationDetails(//add ios
+    presentAlert: true,
+    presentSound: true,
+    presentBadge: true,
+  );
   var platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
       iOS: iOSPlatformChannelSpecifics);
@@ -240,5 +266,17 @@ void _initializeFlutterFire() async {
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   }
 }
+// class ReceivedNotification {
+//   ReceivedNotification({
+//     @required this.id,
+//     @required this.title,
+//     @required this.body,
+//     @required this.payload,
+//   });
+//   final int id;
+//   final String title;
+//   final String body;
+//   final String payload;
+// }
 
 // "http://schemas.android.com/apk/res/android"

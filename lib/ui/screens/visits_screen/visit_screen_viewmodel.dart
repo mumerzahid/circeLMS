@@ -103,6 +103,7 @@ class VisitScreenViewModel extends FutureViewModel {
   @override
   Future futureToRun() {
     checkInDate = formatDate(currentDate, [dd, '/', mm, '/', yyyy]);
+    notifyListeners();
     return _api.getVisits(checkInDate).then((value) => {
           errorListener(value),
         });

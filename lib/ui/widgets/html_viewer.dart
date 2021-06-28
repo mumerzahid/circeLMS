@@ -28,61 +28,58 @@ class _HtmlViewerState extends State<HtmlViewer> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: true,
-      child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            leading: InkWell(
-                onTap: () => Navigator.pop(context),
-                child: Icon(
-                    Icons.keyboard_backspace_rounded,
-                  color:Colors.white,
-                )
-            ),
-            title: Text(
-              "HOSPITAL REPORT",
-              style: TextStyle(
-                  fontFamily: 'Open Sans',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 16,
-                  color: Colors.white),
-            ),
-            centerTitle: true,
-          ),
-          body: IndexedStack(
-            index: position,
-            children: <Widget>[
-              widget.data == null
-                  ? Center(
-                child: CircularProgressIndicator(),
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          leading: InkWell(
+              onTap: () => Navigator.pop(context),
+              child: Icon(
+                  Icons.keyboard_backspace_rounded,
+                color:Colors.white,
               )
-                  : WebView(
-                      allowsInlineMediaPlayback: true,
-                      initialUrl: widget.data,
-                      onPageStarted: (value) {
-                        setState(() {
-                          position = 1;
-                        });
-                      },
-                      javascriptMode: JavascriptMode.unrestricted,
-                      onWebViewCreated: (WebViewController webViewController) {
-                        _controller.complete(webViewController);
-                      },
-                      onPageFinished: (value) {
-                        setState(() {
-                          position = 0;
-                        });
-                      }),
-              loader
-                  ? Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : SizedBox()
-            ],
-          )
           ),
-    );
+          title: Text(
+            "HOSPITAL REPORT",
+            style: TextStyle(
+                fontFamily: 'Open Sans',
+                fontWeight: FontWeight.w700,
+                fontSize: 16,
+                color: Colors.white),
+          ),
+          centerTitle: true,
+        ),
+        body: IndexedStack(
+          index: position,
+          children: <Widget>[
+            widget.data == null
+                ? Center(
+              child: CircularProgressIndicator(),
+            )
+                : WebView(
+                    allowsInlineMediaPlayback: true,
+                    initialUrl: widget.data,
+                    onPageStarted: (value) {
+                      setState(() {
+                        position = 1;
+                      });
+                    },
+                    javascriptMode: JavascriptMode.unrestricted,
+                    onWebViewCreated: (WebViewController webViewController) {
+                      _controller.complete(webViewController);
+                    },
+                    onPageFinished: (value) {
+                      setState(() {
+                        position = 0;
+                      });
+                    }),
+            loader
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : SizedBox()
+          ],
+        )
+        );
 
   }
 }

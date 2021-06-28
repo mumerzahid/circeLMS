@@ -53,7 +53,7 @@ class SettingsView extends StatelessWidget {
                     model.mobileController,
                     model.mobileController.text,
                     // model.mobileController.text.isEmpty ?" +00 000 00000":model.mobileNumber,
-                    TextInputType.phone,
+                    TextInputType.name,
                     false,
                     null,
                     null,
@@ -75,7 +75,9 @@ class SettingsView extends StatelessWidget {
                               fontSize: 14,
                               color: const Color.fromRGBO(107, 126, 130, 1),
                             ),
-                          ))),
+                          )
+                      )
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.006,
                   ),
