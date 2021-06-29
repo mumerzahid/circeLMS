@@ -9,11 +9,12 @@ import 'package:crice_hospital_app/services/snackbar.dart';
 import 'package:http/http.dart' as http;
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 
 enum DownloadStatus { NotStarted, Started, Downloading, Completed }
 
@@ -62,11 +63,23 @@ class DashboardViewModel extends FutureViewModel {
     }
   }
 
-  bool dataStatus() {
-    if (feedlist.isEmpty && trList.isEmpty) {
+  bool dataStatus(){
+    if(feedlist.isEmpty && trList.isEmpty){
       return false;
     }
     return true;
+  }
+  bool feedStatus(){
+    if(feedlist.isEmpty){
+      return true;
+    }
+    return false;
+  }
+  bool trStatus(){
+    if(trList.isEmpty){
+      return true;
+    }
+    return false;
   }
 
   void snackBar(String Error) {
@@ -121,8 +134,7 @@ class DashboardViewModel extends FutureViewModel {
 
       final dir = Platform.isAndroid
           ? '/sdcard/download'
-          : (await getTemporaryDirectory()).path;
-      // getApplicationSupportDirectory()
+          : (await getApplicationSupportDirectory()).path;
       print(dir);
 
       List<List<int>> chunks = new List();
@@ -143,7 +155,8 @@ class DashboardViewModel extends FutureViewModel {
           downloaded += chunk.length;
           _downloadPercentage = (downloaded / r.contentLength * 100).round();
           notifyListeners();
-        }, onDone: () async {
+        },
+            onDone: () async {
           // Display percentage of completion
           _downloadPercentage = (downloaded / r.contentLength * 100).round();
           notifyListeners();
@@ -164,7 +177,6 @@ class DashboardViewModel extends FutureViewModel {
             offset += chunk.length;
           }
           await file.writeAsBytes(bytes);
-          completer.complete();
           if (_downloadPercentage == 100) {
             OpenFile.open(_downloadedFile);
           }
@@ -176,6 +188,7 @@ class DashboardViewModel extends FutureViewModel {
           notifyListeners();
 
           print('DownloadFile: Completed');
+          completer.complete();
 
           return;
         });
@@ -185,15 +198,28 @@ class DashboardViewModel extends FutureViewModel {
     await completer.future;
   }
 
+
   Future<bool> _checkPermission() async {
     if (await Permission.storage.request().isGranted) {
-      return true;
+        return true;
     } else if (await Permission.storage.request().isPermanentlyDenied) {
       await openAppSettings();
     } else if (await Permission.storage.request().isDenied) {
-      return false;
+        return false;
     }
   }
+
+  // Future<bool> _checkPermission() async {
+  //   if (Permission.storage.isGranted != null) {
+  //     if (await Permission.storage.isGranted ?? false) {
+  //       Permission.storage.request();
+  //     } else {
+  //       return true;
+  //     }
+  //   }
+  //
+  //   return false;
+  // }
 
   @override
   Future futureToRun() {
@@ -204,3 +230,16 @@ class DashboardViewModel extends FutureViewModel {
         });
   }
 }
+
+
+// showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return Dialog(
+//           shape: RoundedRectangleBorder(
+//               borderRadius:
+//                   BorderRadius.circular(10.0)), //this right here
+//           child: FileOpeningDialog(
+//             path: _downloadedFile,
+//           ));
+//     });
