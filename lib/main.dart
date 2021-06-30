@@ -127,11 +127,12 @@ class _AfterSplashState extends State<AfterSplash> {
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
     var initializationSettingsAndroid =
+
     AndroidInitializationSettings("@mipmap/launcher_icon");
     // var initializationSettingsIOS = IOSInitializationSettings();
     var initializationSettingsIOS = IOSInitializationSettings(
         requestAlertPermission: true,
-        requestBadgePermission: false,
+        requestBadgePermission: true,
         requestSoundPermission: true,
         // onDidReceiveLocalNotification:
         //     (int id, String title, String body, String payload) async {

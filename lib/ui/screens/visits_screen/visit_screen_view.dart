@@ -180,7 +180,8 @@ class VisitScreenView extends StatelessWidget {
                                                                           130,
                                                                           1),
                                                                     ),
-                                                                  )),
+                                                                  )
+                                                              ),
                                                               // horizontalSpaceLarge,
                                                               Expanded(
                                                                   flex: 6,
@@ -202,7 +203,8 @@ class VisitScreenView extends StatelessWidget {
                                                                           130,
                                                                           1),
                                                                     ),
-                                                                  )),
+                                                                  )
+                                                              ),
                                                             ],
                                                           ),
                                                         ),
@@ -213,35 +215,36 @@ class VisitScreenView extends StatelessWidget {
                                                         Padding(
                                                           padding:
                                                               EdgeInsets.only(
-                                                                  left: 10,
-                                                                  top: 5,
-                                                                  bottom: 5),
+                                                                  left: 10,),
                                                           child: Row(
                                                             children: [
-                                                              Expanded(
-                                                                  flex: 4,
-                                                                  child: Text(
-                                                                    "Level of Access:",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'Open Sans',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
-                                                                      fontSize:
-                                                                          12,
-                                                                      color: const Color
-                                                                              .fromRGBO(
-                                                                          107,
-                                                                          126,
-                                                                          130,
-                                                                          1),
-                                                                    ),
-                                                                  )),
+                                                              Text(
+                                                                "Level of Access:",
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontFamily:
+                                                                      'Open Sans',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w700,
+                                                                  fontSize:
+                                                                      12,
+                                                                  color: const Color
+                                                                          .fromRGBO(
+                                                                      107,
+                                                                      126,
+                                                                      130,
+                                                                      1),
+                                                                ),
+                                                              ),
+                                                              SizedBox(width: MediaQuery.of(context).size.width * 0.13,),
                                                               // horizontalSpaceLarge,
-                                                              Expanded(
-                                                                  flex: 6,
+                                                              Container(
+                                                                color: model.levelColor(model.visits[index].level),
+                                                                alignment: Alignment.centerLeft,
+                                                                width: MediaQuery.of(context).size.width * 0.15,
+                                                                height: 25,
+                                                                child: Center(
                                                                   child: Text(
                                                                     model
                                                                         .visits[
@@ -260,7 +263,9 @@ class VisitScreenView extends StatelessWidget {
                                                                           130,
                                                                           1),
                                                                     ),
-                                                                  )),
+                                                                  ),
+                                                                ),
+                                                              ),
                                                             ],
                                                           ),
                                                         ),
@@ -318,7 +323,8 @@ class VisitScreenView extends StatelessWidget {
                                                                           130,
                                                                           1),
                                                                     ),
-                                                                  )),
+                                                                  )
+                                                              ),
                                                             ],
                                                           ),
                                                         ),
@@ -376,7 +382,8 @@ class VisitScreenView extends StatelessWidget {
                                                                           130,
                                                                           1),
                                                                     ),
-                                                                  )),
+                                                                  )
+                                                              ),
                                                             ],
                                                           ),
                                                         ),

@@ -53,7 +53,7 @@ class SettingsView extends StatelessWidget {
                     model.mobileController,
                     model.mobileController.text,
                     // model.mobileController.text.isEmpty ?" +00 000 00000":model.mobileNumber,
-                    TextInputType.name,
+                    TextInputType.phone,
                     false,
                     null,
                     null,
