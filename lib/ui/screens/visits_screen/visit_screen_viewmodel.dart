@@ -58,7 +58,7 @@ class VisitScreenViewModel extends FutureViewModel {
 
       visits = visit.data.visits;
       print(visits);
-      _screenLoading =false;
+      _screenLoading = false;
       notifyListeners();
       setIsLoading(false);
     } else {
@@ -68,7 +68,7 @@ class VisitScreenViewModel extends FutureViewModel {
     // emailController.clear();
     // passwordController.clear();
     setIsLoading(false);
-    _screenLoading =false;
+    _screenLoading = false;
   }
 
   bool validationMethod(String email, String password) {
@@ -91,13 +91,11 @@ class VisitScreenViewModel extends FutureViewModel {
   }
 
   Color levelColor(String level) {
-
     if (level == "Level 2") {
       return Color.fromRGBO(200, 233, 251, 1);
     } else if (level == "Level 3") {
-        return Color.fromRGBO(146, 204, 181, 1);
-      }
-    else {
+      return Color.fromRGBO(146, 204, 181, 1);
+    } else {
       return Color.fromRGBO(255, 255, 255, 1);
     }
   }
