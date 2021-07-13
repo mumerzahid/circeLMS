@@ -22,15 +22,18 @@ class LoginView extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 )
               : SingleChildScrollView(
-                  child: Column(children: [
+                  child: Column(
+                      children: [
                     Container(
                       padding: EdgeInsets.only(
                         // top: MediaQuery.of(context).size.height * 0.01,
-                        // bottom: MediaQuery.of(context).size.height * 0.07,
+                        // bottom: MediaQuery.of(context).size.height * 0.
+                        // 07,
                         left: MediaQuery.of(context).size.width * 0.12,
                       ),
                       child: SingleChildScrollView(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // was c h 0.04
                             Row(
@@ -66,11 +69,6 @@ class LoginView extends StatelessWidget {
                                           color: const Color.fromRGBO(
                                               149, 149, 149, 1),
                                         ),
-                                        // labelStyle: TextStyle(
-                                        //     fontFamily: 'Open Sans',
-                                        //     fontSize: 14,
-                                        //     color: const Color.fromRGBO(
-                                        //         149, 149, 149, 1)),
                                         focusedBorder: UnderlineInputBorder(
                                           borderSide: model.getVerifiedemail
                                               ? BorderSide(
@@ -129,16 +127,6 @@ class LoginView extends StatelessWidget {
                                             color: const Color.fromRGBO(
                                                 149, 149, 149, 1),
                                           ),
-
-                                          // hintText: "Password",
-                                          // labelText: "PASSWORD",
-                                          // suffixIcon: InkWell(
-                                          //     onTap: () =>
-                                          //
-                                          //     child: Icon(
-                                          //
-                                          //     )
-                                          // ),
                                           labelStyle: TextStyle(
                                               fontFamily: 'Open Sans',
                                               fontSize: 14,
@@ -184,42 +172,38 @@ class LoginView extends StatelessWidget {
                               onTap: () => model.logIn(
                                   model.emailController.text,
                                   model.passwordController.text),
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: MediaQuery.of(context).size.width *
-                                        0.15),
-                                child:
-                                    // model.isLoading
-                                    //     ? Center(child: CircularProgressIndicator())
-                                    //     :
-                                    Row(
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Container(
-                                      child: Image.asset(
-                                        "assets/images/Group 1799.png",
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.09,
-                                      ),
+                                    width: MediaQuery.of(context).size.width * 0.05,
                                     ),
-                                    SizedBox(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.04,
-                                    ),
+                                    SizedBox(width: 25,),
                                     Container(
-                                      child: Text(
-                                        "LOGIN",
-                                        style: TextStyle(
-                                          fontFamily: 'Open Sans',
-                                          fontSize: 16,
-                                          color: const Color.fromRGBO(
-                                              107, 126, 129, 1),
-                                        ),
-                                      ),
-                                    )
-                                  ],
+                                child: Image.asset(
+                                  "assets/images/Group 1799.png",
+                                  width:
+                                      MediaQuery.of(context).size.width *
+                                          0.09,
                                 ),
                               ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width *
+                                    0.04,
+                              ),
+                              Container(
+                                child: Text(
+                                  "LOGIN",
+                                  style: TextStyle(
+                                    fontFamily: 'Open Sans',
+                                    fontSize: 16,
+                                    color: const Color.fromRGBO(
+                                        107, 126, 129, 1),
+                                  ),
+                                ),
+                              )
+                                  ],
+                                ),
                             ),
                             SizedBox(
                               height:
@@ -238,22 +222,31 @@ class LoginView extends StatelessWidget {
                                       child: DialogView(),
                                     );
                                   }),
-                              child: Container(
-                                padding: EdgeInsets.only(
-                                    top: 6,
-                                    bottom: 6,
-                                    left: MediaQuery.of(context).size.width *
-                                        0.15),
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  "FORGOT PASSWORD?",
-                                  style: TextStyle(
-                                    fontFamily: 'Open Sans',
-                                    fontSize: 14,
-                                    color:
-                                        const Color.fromRGBO(149, 149, 149, 1),
-                                  ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                  width: MediaQuery.of(context).size.width * 0.05,
                                 ),
+                                  SizedBox(width: 25,),
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                        top: 6,
+                                        bottom: 6,
+                                        // left: MediaQuery.of(context).size.width *
+                                        //     0.1
+                                    ),
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "FORGOT PASSWORD?",
+                                      style: TextStyle(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 14,
+                                        color:
+                                        const Color.fromRGBO(149, 149, 149, 1),
+                                      ),
+                                    ),
+                                  ),
+                                ]
                               ),
                             )
                           ],
@@ -263,7 +256,7 @@ class LoginView extends StatelessWidget {
                   ]),
                 ),
           bottomNavigationBar: Container(
-            child: Image.asset("assets/images/login-bottom.png"),
+            child: Image.asset("assets/images/login-bottom.png",fit:BoxFit.fitWidth,),
           ),
         ),
       ),

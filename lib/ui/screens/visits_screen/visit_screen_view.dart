@@ -218,51 +218,52 @@ class VisitScreenView extends StatelessWidget {
                                                                   left: 10,),
                                                           child: Row(
                                                             children: [
-                                                              Text(
-                                                                "Level of Access:",
-                                                                style:
-                                                                    TextStyle(
-                                                                  fontFamily:
-                                                                      'Open Sans',
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
-                                                                  fontSize:
-                                                                      12,
-                                                                  color: const Color
-                                                                          .fromRGBO(
-                                                                      107,
-                                                                      126,
-                                                                      130,
-                                                                      1),
+                                                              Container(
+                                                                width: MediaQuery.of(context).size.width * 0.35,
+                                                                child: Text(
+                                                                  "Level of Access:",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: const Color
+                                                                            .fromRGBO(
+                                                                        107,
+                                                                        126,
+                                                                        130,
+                                                                        1),
+                                                                  ),
                                                                 ),
                                                               ),
-                                                              SizedBox(width: MediaQuery.of(context).size.width * 0.13,),
+                                                              // SizedBox(width: MediaQuery.of(context).size.width * 0.13,),
                                                               // horizontalSpaceLarge,
                                                               Container(
                                                                 color: model.levelColor(model.visits[index].level),
                                                                 alignment: Alignment.centerLeft,
-                                                                width: MediaQuery.of(context).size.width * 0.15,
+                                                                width: 40,
                                                                 height: 25,
-                                                                child: Center(
-                                                                  child: Text(
-                                                                    model
-                                                                        .visits[
-                                                                            index]
-                                                                        .level,
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'Open Sans',
-                                                                      fontSize:
-                                                                          12,
-                                                                      color: const Color
-                                                                              .fromRGBO(
-                                                                          107,
-                                                                          126,
-                                                                          130,
-                                                                          1),
-                                                                    ),
+                                                                child: Text(
+                                                                  model
+                                                                      .visits[
+                                                                          index]
+                                                                      .level,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: const Color
+                                                                            .fromRGBO(
+                                                                        107,
+                                                                        126,
+                                                                        130,
+                                                                        1),
                                                                   ),
                                                                 ),
                                                               ),

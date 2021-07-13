@@ -75,6 +75,7 @@ dependencies:
   firebase_crashlytics: ^2.0.6
   lazy_load_scrollview: ^1.3.0
   rxdart: ^0.27.1
+  responsive_framework: ^0.1.4
 
 
 

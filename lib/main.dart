@@ -12,6 +12,8 @@ import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:crice_hospital_app/app/router.dart' as router;
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'package:responsive_framework/responsive_wrapper.dart';
 // import 'package:rxdart/rxdart.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'services/snackbar.dart';
@@ -69,7 +71,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // _localStorage.getFirebaseToken();
     firebaseNotification();
@@ -200,6 +201,17 @@ class _AfterSplashState extends State<AfterSplash> {
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+      builder: (context, widget) => ResponsiveWrapper.builder(
+        BouncingScrollWrapper.builder(context, widget),
+      maxWidth: 1200,
+      minWidth: 480,
+      defaultScale: true,
+      breakpoints: [
+      ResponsiveBreakpoint.resize(480, name: MOBILE),
+      ResponsiveBreakpoint.autoScale(800, name: TABLET),
+      ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+      ],
+          background: Container(color: Color(0xFFF5F5F5))),
         initialRoute: ConstantsMessages.loginStatus
             ? routes.SwitcherRoute
             : routes.LoginRoute,
