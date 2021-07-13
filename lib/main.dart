@@ -279,17 +279,5 @@ void _initializeFlutterFire() async {
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   }
 }
-// class ReceivedNotification {
-//   ReceivedNotification({
-//     @required this.id,
-//     @required this.title,
-//     @required this.body,
-//     @required this.payload,
-//   });
-//   final int id;
-//   final String title;
-//   final String body;
-//   final String payload;
-// }
 
 // "http://schemas.android.com/apk/res/android"

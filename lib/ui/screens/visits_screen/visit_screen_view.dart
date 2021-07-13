@@ -245,7 +245,7 @@ class VisitScreenView extends StatelessWidget {
                                                               Container(
                                                                 color: model.levelColor(model.visits[index].level),
                                                                 alignment: Alignment.centerLeft,
-                                                                width: 40,
+                                                                width: 50,
                                                                 height: 25,
                                                                 child: Text(
                                                                   model
