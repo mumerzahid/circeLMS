@@ -15,7 +15,6 @@ import 'package:stacked_services/stacked_services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-
 enum DownloadStatus { NotStarted, Started, Downloading, Completed }
 
 class DashboardViewModel extends FutureViewModel {
@@ -63,20 +62,22 @@ class DashboardViewModel extends FutureViewModel {
     }
   }
 
-  bool dataStatus(){
-    if(feedlist.isEmpty && trList.isEmpty){
+  bool dataStatus() {
+    if (feedlist.isEmpty && trList.isEmpty) {
       return false;
     }
     return true;
   }
-  bool feedStatus(){
-    if(feedlist.isEmpty){
+
+  bool feedStatus() {
+    if (feedlist.isEmpty) {
       return true;
     }
     return false;
   }
-  bool trStatus(){
-    if(trList.isEmpty){
+
+  bool trStatus() {
+    if (trList.isEmpty) {
       return true;
     }
     return false;
@@ -155,8 +156,7 @@ class DashboardViewModel extends FutureViewModel {
           downloaded += chunk.length;
           _downloadPercentage = (downloaded / r.contentLength * 100).round();
           notifyListeners();
-        },
-            onDone: () async {
+        }, onDone: () async {
           // Display percentage of completion
           _downloadPercentage = (downloaded / r.contentLength * 100).round();
           notifyListeners();
@@ -198,14 +198,13 @@ class DashboardViewModel extends FutureViewModel {
     await completer.future;
   }
 
-
   Future<bool> _checkPermission() async {
     if (await Permission.storage.request().isGranted) {
-        return true;
+      return true;
     } else if (await Permission.storage.request().isPermanentlyDenied) {
       await openAppSettings();
     } else if (await Permission.storage.request().isDenied) {
-        return false;
+      return false;
     }
   }
 

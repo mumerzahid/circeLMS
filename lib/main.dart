@@ -12,6 +12,7 @@ import 'package:crice_hospital_app/constants/route_path.dart' as routes;
 import 'package:crice_hospital_app/app/router.dart' as router;
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 // import 'package:rxdart/rxdart.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'services/snackbar.dart';
@@ -69,7 +70,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // _localStorage.getFirebaseToken();
     firebaseNotification();
@@ -118,30 +118,27 @@ class _AfterSplashState extends State<AfterSplash> {
   final ScreenSwitcherViewModel _screenSwitcherViewModel =
       locator<ScreenSwitcherViewModel>();
   var notificationType;
-  // final BehaviorSubject<ReceivedNotification>
-  //     didReceiveLocalNotificationSubject =
-  //     BehaviorSubject<ReceivedNotification>();
+  // final BehaviorSubject<ReceivedNotification> didReceiveLocalNotificationSubject =
+  // BehaviorSubject<ReceivedNotification>();
   @override
   void initState() {
     super.initState();
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
     var initializationSettingsAndroid =
-        AndroidInitializationSettings("@mipmap/launcher_icon");
-    final IOSInitializationSettings initializationSettingsIOS =
-        IOSInitializationSettings(
-            // requestAlertPermission: true,
-            // requestBadgePermission: false,
-            // requestSoundPermission: true,
-            // onDidReceiveLocalNotification:
-            //     (int id, String title, String body, String payload) async {
-            //   didReceiveLocalNotificationSubject.add(ReceivedNotification(
-            //       id: id, title: title, body: body, payload: payload));
-            // }
-            );
-    // var initializationSettingsIOS = IOSInitializationSettings(
-    //   onDidReceiveLocalNotification: onDidReceiveLocalNotification
-    // );
+
+    AndroidInitializationSettings("@mipmap/launcher_icon");
+    // var initializationSettingsIOS = IOSInitializationSettings();
+    var initializationSettingsIOS = IOSInitializationSettings(
+        requestAlertPermission: true,
+        requestBadgePermission: true,
+        requestSoundPermission: true,
+        // onDidReceiveLocalNotification:
+        //     (int id, String title, String body, String payload) async {
+        //   didReceiveLocalNotificationSubject.add(ReceivedNotification(
+        //       id: id, title: title, body: body, payload: payload));
+        // }
+        );
     var initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
@@ -190,7 +187,7 @@ class _AfterSplashState extends State<AfterSplash> {
     MaterialColor colorCustom = MaterialColor(0xff86E3DC, color);
     print(ConstantsMessages.loginStatus);
     return GestureDetector(
-      onTap: () {
+      onTap: (){
         FocusScopeNode currentFocus = FocusScope.of(context);
 
         if (!currentFocus.hasPrimaryFocus) {
@@ -199,6 +196,17 @@ class _AfterSplashState extends State<AfterSplash> {
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+      builder: (context, widget) => ResponsiveWrapper.builder(
+        BouncingScrollWrapper.builder(context, widget),
+      maxWidth: 1200,
+      minWidth: 480,
+      defaultScale: true,
+      breakpoints: [
+      ResponsiveBreakpoint.resize(480, name: MOBILE),
+      ResponsiveBreakpoint.autoScale(800, name: TABLET),
+      ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+      ],
+          background: Container(color: Color(0xFFF5F5F5))),
         initialRoute: ConstantsMessages.loginStatus
             ? routes.SwitcherRoute
             : routes.LoginRoute,
@@ -221,7 +229,7 @@ void firebaseNotification() {
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     RemoteNotification notification = message.notification;
     AndroidNotification android = message.notification?.android;
-    if (notification != null && android != null) {
+    if (notification != null && android!= null) {
       _handleNotification(message);
     }
   });
@@ -240,14 +248,8 @@ void _handleNotification(RemoteMessage message) {
 Future<void> _showNotification(String title, String body, data) async {
   var androidPlatformChannelSpecifics = AndroidNotificationDetails(
       'your channel id', 'your channel name', 'your channel description',
-      importance: Importance.max,
-      priority: Priority.high,
-      showWhen: false,
-      enableVibration: true,
-      playSound: true,
-      ticker: 'ticker');
-  var iOSPlatformChannelSpecifics = IOSNotificationDetails(
-    //add ios
+      importance: Importance.max, priority: Priority.high, ticker: 'ticker');
+  var iOSPlatformChannelSpecifics = IOSNotificationDetails(//add ios
     presentAlert: true,
     presentSound: true,
     presentBadge: true,
@@ -272,10 +274,18 @@ void _initializeFlutterFire() async {
     await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   }
 }
-//  Future<void> onDidReceiveLocalNotification(
-//       int id, String title, String body, String payload) async {
-//     // display a dialog with the notification details, tap ok to go to another page
-//   }
+// class ReceivedNotification {
+//   ReceivedNotification({
+//     @required this.id,
+//     @required this.title,
+//     @required this.body,
+//     @required this.payload,
+//   });
+//   final int id;
+//   final String title;
+//   final String body;
+//   final String payload;
+// }
 
 // class ReceivedNotification {
 //   ReceivedNotification({

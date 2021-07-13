@@ -213,54 +213,68 @@ class VisitScreenView extends StatelessWidget {
                                                         Padding(
                                                           padding:
                                                               EdgeInsets.only(
-                                                                  left: 10,
-                                                                  top: 5,
-                                                                  bottom: 5),
+                                                            left: 10,
+                                                          ),
                                                           child: Row(
                                                             children: [
-                                                              Expanded(
-                                                                  flex: 4,
-                                                                  child: Text(
-                                                                    "Level of Access:",
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'Open Sans',
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
-                                                                      fontSize:
-                                                                          12,
-                                                                      color: const Color
-                                                                              .fromRGBO(
-                                                                          107,
-                                                                          126,
-                                                                          130,
-                                                                          1),
-                                                                    ),
-                                                                  )),
+                                                              Container(
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.35,
+                                                                child: Text(
+                                                                  "Level of Access:",
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: const Color
+                                                                            .fromRGBO(
+                                                                        107,
+                                                                        126,
+                                                                        130,
+                                                                        1),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                              // SizedBox(width: MediaQuery.of(context).size.width * 0.13,),
                                                               // horizontalSpaceLarge,
-                                                              Expanded(
-                                                                  flex: 6,
-                                                                  child: Text(
-                                                                    model
+                                                              Container(
+                                                                color: model
+                                                                    .levelColor(model
                                                                         .visits[
                                                                             index]
-                                                                        .level,
-                                                                    style:
-                                                                        TextStyle(
-                                                                      fontFamily:
-                                                                          'Open Sans',
-                                                                      fontSize:
-                                                                          12,
-                                                                      color: const Color
-                                                                              .fromRGBO(
-                                                                          107,
-                                                                          126,
-                                                                          130,
-                                                                          1),
-                                                                    ),
-                                                                  )),
+                                                                        .level),
+                                                                alignment: Alignment
+                                                                    .centerLeft,
+                                                                width: 40,
+                                                                height: 25,
+                                                                child: Text(
+                                                                  model
+                                                                      .visits[
+                                                                          index]
+                                                                      .level,
+                                                                  style:
+                                                                      TextStyle(
+                                                                    fontFamily:
+                                                                        'Open Sans',
+                                                                    fontSize:
+                                                                        12,
+                                                                    color: const Color
+                                                                            .fromRGBO(
+                                                                        107,
+                                                                        126,
+                                                                        130,
+                                                                        1),
+                                                                  ),
+                                                                ),
+                                                              ),
                                                             ],
                                                           ),
                                                         ),

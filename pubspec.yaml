@@ -25,23 +25,23 @@ dependencies:
     sdk: flutter
   stacked_services:
   stacked:
-#  im_stepper: ^0.1.3
-#  steps: ^1.0.1
+  #im_stepper: ^0.1.3
+  #steps: ^1.0.1
   flutter_svg: ^0.21.0+1
   #General
   intl: ^0.17.0
   injectable: ^1.2.2
-#  injectable_generator: ^1.1.2
+  #injectable_generator: ^1.1.2
   get_it: ^6.0.0
-#  buildRunner
+  #buildRunner
   build_runner: ^1.10.0
   #router
   auto_route:
   auto_route_generator:
   json_annotation: 3.1.1
-#  json_serializable: 3.5.1
+  #json_serializable: 3.5.1
   #imagePicker
-#  image_picker: ^0.6.6+4
+  #image_picker: ^0.6.6+4
   #http
   http:
   dio:
@@ -50,24 +50,24 @@ dependencies:
   shared_preferences: ^2.0.5
   flutter_html:
   #FilePdf
-#  flutter_downloader: ^1.6.0
-#  multi_downloader: ^1.0.6
-#  permission_handler: ^7.1.0
+  #flutter_downloader: ^1.6.0
+  #multi_downloader: ^1.0.6
+  #permission_handler: ^7.1.0
   # ext_storage: ^1.0.3
   date_format: ^2.0.2
   basic_utils: ^1.4.0
   flutter_webview_plugin: ^0.3.11
   permission_handler: ^8.1.1
-  # flutter_web_view: ^0.0.6
+  #flutter_web_view: ^0.0.6
   # webview_flutter: ^2.0.4
-#  flutter_inappwebview: ^5.3.2
+  #flutter_inappwebview: ^5.3.2
   youtube_player_flutter: ^8.0.0
   jiffy: ^4.1.0
   date_range_picker: ^1.0.7
   progress_dialog:
   open_file:
   webview_flutter: ^2.0.8
-#  zoom_widget: ^0.1.3
+  #zoom_widget: ^0.1.3
   pinch_zoom: ^0.1.0-nullsafety.0
   firebase_core: ^1.3.0
   flutter_local_notifications:
@@ -75,8 +75,7 @@ dependencies:
   firebase_crashlytics: ^2.0.6
   lazy_load_scrollview: ^1.3.0
   rxdart: ^0.27.1
-
-
+  responsive_framework: ^0.1.4
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -89,7 +88,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "assets/images/launcher-logo.png"
+  image_path: "assets/images/launcher-icon.png"
   adaptive_icon_background: "#EB6F93"
 
 # For information on the generic Dart part of this file, see the

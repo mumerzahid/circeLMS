@@ -74,7 +74,9 @@ class SettingsView extends StatelessWidget {
                               fontSize: 14,
                               color: const Color.fromRGBO(107, 126, 130, 1),
                             ),
-                          ))),
+                          )
+                      )
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.006,
                   ),

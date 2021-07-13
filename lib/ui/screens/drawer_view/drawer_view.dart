@@ -221,7 +221,6 @@ class DrawerView extends StatelessWidget {
                                   model.setIsLoading(true),
                                   Timer(Duration(milliseconds: 500), () {
                                     model.snackBar("LogOut");
-                                    // Fluttertoast.showToast(msg: "Logging out");
                                     model.localStorage.clearSharedPrefrences();
                                     model.navigationService
                                         .pushNamedAndRemoveUntil(LoginRoute);

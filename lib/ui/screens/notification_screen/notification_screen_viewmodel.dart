@@ -111,7 +111,10 @@ class NotificationScreenViewModel extends FutureViewModel {
   @override
   Future futureToRun() {
     return _api.getNotifications().then((value) => {
-          if (value == null) {_loadingScreen = false} else errorListener(value),
+          if (value == null)
+            {_loadingScreen = false, snackBar(value.message)}
+          else
+            errorListener(value),
         });
   }
 }

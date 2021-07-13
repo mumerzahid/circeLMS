@@ -45,7 +45,6 @@
 // //   }
 //
 // }
-import 'dart:io';
 
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/constants/constants_messages.dart';
@@ -269,29 +268,35 @@ class Api {
       }
     }
   }
-
   // @override
-  // Future<NotificationsModel> getNotifications() async {
-
+  // Future<DashboardModel> getDashboardData() async {
+  //   DashboardModel dashboardModel = DashboardModel();
+  //
   //   String token = await _localStorage.getAuthToken();
   //   print(token);
-  //   print("notifications");
+  //   print("again");
   //   var header = {'Auth-Token': token};
   //   final response = await client.get(
-  //     Uri.parse(ConstantsMessages.notificationsURL),
+  //     Uri.parse(ConstantsMessages.dashBoardURL),
   //     headers: header,
   //   );
   //   print(response);
   //   if (response.statusCode == 200) {
   //     print(response.statusCode);
-
-  //     return NotificationsModel.fromJson(json.decode(response.body));
+  //
+  //     dashboardModel = DashboardModel.fromJson(json.decode(response.  body));
+  //     // return DashboardModel.fromJson(json.decode(response.body));
   //   } else {
-  //     if (response.body != null)
-  //       return NotificationsModel.fromJson(json.decode(response.body));
-  //     else
+  //     if (response.body != null) {
+  //       dashboardModel = DashboardModel.fromJson(json.decode(response.body));
+  //       // return DashboardModel.fromJson(json.decode(response.body));
+  //     }
+  //     else {
   //       throw Exception(response.reasonPhrase);
+  //     }
   //   }
+  //
+  //   return dashboardModel;
   // }
 // Future downloadDocument(Dio dio, String url, String savePath) async {
   //   //get pdf from link

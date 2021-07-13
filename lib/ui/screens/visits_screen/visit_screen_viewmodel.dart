@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/model/visits.dart';
@@ -6,6 +8,7 @@ import 'package:crice_hospital_app/services/local_storage.dart';
 import 'package:crice_hospital_app/services/snackbar.dart';
 import 'package:crice_hospital_app/services/validation_service.dart';
 import 'package:date_format/date_format.dart';
+import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -55,7 +58,7 @@ class VisitScreenViewModel extends FutureViewModel {
 
       visits = visit.data.visits;
       print(visits);
-      _screenLoading =false;
+      _screenLoading = false;
       notifyListeners();
       setIsLoading(false);
     } else {
@@ -65,7 +68,7 @@ class VisitScreenViewModel extends FutureViewModel {
     // emailController.clear();
     // passwordController.clear();
     setIsLoading(false);
-    _screenLoading =false;
+    _screenLoading = false;
   }
 
   bool validationMethod(String email, String password) {
@@ -87,6 +90,16 @@ class VisitScreenViewModel extends FutureViewModel {
     return false;
   }
 
+  Color levelColor(String level) {
+    if (level == "Level 2") {
+      return Color.fromRGBO(200, 233, 251, 1);
+    } else if (level == "Level 3") {
+      return Color.fromRGBO(146, 204, 181, 1);
+    } else {
+      return Color.fromRGBO(255, 255, 255, 1);
+    }
+  }
+
   void snackBar(String error) {
     _snackbarService.showCustomSnackBar(
       variant: SnackbarType.universal,
@@ -103,6 +116,7 @@ class VisitScreenViewModel extends FutureViewModel {
   @override
   Future futureToRun() {
     checkInDate = formatDate(currentDate, [dd, '/', mm, '/', yyyy]);
+    notifyListeners();
     return _api.getVisits(checkInDate).then((value) => {
           errorListener(value),
         });
