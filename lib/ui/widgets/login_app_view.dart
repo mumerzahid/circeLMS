@@ -60,6 +60,7 @@ class LoginAppBar extends PreferredSize {
                 ),),
             ]
           ),
+          SizedBox(height:10)
         ],
       ),
     );

@@ -181,8 +181,7 @@ class VisitScreenView extends StatelessWidget {
                                                                           130,
                                                                           1),
                                                                     ),
-                                                                  )
-                                                              ),
+                                                                  )),
                                                               // horizontalSpaceLarge,
                                                               Expanded(
                                                                   flex: 6,
@@ -204,8 +203,7 @@ class VisitScreenView extends StatelessWidget {
                                                                           130,
                                                                           1),
                                                                     ),
-                                                                  )
-                                                              ),
+                                                                  )),
                                                             ],
                                                           ),
                                                         ),
@@ -216,11 +214,16 @@ class VisitScreenView extends StatelessWidget {
                                                         Padding(
                                                           padding:
                                                               EdgeInsets.only(
-                                                                  left: 10,),
+                                                            left: 10,
+                                                          ),
                                                           child: Row(
                                                             children: [
                                                               Container(
-                                                                width: MediaQuery.of(context).size.width * 0.35,
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.35,
                                                                 child: Text(
                                                                   "Level of Access:",
                                                                   style:
@@ -244,9 +247,15 @@ class VisitScreenView extends StatelessWidget {
                                                               // SizedBox(width: MediaQuery.of(context).size.width * 0.13,),
                                                               // horizontalSpaceLarge,
                                                               Container(
-                                                                color: model.levelColor(model.visits[index].level),
-                                                                alignment: Alignment.centerLeft,
-                                                                width: 45,
+
+                                                                color: model
+                                                                    .levelColor(model
+                                                                        .visits[
+                                                                            index]
+                                                                        .level),
+                                                                alignment: Alignment
+                                                                    .centerLeft,
+                                                                width: MediaQuery.of(context).size.width * 0.09,
                                                                 height: 25,
                                                                 child: Text(
                                                                   model
@@ -325,8 +334,7 @@ class VisitScreenView extends StatelessWidget {
                                                                           130,
                                                                           1),
                                                                     ),
-                                                                  )
-                                                              ),
+                                                                  )),
                                                             ],
                                                           ),
                                                         ),
@@ -384,8 +392,7 @@ class VisitScreenView extends StatelessWidget {
                                                                           130,
                                                                           1),
                                                                     ),
-                                                                  )
-                                                              ),
+                                                                  )),
                                                             ],
                                                           ),
                                                         ),

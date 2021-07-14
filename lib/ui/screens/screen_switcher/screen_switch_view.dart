@@ -10,30 +10,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:stacked/stacked.dart';
 
-class ScreenSwitchView extends StatelessWidget{
+class ScreenSwitchView extends StatelessWidget {
   final int index;
   final String screenName;
-  const ScreenSwitchView({Key key,this.index = 0, this.screenName = "DASHBOARD"})
+  const ScreenSwitchView(
+      {Key key, this.index = 0, this.screenName = "DASHBOARD"})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ScreenSwitcherViewModel>.reactive(
       onModelReady: (model) => SchedulerBinding.instance
-          .addPostFrameCallback((_) => model.setIndex(index , screenName)),
-
+          .addPostFrameCallback((_) => model.setIndex(index, screenName)),
       builder: (context, model, child) => Scaffold(
-
         appBar: CustomAppBar(
-            height: MediaQuery.of(context).size.height * 0.34,
+            height: MediaQuery.of(context).size.height * 0.36,
             sName: model.currentScreen,
             fCall: true,
             topNavigationCallBack: model.switchTabs,
-            vScreen: model.valuePressedString
-        ),
+            vScreen: model.valuePressedString),
         drawer: DrawerView(),
         // MyCustomDrawer(),
-
 
         body: Center(
           child: model.indexPosition == 0
@@ -51,6 +48,4 @@ class ScreenSwitchView extends StatelessWidget{
       viewModelBuilder: () => locator<ScreenSwitcherViewModel>(),
     );
   }
-
 }
-

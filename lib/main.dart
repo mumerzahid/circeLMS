@@ -13,7 +13,6 @@ import 'package:crice_hospital_app/app/router.dart' as router;
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-import 'package:responsive_framework/responsive_wrapper.dart';
 // import 'package:rxdart/rxdart.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'services/snackbar.dart';
@@ -77,7 +76,6 @@ class _MyAppState extends State<MyApp> {
     loadData();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -118,7 +116,7 @@ class AfterSplash extends StatefulWidget {
 
 class _AfterSplashState extends State<AfterSplash> {
   final ScreenSwitcherViewModel _screenSwitcherViewModel =
-  locator<ScreenSwitcherViewModel>();
+      locator<ScreenSwitcherViewModel>();
   var notificationType;
   // final BehaviorSubject<ReceivedNotification> didReceiveLocalNotificationSubject =
   // BehaviorSubject<ReceivedNotification>();
@@ -126,7 +124,7 @@ class _AfterSplashState extends State<AfterSplash> {
   void initState() {
     super.initState();
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-    FlutterLocalNotificationsPlugin();
+        FlutterLocalNotificationsPlugin();
     var initializationSettingsAndroid =
 
     AndroidInitializationSettings("@mipmap/launcher_icon");
@@ -146,23 +144,22 @@ class _AfterSplashState extends State<AfterSplash> {
     flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: onSelectNotification);
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
-
-      if (message.data['notification_type'] == '1' || message.data['notification_type'] == 1) {
+      if (message.data['notification_type'] == '1' ||
+          message.data['notification_type'] == 1) {
         _screenSwitcherViewModel.setIndex(2, "VISITS");
-      }
-      else if(message.data['notification_type'] == '2' || message.data['notification_type'] == 2) {
+      } else if (message.data['notification_type'] == '2' ||
+          message.data['notification_type'] == 2) {
         _screenSwitcherViewModel.setIndex(3, "NOTIFICATIONS");
-
       }
     });
     FirebaseMessaging.instance.getInitialMessage().then((message) {
       if (message != null) {
-        if (message.data['notification_type'] == '1' || message.data['notification_type'] == 1) {
+        if (message.data['notification_type'] == '1' ||
+            message.data['notification_type'] == 1) {
           _screenSwitcherViewModel.setIndex(2, "VISITS");
-        }
-        else if(message.data['notification_type'] == '2' || message.data['notification_type'] == 2) {
+        } else if (message.data['notification_type'] == '2' ||
+            message.data['notification_type'] == 2) {
           _screenSwitcherViewModel.setIndex(3, "NOTIFICATIONS");
-
         }
       }
     });
@@ -173,22 +170,20 @@ class _AfterSplashState extends State<AfterSplash> {
     ]);
     _initializeFlutterFire();
   }
+
   Future onSelectNotification(String payload) async {
     print(payload);
     print("on select called");
-    int index=int.parse(payload);
+    int index = int.parse(payload);
     if (index == 1) {
-       _screenSwitcherViewModel.setIndex(2, "VISITS");
-    }
-    else if(index == 2){
+      _screenSwitcherViewModel.setIndex(2, "VISITS");
+    } else if (index == 2) {
       _screenSwitcherViewModel.setIndex(3, "NOTIFICATIONS");
-
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    print("Notification after splash");
     MaterialColor colorCustom = MaterialColor(0xff86E3DC, color);
     print(ConstantsMessages.loginStatus);
     return GestureDetector(
@@ -240,13 +235,13 @@ void firebaseNotification() {
   });
 }
 
-Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-}
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {}
 void _handleNotification(RemoteMessage message) {
   var check = message.data["delete"] as String;
   if (check == "true") {
   } else {
-    _showNotification(message.notification.title, message.notification.body,message.data['notification_type']);
+    _showNotification(message.notification.title, message.notification.body,
+        message.data['notification_type']);
   }
 }
 
@@ -280,4 +275,15 @@ void _initializeFlutterFire() async {
   }
 }
 
-// "http://schemas.android.com/apk/res/android"
+// class ReceivedNotification {
+//   ReceivedNotification({
+//     @required this.id,
+//     @required this.title,
+//     @required this.body,
+//     @required this.payload,
+//   });
+//   final int id;
+//   final String title;
+//   final String body;
+//   final String payload;
+// }

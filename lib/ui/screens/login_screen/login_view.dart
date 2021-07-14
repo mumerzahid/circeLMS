@@ -21,15 +21,17 @@ class LoginView extends StatelessWidget {
           backgroundColor: Colors.white,
           resizeToAvoidBottomInset: false,
           appBar:
-              LoginAppBar(height: MediaQuery.of(context).size.height * 0.35),
+
+              LoginAppBar(height: MediaQuery.of(context).size.height * 0.36),
           body: model.isLoading
               ? Center(
                   child: CircularProgressIndicator(),
                 )
               : SingleChildScrollView(
-                  child: Column(
-                      children: [
-                        isMobile?SizedBox(height: 0,):SizedBox(height: MediaQuery.of(context).size.width *0.1,),
+
+                  child: Column(children: [
+                    isMobile?SizedBox():SizedBox(height: MediaQuery.of(context).size.width * 0.1,),
+
                     Container(
                       padding: EdgeInsets.only(
                         // top: MediaQuery.of(context).size.height * 0.01,
@@ -55,8 +57,7 @@ class LoginView extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: TextField(
-                                    keyboardType:
-                                        TextInputType.emailAddress,
+                                    keyboardType: TextInputType.emailAddress,
                                     controller: model.emailController,
                                     onChanged: (string) {
                                       model.isEmail(string);
@@ -78,11 +79,9 @@ class LoginView extends StatelessWidget {
                                         focusedBorder: UnderlineInputBorder(
                                           borderSide: model.getVerifiedemail
                                               ? BorderSide(
-                                                  color:
-                                                      const Color.fromRGBO(
-                                                          196, 196, 196, 1))
-                                              : BorderSide(
-                                                  color: Colors.red),
+                                                  color: const Color.fromRGBO(
+                                                      196, 196, 196, 1))
+                                              : BorderSide(color: Colors.red),
                                         )),
                                   ),
                                 ),
@@ -104,70 +103,66 @@ class LoginView extends StatelessWidget {
                                   width: 25,
                                 ),
                                 Expanded(
-                                  child: Stack(
-                                    children:[
-                                      TextField(
-                                        enabled: true,
-                                        keyboardType: TextInputType.text,
-                                        onChanged: (value) {
-                                          model.verifyUsername(value);
-                                        },
-                                        controller: model.passwordController,
-                                        obscureText: model.obsecureText,
-                                        style: TextStyle(
+                                  child: Stack(children: [
+                                    TextField(
+                                      enabled: true,
+                                      keyboardType: TextInputType.text,
+                                      onChanged: (value) {
+                                        model.verifyUsername(value);
+                                      },
+                                      controller: model.passwordController,
+                                      obscureText: model.obsecureText,
+                                      style: TextStyle(
+                                        color: const Color.fromRGBO(
+                                            149, 149, 149, 1),
+                                      ),
+                                      decoration: InputDecoration(
+                                        helperText: '',
+                                        contentPadding: EdgeInsets.zero,
+                                        // helperText: '',
+                                        errorText: model.getVerifiedPassword
+                                            ? null
+                                            : "Password must contain at least 6 characters",
+                                        errorStyle: TextStyle(),
+                                        hintText: "Password",
+                                        hintStyle: TextStyle(
+                                          fontSize: 14 * unitHeightValue,
                                           color: const Color.fromRGBO(
                                               149, 149, 149, 1),
                                         ),
-                                        decoration: InputDecoration(
-                                          helperText: '',
-                                          contentPadding: EdgeInsets.zero,
-                                          // helperText: '',
-                                          errorText: model.getVerifiedPassword
-                                              ? null
-                                              : "Password must contain at least 6 characters",
-                                          errorStyle: TextStyle(
-                                          ),
-                                          hintText: "Password",
-                                          hintStyle: TextStyle(
-                                            fontSize: 14 * unitHeightValue,
+
+                                        labelStyle: TextStyle(
+                                            fontFamily: 'Open Sans',
+                                            fontSize: 14,
                                             color: const Color.fromRGBO(
-                                                149, 149, 149, 1),
-                                          ),
-                                          labelStyle: TextStyle(
-                                              fontFamily: 'Open Sans',
-                                              fontSize: 14 * unitHeightValue,
-                                              color: const Color.fromRGBO(
-                                                  149, 149, 149, 1)),
-                                          focusedBorder: UnderlineInputBorder(
-                                            borderSide: model
-                                                .getVerifiedPassword
-                                                ? BorderSide(
-                                                color: const Color.fromRGBO(
-                                                    196, 196, 196, 1))
-                                                : BorderSide(color: Colors.red),
-                                          ),
+                                                149, 149, 149, 1)),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: model.getVerifiedPassword
+                                              ? BorderSide(
+                                                  color: const Color.fromRGBO(
+                                                      196, 196, 196, 1))
+                                              : BorderSide(color: Colors.red),
                                         ),
                                       ),
-                                      Align(
-                                        alignment: Alignment.centerRight,
-                                        child: model.obsecureText?IconButton(
-                                          color: Colors.grey,
-                                          icon: Icon(
-                                               Icons.visibility_off
-                                          ), onPressed:()=>{
-                                          model.obsecureValue()
-                                        },
-                                        ):IconButton(
-                                          color: Color.fromRGBO(146, 204, 180, 1),
-                                          icon: Icon(
-                                              Icons.visibility
-                                          ), onPressed:()=>{
-                                          model.obsecureValue()
-                                        },
-                                        ),
-                                      ),
-                                    ]
-                                  ),
+                                    ),
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: model.obsecureText
+                                          ? IconButton(
+                                              color: Colors.grey,
+                                              icon: Icon(Icons.visibility_off),
+                                              onPressed: () =>
+                                                  {model.obsecureValue()},
+                                            )
+                                          : IconButton(
+                                              color: Color.fromRGBO(
+                                                  146, 204, 180, 1),
+                                              icon: Icon(Icons.visibility),
+                                              onPressed: () =>
+                                                  {model.obsecureValue()},
+                                            ),
+                                    ),
+                                  ]),
                                 ),
                               ],
                             ),
@@ -180,36 +175,38 @@ class LoginView extends StatelessWidget {
                                   model.passwordController.text),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Container(
-                                    width: MediaQuery.of(context).size.width * 0.05,
-                                    ),
-                                    SizedBox(width: 25,),
-                                    Container(
-                                child: Image.asset(
-                                  "assets/images/Group 1799.png",
-                                  width:
-                                      MediaQuery.of(context).size.width *
-                                          0.09,
-                                ),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width *
-                                    0.04,
-                              ),
-                              Container(
-                                child: Text(
-                                  "LOGIN",
-                                  style: TextStyle(
-                                    fontFamily: 'Open Sans',
-                                    fontSize: 16 * unitHeightValue,
-                                    color: const Color.fromRGBO(
-                                        107, 126, 129, 1),
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.05,
                                   ),
-                                ),
-                              )
-                                  ],
-                                ),
+                                  SizedBox(
+                                    width: 25,
+                                  ),
+                                  Container(
+                                    child: Image.asset(
+                                      "assets/images/Group 1799.png",
+                                      width: MediaQuery.of(context).size.width *
+                                          0.09,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.04,
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      "LOGIN",
+                                      style: TextStyle(
+                                        fontFamily: 'Open Sans',
+                                        fontSize: 16 * unitHeightValue,
+                                        color: const Color.fromRGBO(
+                                            107, 126, 129, 1),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                             SizedBox(
                               height:
@@ -228,32 +225,34 @@ class LoginView extends StatelessWidget {
                                       child: DialogView(),
                                     );
                                   }),
-                              child: Row(
-                                children: [
-                                  Container(
-                                  width: MediaQuery.of(context).size.width * 0.05,
+                              child: Row(children: [
+                                Container(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.05,
                                 ),
-                                  SizedBox(width: 25,),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        top: 6,
-                                        bottom: 6,
-                                        // left: MediaQuery.of(context).size.width *
-                                        //     0.1
-                                    ),
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "FORGOT PASSWORD?",
-                                      style: TextStyle(
-                                        fontFamily: 'Open Sans',
-                                        fontSize: 14 * unitHeightValue,
-                                        color:
-                                        const Color.fromRGBO(149, 149, 149, 1),
-                                      ),
+
+                                SizedBox(
+                                  width: 25,
+                                ),
+                                Container(
+                                  padding: EdgeInsets.only(
+                                    top: 6,
+                                    bottom: 6,
+                                    // left: MediaQuery.of(context).size.width *
+                                    //     0.1
+                                  ),
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    "FORGOT PASSWORD?",
+                                    style: TextStyle(
+                                      fontFamily: 'Open Sans',
+                                      fontSize: 14 * unitHeightValue,
+                                      color: const Color.fromRGBO(
+                                          149, 149, 149, 1),
                                     ),
                                   ),
-                                ]
-                              ),
+                                ),
+                              ]),
                             )
                           ],
                         ),
@@ -262,7 +261,10 @@ class LoginView extends StatelessWidget {
                   ]),
                 ),
           bottomNavigationBar: Container(
-            child: Image.asset("assets/images/login-bottom.png",fit:BoxFit.fitWidth,),
+            child: Image.asset(
+              "assets/images/login-bottom.png",
+              fit: BoxFit.fitWidth,
+            ),
           ),
         ),
       ),
