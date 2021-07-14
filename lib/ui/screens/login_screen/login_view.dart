@@ -9,6 +9,11 @@ class LoginView extends StatelessWidget {
   const LoginView({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
+    double deviceWidth = MediaQuery.of(context).size.width;
+    bool isMobile = deviceWidth < 600;
+    print("Device is :::: $isMobile");
+    print("Device width is ::: $deviceWidth");
     return ViewModelBuilder<LoginViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
         top: true,
@@ -16,7 +21,7 @@ class LoginView extends StatelessWidget {
           backgroundColor: Colors.white,
           resizeToAvoidBottomInset: false,
           appBar:
-              LoginAppBar(height: MediaQuery.of(context).size.height * 0.33),
+              LoginAppBar(height: MediaQuery.of(context).size.height * 0.35),
           body: model.isLoading
               ? Center(
                   child: CircularProgressIndicator(),
@@ -24,6 +29,7 @@ class LoginView extends StatelessWidget {
               : SingleChildScrollView(
                   child: Column(
                       children: [
+                        isMobile?SizedBox(height: 0,):SizedBox(height: MediaQuery.of(context).size.width *0.1,),
                     Container(
                       padding: EdgeInsets.only(
                         // top: MediaQuery.of(context).size.height * 0.01,
@@ -65,7 +71,7 @@ class LoginView extends StatelessWidget {
                                         //hintText: "Enter Email",
                                         hintText: "Email",
                                         hintStyle: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 14 * unitHeightValue,
                                           color: const Color.fromRGBO(
                                               149, 149, 149, 1),
                                         ),
@@ -123,13 +129,13 @@ class LoginView extends StatelessWidget {
                                           ),
                                           hintText: "Password",
                                           hintStyle: TextStyle(
-                                            fontSize: 14,
+                                            fontSize: 14 * unitHeightValue,
                                             color: const Color.fromRGBO(
                                                 149, 149, 149, 1),
                                           ),
                                           labelStyle: TextStyle(
                                               fontFamily: 'Open Sans',
-                                              fontSize: 14,
+                                              fontSize: 14 * unitHeightValue,
                                               color: const Color.fromRGBO(
                                                   149, 149, 149, 1)),
                                           focusedBorder: UnderlineInputBorder(
@@ -196,7 +202,7 @@ class LoginView extends StatelessWidget {
                                   "LOGIN",
                                   style: TextStyle(
                                     fontFamily: 'Open Sans',
-                                    fontSize: 16,
+                                    fontSize: 16 * unitHeightValue,
                                     color: const Color.fromRGBO(
                                         107, 126, 129, 1),
                                   ),
@@ -240,7 +246,7 @@ class LoginView extends StatelessWidget {
                                       "FORGOT PASSWORD?",
                                       style: TextStyle(
                                         fontFamily: 'Open Sans',
-                                        fontSize: 14,
+                                        fontSize: 14 * unitHeightValue,
                                         color:
                                         const Color.fromRGBO(149, 149, 149, 1),
                                       ),

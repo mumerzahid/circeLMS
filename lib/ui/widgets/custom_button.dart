@@ -13,6 +13,8 @@ class CustomButton extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
+    double multiplier = 9;
     return Column(
       children: [
         Stack(
@@ -75,7 +77,7 @@ class CustomButton extends StatelessWidget {
                 screenName,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    fontSize: 9,
+                    fontSize: multiplier*unitHeightValue,
                     color: pressed
                         ? Color.fromRGBO(107, 126, 130, 1)
                         : Color.fromRGBO(146, 204, 180, 1)),

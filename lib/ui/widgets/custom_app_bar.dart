@@ -19,6 +19,7 @@ class CustomAppBar extends PreferredSize {
 
   @override
   Widget build(BuildContext context) {
+    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
     return SafeArea(
       top: true,
       child: Container(
@@ -88,7 +89,7 @@ class CustomAppBar extends PreferredSize {
                     child: Text(
                   sName,
                   style: TextStyle(
-                    fontSize: 19,
+                    fontSize: 19 * unitHeightValue,
                     color: const Color.fromRGBO(107, 126, 130, 1),
                   ),
                 )),

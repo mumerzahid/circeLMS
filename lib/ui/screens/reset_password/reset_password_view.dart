@@ -8,6 +8,7 @@ class ResetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
     return ViewModelBuilder<ResetViewModel>.reactive(
         builder: (context, model, child) => SafeArea(
               // top: true,
@@ -23,7 +24,7 @@ class ResetView extends StatelessWidget {
                               labelText: "EMAIL",
                               labelStyle: TextStyle(
                                   fontFamily: 'Open Sans',
-                                  fontSize: 14,
+                                  fontSize: 14 * unitHeightValue,
                                   color:
                                       const Color.fromRGBO(149, 149, 149, 1)),
                               focusedBorder: UnderlineInputBorder(
@@ -45,7 +46,7 @@ class ResetView extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'Open Sans',
                               fontWeight: FontWeight.w700,
-                              fontSize: 16,
+                              fontSize: 16 * unitHeightValue,
                               color: const Color.fromRGBO(255, 255, 255, 1),
                             ),
                           ),

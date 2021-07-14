@@ -11,6 +11,7 @@ class LoginAppBar extends PreferredSize {
   @override
   Size get preferredSize => Size.fromHeight(height);
   Widget build(BuildContext context) {
+    double unitHeightValue = MediaQuery.of(context).size.width * 0.0022;
     return Container(
       color: Colors.white,
       child: Column(
@@ -53,7 +54,7 @@ class LoginAppBar extends PreferredSize {
               Text("For use by hospital staff only",
                 style: TextStyle(
                   fontFamily: 'Open Sans',
-                  fontSize: 16,
+                  fontSize: 16 * unitHeightValue,
                   color: const Color.fromRGBO(
                       107, 126, 129, 1),
                 ),),
