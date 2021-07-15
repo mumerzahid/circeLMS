@@ -1,3 +1,4 @@
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -13,8 +14,7 @@ class CustomButton extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
-    double multiplier = 9;
+
     return Column(
       children: [
         Stack(
@@ -77,7 +77,7 @@ class CustomButton extends StatelessWidget {
                 screenName,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    fontSize: multiplier*unitHeightValue,
+                    fontSize: ConstantsMessages.fontSmall,
                     color: pressed
                         ? Color.fromRGBO(107, 126, 130, 1)
                         : Color.fromRGBO(146, 204, 180, 1)),

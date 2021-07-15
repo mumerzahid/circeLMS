@@ -1,4 +1,5 @@
 // This Widget is use in Dashboard FeedsPart
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -21,7 +22,7 @@ class DashboardFeeds extends StatelessWidget {
         title: Text(title,
             maxLines: 2,
             style: TextStyle(
-                fontFamily: 'Open Sans', fontSize: 14, color: Colors.white)),
+                fontFamily: 'Open Sans', fontSize: ConstantsMessages.fontLarge, color: Colors.white)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -35,7 +36,7 @@ class DashboardFeeds extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Open Sans',
                       fontWeight: FontWeight.w700,
-                      fontSize: 16,
+                      fontSize: ConstantsMessages.fontVeryLarge,
                       color: const Color.fromRGBO(107, 126, 130, 1),
                     ),
                   ),

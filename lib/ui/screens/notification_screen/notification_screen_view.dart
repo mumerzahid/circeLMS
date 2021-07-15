@@ -1,3 +1,4 @@
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -8,7 +9,6 @@ class NotificationScreenView extends StatelessWidget {
   const NotificationScreenView({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
     return ViewModelBuilder<NotificationScreenViewModel>.reactive(
       builder: (context, model, child) => model.loadingScreen?Center(
         child: CircularProgressIndicator(),
@@ -27,7 +27,7 @@ class NotificationScreenView extends StatelessWidget {
                       style: TextStyle(
                         fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w700,
-                        fontSize: 16 * unitHeightValue,
+                        fontSize: ConstantsMessages.fontVeryLarge,
                         color: const Color.fromRGBO(107, 126, 130, 1),
                       ),
                     ),
@@ -88,7 +88,7 @@ class NotificationScreenView extends StatelessWidget {
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 16 * unitHeightValue,
+                                            fontSize: ConstantsMessages.fontVeryLarge,
                                             color: const Color.fromRGBO(
                                                 254, 254, 254, 1),
                                           ),
@@ -114,7 +114,7 @@ class NotificationScreenView extends StatelessWidget {
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 16 * unitHeightValue,
+                                            fontSize: ConstantsMessages.fontVeryLarge,
                                             color: const Color.fromRGBO(
                                                 25, 87, 94, 1),
                                           ),
@@ -124,7 +124,7 @@ class NotificationScreenView extends StatelessWidget {
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 12 * unitHeightValue,
+                                            fontSize: ConstantsMessages.fontMedium,
                                             color: const Color.fromRGBO(
                                                 107, 126, 130, 1),
                                           ),
@@ -150,7 +150,7 @@ class NotificationScreenView extends StatelessWidget {
                                             style: TextStyle(
                                               fontFamily: 'Open Sans',
                                               fontWeight: FontWeight.w700,
-                                              fontSize: 14 * unitHeightValue,
+                                              fontSize: ConstantsMessages.fontLarge,
                                               color: const Color.fromRGBO(
                                                   107, 126, 129, 1),
                                             ),

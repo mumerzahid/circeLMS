@@ -15,7 +15,6 @@ class DrawerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
     // final GlobalKey _scaffoldKey = new GlobalKey();
     return ViewModelBuilder<DrawerViewModel>.reactive(
       builder: (context, model, child) => SafeArea(
@@ -133,7 +132,7 @@ class DrawerView extends StatelessWidget {
                                   "Dashboard",
                                   style: TextStyle(
                                       fontFamily: 'Open Sans',
-                                      fontSize: 13 * unitHeightValue,
+                                      fontSize: ConstantsMessages.fontModerate,
                                       color: const Color.fromRGBO(
                                           107, 126, 129, 1)),
                                 ),
@@ -181,7 +180,7 @@ class DrawerView extends StatelessWidget {
                                   "Settings     ",
                                   style: TextStyle(
                                       fontFamily: 'Open Sans',
-                                      fontSize: 13 * unitHeightValue,
+                                      fontSize: ConstantsMessages.fontModerate,
                                       color: const Color.fromRGBO(
                                           107, 126, 129, 1)),
                                 ),

@@ -1,3 +1,4 @@
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/ui/widgets/custom_button_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +20,6 @@ class CustomAppBar extends PreferredSize {
 
   @override
   Widget build(BuildContext context) {
-    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
     return SafeArea(
       top: true,
       child: Container(
@@ -92,7 +92,7 @@ class CustomAppBar extends PreferredSize {
                     child: Text(
                   sName,
                   style: TextStyle(
-                    fontSize: 19 * unitHeightValue,
+                    fontSize: ConstantsMessages.screenName,
                     color: const Color.fromRGBO(107, 126, 130, 1),
                   ),
                 )),

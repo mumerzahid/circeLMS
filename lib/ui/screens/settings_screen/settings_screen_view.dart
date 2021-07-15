@@ -1,3 +1,4 @@
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/ui/screens/drawer_view/drawer_view.dart';
 import 'package:crice_hospital_app/ui/screens/settings_screen/settings_screen_viewmodel.dart';
 import 'package:crice_hospital_app/ui/widgets/custom_app_bar.dart';
@@ -10,7 +11,6 @@ class SettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
     return ViewModelBuilder<SettingsViewModel>.reactive(
       builder: (context, model, child) => Scaffold(
         backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -42,7 +42,7 @@ class SettingsView extends StatelessWidget {
                           style: TextStyle(
                             fontFamily: 'Open Sans',
                             fontWeight: FontWeight.w700,
-                            fontSize: 14 * unitHeightValue,
+                            fontSize: ConstantsMessages.fontLarge,
                             color: const Color.fromRGBO(107, 126, 130, 1),
                           ),
                         )),
@@ -72,7 +72,7 @@ class SettingsView extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'Open Sans',
                               fontWeight: FontWeight.w700,
-                              fontSize: 14 * unitHeightValue,
+                              fontSize: ConstantsMessages.fontLarge,
                               color: const Color.fromRGBO(107, 126, 130, 1),
                             ),
                           )
@@ -106,7 +106,7 @@ class SettingsView extends StatelessWidget {
                               style: TextStyle(
                                 fontFamily: 'Open Sans',
                                 fontWeight: FontWeight.w700,
-                                fontSize: 16 * unitHeightValue,
+                                fontSize: ConstantsMessages.fontVeryLarge,
                                 color: const Color.fromRGBO(255, 255, 255, 1),
                               ),
                             ),

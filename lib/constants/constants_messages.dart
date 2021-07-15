@@ -1,4 +1,8 @@
+import 'package:crice_hospital_app/app/locator.dart';
+import 'package:crice_hospital_app/services/local_storage.dart';
+
 class ConstantsMessages {
+  final LocalStorage localStorage = locator<LocalStorage>();
   // Error Messages
   static final String emailEmpty = "Please enter your email";
   static final String emailInvalid = "Invalid email";
@@ -30,4 +34,27 @@ class ConstantsMessages {
   static String reportsURL = reportsEPoint;
   static String notificationsURL = baseUrl + endNPoint;
   static String fcmToken = baseUrl + midPoint + fcmTokenPoints;
+
+  static double fontSmall = 9;
+  static double fontMedium = 12;
+  static double fontModerate =13;
+  static double fontLarge = 14;
+  static double fontVeryLarge = 16;
+  static double calenderSize=18;
+  static double screenName =19;
+
+  setFontSizes(){
+   bool valueFont = localStorage.getDeviceType();
+   if(valueFont==false)
+     {
+       fontSmall = 12;
+       fontMedium=14;
+      fontModerate =15;
+       fontLarge=17;
+       fontVeryLarge=19;
+       calenderSize = 20;
+       screenName =21;
+     }
+  }
+
 }

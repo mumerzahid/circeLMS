@@ -1,3 +1,4 @@
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/ui/screens/visits_screen/visit_screen_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,6 @@ class VisitScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
     return ViewModelBuilder<VisitScreenViewModel>.reactive(
       builder: (context, model, child) => model.screenLoading
           ? Center(child: CircularProgressIndicator())
@@ -27,7 +27,7 @@ class VisitScreenView extends StatelessWidget {
                               style: TextStyle(
                                 fontFamily: 'Open Sans',
                                 fontWeight: FontWeight.w700,
-                                fontSize: 16 * unitHeightValue,
+                                fontSize: ConstantsMessages.fontVeryLarge,
                                 color: const Color.fromRGBO(107, 126, 130, 1),
                               ),
                             ),
@@ -108,7 +108,7 @@ class VisitScreenView extends StatelessWidget {
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w700,
-                                                                  fontSize: 14 * unitHeightValue,
+                                                                  fontSize: ConstantsMessages.fontLarge,
                                                                   color: const Color
                                                                           .fromRGBO(
                                                                       107,
@@ -133,7 +133,7 @@ class VisitScreenView extends StatelessWidget {
                                                                         FontWeight
                                                                             .w700,
                                                                     fontSize:
-                                                                        14 * unitHeightValue,
+                                                                        ConstantsMessages.fontLarge,
                                                                     color: const Color
                                                                             .fromRGBO(
                                                                         107,
@@ -173,7 +173,7 @@ class VisitScreenView extends StatelessWidget {
                                                                           FontWeight
                                                                               .w700,
                                                                       fontSize:
-                                                                          12 * unitHeightValue,
+                                                                          ConstantsMessages.fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -195,7 +195,7 @@ class VisitScreenView extends StatelessWidget {
                                                                       fontFamily:
                                                                           'Open Sans',
                                                                       fontSize:
-                                                                          12 * unitHeightValue,
+                                                                      ConstantsMessages.fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -234,7 +234,7 @@ class VisitScreenView extends StatelessWidget {
                                                                         FontWeight
                                                                             .w700,
                                                                     fontSize:
-                                                                        12 * unitHeightValue,
+                                                                        ConstantsMessages.fontMedium,
                                                                     color: const Color
                                                                             .fromRGBO(
                                                                         107,
@@ -267,7 +267,7 @@ class VisitScreenView extends StatelessWidget {
                                                                     fontFamily:
                                                                         'Open Sans',
                                                                     fontSize:
-                                                                        12 * unitHeightValue,
+                                                                    ConstantsMessages.fontMedium,
                                                                     color: const Color
                                                                             .fromRGBO(
                                                                         107,
@@ -304,7 +304,7 @@ class VisitScreenView extends StatelessWidget {
                                                                           FontWeight
                                                                               .w700,
                                                                       fontSize:
-                                                                          12 * unitHeightValue,
+                                                                      ConstantsMessages.fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -326,7 +326,7 @@ class VisitScreenView extends StatelessWidget {
                                                                       fontFamily:
                                                                           'Open Sans',
                                                                       fontSize:
-                                                                          12 * unitHeightValue,
+                                                                      ConstantsMessages.fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -362,7 +362,7 @@ class VisitScreenView extends StatelessWidget {
                                                                           FontWeight
                                                                               .w700,
                                                                       fontSize:
-                                                                          12 * unitHeightValue,
+                                                                      ConstantsMessages.fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -384,7 +384,7 @@ class VisitScreenView extends StatelessWidget {
                                                                       fontFamily:
                                                                           'Open Sans',
                                                                       fontSize:
-                                                                          12 * unitHeightValue,
+                                                                      ConstantsMessages.fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -420,7 +420,7 @@ class VisitScreenView extends StatelessWidget {
                                                                           FontWeight
                                                                               .w700,
                                                                       fontSize:
-                                                                          12 * unitHeightValue,
+                                                                      ConstantsMessages.fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -442,7 +442,7 @@ class VisitScreenView extends StatelessWidget {
                                                                       fontFamily:
                                                                           'Open Sans',
                                                                       fontSize:
-                                                                          12 * unitHeightValue,
+                                                                      ConstantsMessages.fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,

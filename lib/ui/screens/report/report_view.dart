@@ -1,3 +1,4 @@
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/ui/screens/report/report_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -7,7 +8,6 @@ class ReportView extends StatelessWidget {
   ReportView({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
     return ViewModelBuilder<ReportViewModel>.reactive(
       builder: (context, model, value) => Scaffold(
         backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
@@ -35,7 +35,7 @@ class ReportView extends StatelessWidget {
                                         style: TextStyle(
                                           fontFamily: 'Open Sans',
                                           fontWeight: FontWeight.w700,
-                                          fontSize: 12 * unitHeightValue,
+                                          fontSize: ConstantsMessages.fontMedium,
                                           color: const Color.fromRGBO(
                                               107, 126, 130, 1),
                                         ),
@@ -57,7 +57,7 @@ class ReportView extends StatelessWidget {
                                                 color: const Color.fromRGBO(
                                                     107, 126, 130, 1),
                                               )),
-                                          height: 32,
+                                          height: 32  ,
                                           width: 150,
                                           child: Row(
                                             children: [
@@ -76,7 +76,7 @@ class ReportView extends StatelessWidget {
                                                           style: TextStyle(
                                                             fontFamily:
                                                                 'Open Sans',
-                                                            fontSize: 12 * unitHeightValue,
+                                                            fontSize: ConstantsMessages.fontMedium,
                                                             color: const Color
                                                                     .fromRGBO(
                                                                 107,
@@ -98,7 +98,7 @@ class ReportView extends StatelessWidget {
                                                           style: TextStyle(
                                                             fontFamily:
                                                                 'Open Sans',
-                                                            fontSize: 12 * unitHeightValue,
+                                                            fontSize: ConstantsMessages.fontMedium,
                                                             color: const Color
                                                                     .fromRGBO(
                                                                 107,
@@ -122,7 +122,7 @@ class ReportView extends StatelessWidget {
                                                           Icons
                                                               .calendar_today_outlined,
                                                           color: Colors.green,
-                                                          size: 18 *unitHeightValue,
+                                                          size: ConstantsMessages.calenderSize,
                                                         ),
                                                       )))
                                             ],
@@ -166,7 +166,7 @@ class ReportView extends StatelessWidget {
                                         style: TextStyle(
                                           fontFamily: 'Open Sans',
                                           fontWeight: FontWeight.w700,
-                                          fontSize: 16 * unitHeightValue,
+                                          fontSize: ConstantsMessages.fontVeryLarge,
                                           color: const Color.fromRGBO(
                                               255, 255, 255, 1),
                                         ),
@@ -186,7 +186,7 @@ class ReportView extends StatelessWidget {
                                         style: TextStyle(
                                           fontFamily: 'Open Sans',
                                           fontWeight: FontWeight.w700,
-                                          fontSize: 12 * unitHeightValue,
+                                          fontSize: ConstantsMessages.fontMedium,
                                           color: const Color.fromRGBO(
                                               107, 126, 130, 1),
                                         ),
@@ -227,7 +227,7 @@ class ReportView extends StatelessWidget {
                                                             fontFamily:
                                                                 'Open Sans',
                                                             // fontWeight: FontWeight.w700,
-                                                            fontSize: 12 * unitHeightValue,
+                                                            fontSize: ConstantsMessages.fontMedium,
                                                             color: const Color
                                                                     .fromRGBO(
                                                                 107,
@@ -249,7 +249,7 @@ class ReportView extends StatelessWidget {
                                                             fontFamily:
                                                                 'Open Sans',
                                                             // fontWeight: FontWeight.w700,
-                                                            fontSize: 12 * unitHeightValue,
+                                                            fontSize: ConstantsMessages.fontMedium,
                                                             color: const Color
                                                                     .fromRGBO(
                                                                 107,
@@ -273,7 +273,7 @@ class ReportView extends StatelessWidget {
                                                           Icons
                                                               .calendar_today_outlined,
                                                           color: Colors.green,
-                                                          size: 18,
+                                                          size: ConstantsMessages.calenderSize,
                                                         ),
                                                       )))
                                             ],

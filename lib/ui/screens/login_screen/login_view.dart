@@ -1,3 +1,4 @@
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/ui/screens/Dialog/dialog_view.dart';
 import 'package:crice_hospital_app/ui/widgets/login_app_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,12 +10,12 @@ class LoginView extends StatelessWidget {
   const LoginView({Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
     double deviceWidth = MediaQuery.of(context).size.width;
     bool isMobile = deviceWidth < 600;
     print("Device is :::: $isMobile");
     print("Device width is ::: $deviceWidth");
     return ViewModelBuilder<LoginViewModel>.reactive(
+      onModelReady: (model) => model.init(),
       builder: (context, model, child) => SafeArea(
         top: true,
         child: Scaffold(
@@ -72,7 +73,7 @@ class LoginView extends StatelessWidget {
                                         //hintText: "Enter Email",
                                         hintText: "Email",
                                         hintStyle: TextStyle(
-                                          fontSize: 14 * unitHeightValue,
+                                          fontSize: ConstantsMessages.fontLarge,
                                           color: const Color.fromRGBO(
                                               149, 149, 149, 1),
                                         ),
@@ -126,7 +127,7 @@ class LoginView extends StatelessWidget {
                                         errorStyle: TextStyle(),
                                         hintText: "Password",
                                         hintStyle: TextStyle(
-                                          fontSize: 14 * unitHeightValue,
+                                          fontSize: ConstantsMessages.fontLarge,
                                           color: const Color.fromRGBO(
                                               149, 149, 149, 1),
                                         ),
@@ -199,7 +200,7 @@ class LoginView extends StatelessWidget {
                                       "LOGIN",
                                       style: TextStyle(
                                         fontFamily: 'Open Sans',
-                                        fontSize: 16 * unitHeightValue,
+                                        fontSize: ConstantsMessages.fontVeryLarge,
                                         color: const Color.fromRGBO(
                                             107, 126, 129, 1),
                                       ),
@@ -246,7 +247,7 @@ class LoginView extends StatelessWidget {
                                     "FORGOT PASSWORD?",
                                     style: TextStyle(
                                       fontFamily: 'Open Sans',
-                                      fontSize: 14 * unitHeightValue,
+                                      fontSize: ConstantsMessages.fontLarge,
                                       color: const Color.fromRGBO(
                                           149, 149, 149, 1),
                                     ),

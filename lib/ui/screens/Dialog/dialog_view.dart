@@ -1,4 +1,5 @@
 import 'package:crice_hospital_app/app/locator.dart';
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -13,7 +14,6 @@ class DialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
     dialogeContext = context;
     return ViewModelBuilder<DialogViewModel>.reactive(
       builder: (context, model, child) => Container(
@@ -29,7 +29,7 @@ class DialogView extends StatelessWidget {
                 "Forgot Password?",
                 style: TextStyle(
                     fontFamily: 'Open Sans',
-                    fontSize: 16 * unitHeightValue,
+                    fontSize: ConstantsMessages.fontVeryLarge,
                     color: const Color.fromRGBO(149, 149, 149, 1)),
               )),
               TextField(
@@ -45,7 +45,7 @@ class DialogView extends StatelessWidget {
                   hintText: "Email",
                   hintStyle: TextStyle(
                       fontFamily: 'Open Sans',
-                      fontSize: 14 * unitHeightValue,
+                      fontSize: 14,
                       color: const Color.fromRGBO(149, 149, 149, 1)),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: model.getVerifiedemail
@@ -71,7 +71,7 @@ class DialogView extends StatelessWidget {
                                     style: TextStyle(
                                       fontFamily: 'Open Sans',
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 16 * unitHeightValue,
+                                      fontSize: ConstantsMessages.fontVeryLarge,
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
                                     ),
@@ -98,7 +98,7 @@ class DialogView extends StatelessWidget {
                                     style: TextStyle(
                                       fontFamily: 'Open Sans',
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 16 * unitHeightValue,
+                                      fontSize: ConstantsMessages.fontVeryLarge,
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
                                     ),

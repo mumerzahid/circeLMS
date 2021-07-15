@@ -17,6 +17,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'services/snackbar.dart';
 
+
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     FlutterLocalNotificationsPlugin();
 AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -68,6 +69,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final LocalStorage _localStorage = locator<LocalStorage>();
   @override
   void initState() {
     super.initState();
@@ -78,6 +80,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    _localStorage.setDeviceType(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(

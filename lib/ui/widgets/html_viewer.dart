@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:crice_hospital_app/app/locator.dart';
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,7 @@ class _HtmlViewerState extends State<HtmlViewer> {
             style: TextStyle(
                 fontFamily: 'Open Sans',
                 fontWeight: FontWeight.w700,
-                fontSize: 16,
+                fontSize: ConstantsMessages.fontVeryLarge,
                 color: Colors.white),
           ),
           centerTitle: true,

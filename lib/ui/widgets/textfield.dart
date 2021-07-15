@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldWidget extends StatelessWidget {
@@ -74,7 +75,7 @@ class TextFieldWidget extends StatelessWidget {
                   hintText: hintText,
                   hintStyle: TextStyle(
                       color:  Color.fromRGBO(108, 127, 131, 5),
-                      fontSize: 14),
+                      fontSize: ConstantsMessages.fontLarge),
                   // validator: (val) => val.length < 6 ? 'Password too short.' : null,
                   // onSaved: (val) => _password = val,
                 ),

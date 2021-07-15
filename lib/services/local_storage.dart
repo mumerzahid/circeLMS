@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,6 +24,7 @@ class LocalStorage {
   String IS_LOGIN = 'isLogin';
   final String authToken = "token";
   final String fcmToken ="token";
+  bool isMobile ;
   // final String saveUserId = "userId";
   // String saveUserId =  "";
   void saveAuthToken(String token) async {
@@ -89,6 +91,18 @@ class LocalStorage {
   Future<bool> clearSharedPrefrences()async{
     // var _preferences = await SharedPreferences.getInstance();
     return preferences.clear();
+  }
+
+  setDeviceType(BuildContext context){
+    double deviceWidth = MediaQuery.of(context).size.width;
+    isMobile = deviceWidth < 600;
+    preferences.setBool('isMobile', isMobile);
+    // return MediaQuery.of(context).size.width < 600;
+  }
+
+  bool getDeviceType(){
+    // print(preferences.getBool('key'))
+    return preferences.getBool('isMobile');
   }
 
 }

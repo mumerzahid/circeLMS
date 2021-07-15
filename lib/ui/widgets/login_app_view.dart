@@ -1,3 +1,4 @@
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +55,7 @@ class LoginAppBar extends PreferredSize {
               Text("For use by hospital staff only",
                 style: TextStyle(
                   fontFamily: 'Open Sans',
-                  fontSize: 16 * unitHeightValue,
+                  fontSize: ConstantsMessages.fontVeryLarge,
                   color: const Color.fromRGBO(
                       107, 126, 129, 1),
                 ),),

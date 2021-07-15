@@ -1,3 +1,4 @@
+import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/ui/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
@@ -8,7 +9,6 @@ class ResetView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double unitHeightValue = MediaQuery.of(context).size.width * 0.002;
     return ViewModelBuilder<ResetViewModel>.reactive(
         builder: (context, model, child) => SafeArea(
               // top: true,
@@ -24,7 +24,7 @@ class ResetView extends StatelessWidget {
                               labelText: "EMAIL",
                               labelStyle: TextStyle(
                                   fontFamily: 'Open Sans',
-                                  fontSize: 14 * unitHeightValue,
+                                  fontSize: ConstantsMessages.fontLarge,
                                   color:
                                       const Color.fromRGBO(149, 149, 149, 1)),
                               focusedBorder: UnderlineInputBorder(
@@ -46,7 +46,7 @@ class ResetView extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'Open Sans',
                               fontWeight: FontWeight.w700,
-                              fontSize: 16 * unitHeightValue,
+                              fontSize: ConstantsMessages.fontVeryLarge,
                               color: const Color.fromRGBO(255, 255, 255, 1),
                             ),
                           ),
@@ -68,7 +68,7 @@ class ResetView extends StatelessWidget {
                             style: TextStyle(
                               fontFamily: 'Open Sans',
                               fontWeight: FontWeight.w700,
-                              fontSize: 16,
+                              fontSize: ConstantsMessages.fontVeryLarge,
                               color: const Color.fromRGBO(255, 255, 255, 1),
                             ),
                           ),

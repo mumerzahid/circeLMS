@@ -18,6 +18,7 @@ class LoginViewModel extends BaseViewModel {
   final SnackbarService _snackbarService = locator<SnackbarService>();
   final LocalStorage _localStorage = locator<LocalStorage>();
   final Api _api = locator<Api>();
+  final ConstantsMessages constantsMessages = ConstantsMessages();
 
   String _emailError;
   String get emailError => _emailError;
@@ -62,7 +63,9 @@ class LoginViewModel extends BaseViewModel {
       _email = true;
     notifyListeners();
   }
-
+  init() {
+    constantsMessages.setFontSizes();
+  }
   void errorListener(User loginModel) {
     if (loginModel.success) {
       print("Successfully");
