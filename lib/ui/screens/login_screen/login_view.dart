@@ -22,17 +22,18 @@ class LoginView extends StatelessWidget {
           backgroundColor: Colors.white,
           resizeToAvoidBottomInset: false,
           appBar:
-
               LoginAppBar(height: MediaQuery.of(context).size.height * 0.36),
           body: model.isLoading
               ? Center(
                   child: CircularProgressIndicator(),
                 )
               : SingleChildScrollView(
-
                   child: Column(children: [
-                    isMobile?SizedBox():SizedBox(height: MediaQuery.of(context).size.width * 0.1,),
-
+                    isMobile
+                        ? SizedBox()
+                        : SizedBox(
+                            height: MediaQuery.of(context).size.width * 0.1,
+                          ),
                     Container(
                       padding: EdgeInsets.only(
                         // top: MediaQuery.of(context).size.height * 0.01,
@@ -200,7 +201,8 @@ class LoginView extends StatelessWidget {
                                       "LOGIN",
                                       style: TextStyle(
                                         fontFamily: 'Open Sans',
-                                        fontSize: ConstantsMessages.fontVeryLarge,
+                                        fontSize:
+                                            ConstantsMessages.fontVeryLarge,
                                         color: const Color.fromRGBO(
                                             107, 126, 129, 1),
                                       ),
@@ -231,7 +233,6 @@ class LoginView extends StatelessWidget {
                                   width:
                                       MediaQuery.of(context).size.width * 0.05,
                                 ),
-
                                 SizedBox(
                                   width: 25,
                                 ),

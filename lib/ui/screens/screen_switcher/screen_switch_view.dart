@@ -20,8 +20,11 @@ class ScreenSwitchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<ScreenSwitcherViewModel>.reactive(
-      onModelReady: (model) => SchedulerBinding.instance
-          .addPostFrameCallback((_) => model.setIndex(index, screenName)),
+      onModelReady: (model) {
+        SchedulerBinding.instance
+            .addPostFrameCallback((_) => model.setIndex(index, screenName));
+        model.init();
+      },
       builder: (context, model, child) => Scaffold(
         appBar: CustomAppBar(
             height: MediaQuery.of(context).size.height * 0.36,

@@ -51,7 +51,8 @@ class DashboardView extends StatelessWidget {
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontWeight: FontWeight.w700,
-                                            fontSize: ConstantsMessages.fontVeryLarge,
+                                            fontSize:
+                                                ConstantsMessages.fontVeryLarge,
                                             color: const Color.fromRGBO(
                                                 255, 255, 255, 1),
                                           ),
@@ -71,7 +72,8 @@ class DashboardView extends StatelessWidget {
                                               style: TextStyle(
                                                 fontFamily: 'Open Sans',
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: ConstantsMessages.fontLarge,
+                                                fontSize:
+                                                    ConstantsMessages.fontLarge,
                                                 color: const Color.fromRGBO(
                                                     107, 126, 130, 1),
                                               ),
@@ -192,7 +194,7 @@ class DashboardView extends StatelessWidget {
                                                                             fontWeight:
                                                                                 FontWeight.w700,
                                                                             fontSize:
-                                                                                13,
+                                                                                ConstantsMessages.fontMedium,
                                                                             color: const Color.fromRGBO(
                                                                                 107,
                                                                                 126,
@@ -258,7 +260,9 @@ class DashboardView extends StatelessWidget {
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w700,
-                                                                      fontSize: ConstantsMessages.fontMedium ,
+                                                                      fontSize:
+                                                                          ConstantsMessages
+                                                                              .fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -300,7 +304,8 @@ class DashboardView extends StatelessWidget {
                                           style: TextStyle(
                                             fontFamily: 'Open Sans',
                                             fontWeight: FontWeight.w700,
-                                            fontSize: ConstantsMessages.fontVeryLarge,
+                                            fontSize:
+                                                ConstantsMessages.fontVeryLarge,
                                             color: const Color.fromRGBO(
                                                 255, 255, 255, 1),
                                           ),
@@ -320,7 +325,8 @@ class DashboardView extends StatelessWidget {
                                               style: TextStyle(
                                                 fontFamily: 'Open Sans',
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: ConstantsMessages.fontLarge,
+                                                fontSize:
+                                                    ConstantsMessages.fontLarge,
                                                 color: const Color.fromRGBO(
                                                     107, 126, 130, 1),
                                               ),
@@ -426,7 +432,9 @@ class DashboardView extends StatelessWidget {
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w700,
-                                                                  fontSize: ConstantsMessages.fontModerate,
+                                                                  fontSize:
+                                                                      ConstantsMessages
+                                                                          .fontModerate,
                                                                   color: const Color
                                                                           .fromRGBO(
                                                                       107,
@@ -523,7 +531,9 @@ class DashboardView extends StatelessWidget {
                                                                       fontWeight:
                                                                           FontWeight
                                                                               .w700,
-                                                                      fontSize: ConstantsMessages.fontMedium,
+                                                                      fontSize:
+                                                                          ConstantsMessages
+                                                                              .fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,

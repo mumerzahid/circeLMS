@@ -46,6 +46,7 @@ class TextFieldWidget extends StatelessWidget {
                 textAlignVertical: TextAlignVertical.center,
                 // enabled: true,
                 decoration: InputDecoration(
+              
                   focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                           color: Color.fromRGBO(112, 112, 112, 1)

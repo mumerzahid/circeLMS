@@ -1,14 +1,18 @@
+import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/constants/constants_messages.dart';
+import 'package:crice_hospital_app/services/local_storage.dart';
 import 'package:crice_hospital_app/ui/screens/visits_screen/visit_screen_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class VisitScreenView extends StatelessWidget {
-  const VisitScreenView({Key key}) : super(key: key);
+  LocalStorage localStorage = locator<LocalStorage>();
+  VisitScreenView({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool valueFont = localStorage.getDeviceType();
     return ViewModelBuilder<VisitScreenViewModel>.reactive(
       builder: (context, model, child) => model.screenLoading
           ? Center(child: CircularProgressIndicator())
@@ -108,7 +112,9 @@ class VisitScreenView extends StatelessWidget {
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w700,
-                                                                  fontSize: ConstantsMessages.fontLarge,
+                                                                  fontSize:
+                                                                      ConstantsMessages
+                                                                          .fontLarge,
                                                                   color: const Color
                                                                           .fromRGBO(
                                                                       107,
@@ -133,7 +139,8 @@ class VisitScreenView extends StatelessWidget {
                                                                         FontWeight
                                                                             .w700,
                                                                     fontSize:
-                                                                        ConstantsMessages.fontLarge,
+                                                                        ConstantsMessages
+                                                                            .fontLarge,
                                                                     color: const Color
                                                                             .fromRGBO(
                                                                         107,
@@ -173,7 +180,8 @@ class VisitScreenView extends StatelessWidget {
                                                                           FontWeight
                                                                               .w700,
                                                                       fontSize:
-                                                                          ConstantsMessages.fontMedium,
+                                                                          ConstantsMessages
+                                                                              .fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -195,7 +203,8 @@ class VisitScreenView extends StatelessWidget {
                                                                       fontFamily:
                                                                           'Open Sans',
                                                                       fontSize:
-                                                                      ConstantsMessages.fontMedium,
+                                                                          ConstantsMessages
+                                                                              .fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -234,7 +243,8 @@ class VisitScreenView extends StatelessWidget {
                                                                         FontWeight
                                                                             .w700,
                                                                     fontSize:
-                                                                        ConstantsMessages.fontMedium,
+                                                                        ConstantsMessages
+                                                                            .fontMedium,
                                                                     color: const Color
                                                                             .fromRGBO(
                                                                         107,
@@ -246,37 +256,73 @@ class VisitScreenView extends StatelessWidget {
                                                               ),
                                                               // SizedBox(width: MediaQuery.of(context).size.width * 0.13,),
                                                               // horizontalSpaceLarge,
-                                                              Container(
-
-                                                                color: model
-                                                                    .levelColor(model
-                                                                        .visits[
-                                                                            index]
-                                                                        .level),
-                                                                alignment: Alignment
-                                                                    .centerLeft,
-                                                                width: MediaQuery.of(context).size.width * 0.09,
-                                                                height: 25,
-                                                                child: Text(
-                                                                  model
-                                                                      .visits[
-                                                                          index]
-                                                                      .level,
-                                                                  style:
-                                                                      TextStyle(
-                                                                    fontFamily:
-                                                                        'Open Sans',
-                                                                    fontSize:
-                                                                    ConstantsMessages.fontMedium,
-                                                                    color: const Color
-                                                                            .fromRGBO(
-                                                                        107,
-                                                                        126,
-                                                                        130,
-                                                                        1),
-                                                                  ),
-                                                                ),
-                                                              ),
+                                                              valueFont
+                                                                  ? Container(
+                                                                      color: model.levelColor(model
+                                                                          .visits[
+                                                                              index]
+                                                                          .level),
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .centerLeft,
+                                                                      width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.1,
+                                                                      height:
+                                                                          25,
+                                                                      child:
+                                                                          Text(
+                                                                        model
+                                                                            .visits[index]
+                                                                            .level,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontFamily:
+                                                                              'Open Sans',
+                                                                          fontSize:
+                                                                              ConstantsMessages.fontMedium,
+                                                                          color: const Color.fromRGBO(
+                                                                              107,
+                                                                              126,
+                                                                              130,
+                                                                              1),
+                                                                        ),
+                                                                      ),
+                                                                    )
+                                                                  : Container(
+                                                                      color: model.levelColor(model
+                                                                          .visits[
+                                                                              index]
+                                                                          .level),
+                                                                      alignment:
+                                                                          Alignment
+                                                                              .centerLeft,
+                                                                      width: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.063,
+                                                                      height:
+                                                                          25,
+                                                                      child:
+                                                                          Text(
+                                                                        model
+                                                                            .visits[index]
+                                                                            .level,
+                                                                        style:
+                                                                            TextStyle(
+                                                                          fontFamily:
+                                                                              'Open Sans',
+                                                                          fontSize:
+                                                                              ConstantsMessages.fontMedium,
+                                                                          color: const Color.fromRGBO(
+                                                                              107,
+                                                                              126,
+                                                                              130,
+                                                                              1),
+                                                                        ),
+                                                                      ),
+                                                                    ),
                                                             ],
                                                           ),
                                                         ),
@@ -304,7 +350,8 @@ class VisitScreenView extends StatelessWidget {
                                                                           FontWeight
                                                                               .w700,
                                                                       fontSize:
-                                                                      ConstantsMessages.fontMedium,
+                                                                          ConstantsMessages
+                                                                              .fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -326,7 +373,8 @@ class VisitScreenView extends StatelessWidget {
                                                                       fontFamily:
                                                                           'Open Sans',
                                                                       fontSize:
-                                                                      ConstantsMessages.fontMedium,
+                                                                          ConstantsMessages
+                                                                              .fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -362,7 +410,8 @@ class VisitScreenView extends StatelessWidget {
                                                                           FontWeight
                                                                               .w700,
                                                                       fontSize:
-                                                                      ConstantsMessages.fontMedium,
+                                                                          ConstantsMessages
+                                                                              .fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -384,7 +433,8 @@ class VisitScreenView extends StatelessWidget {
                                                                       fontFamily:
                                                                           'Open Sans',
                                                                       fontSize:
-                                                                      ConstantsMessages.fontMedium,
+                                                                          ConstantsMessages
+                                                                              .fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -420,7 +470,8 @@ class VisitScreenView extends StatelessWidget {
                                                                           FontWeight
                                                                               .w700,
                                                                       fontSize:
-                                                                      ConstantsMessages.fontMedium,
+                                                                          ConstantsMessages
+                                                                              .fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,
@@ -442,7 +493,8 @@ class VisitScreenView extends StatelessWidget {
                                                                       fontFamily:
                                                                           'Open Sans',
                                                                       fontSize:
-                                                                      ConstantsMessages.fontMedium,
+                                                                          ConstantsMessages
+                                                                              .fontMedium,
                                                                       color: const Color
                                                                               .fromRGBO(
                                                                           107,

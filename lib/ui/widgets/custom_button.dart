@@ -14,7 +14,6 @@ class CustomButton extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         Stack(

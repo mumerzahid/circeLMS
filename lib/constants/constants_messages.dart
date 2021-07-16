@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/services/local_storage.dart';
 
@@ -13,15 +15,16 @@ class ConstantsMessages {
 
   //API
   // static String   fBaseURL = "http://79.143.187.147:3000/";
-  static String   fBaseURL = "https://cricecams.com/";
-  static String baseUrl ="https://cricecams.com/api/v1/geofence/";
+  static String fBaseURL = "https://cricecams.com/";
+  static String baseUrl = "https://cricecams.com/api/v1/geofence/";
   static String midPoint = "auth/";
   static String endLPoint = "login";
   static String endRPoint = "reset_password";
   static String endSPoint = "settings";
   static String endVPoint = "visits";
   static String endDPoint = "dashboard";
-  static String reportsEPoint ="https://cricecams.com/visits/hospital_facility_report_mob";
+  static String reportsEPoint =
+      "https://cricecams.com/visits/hospital_facility_report_mob";
   static String fcmTokenPoints = "update_fcm_token";
   static String endNPoint = "geofence_notifications";
   static bool loginStatus = false;
@@ -37,24 +40,45 @@ class ConstantsMessages {
 
   static double fontSmall = 9;
   static double fontMedium = 12;
-  static double fontModerate =13;
+  static double fontModerate = 13;
   static double fontLarge = 14;
   static double fontVeryLarge = 16;
-  static double calenderSize=18;
-  static double screenName =19;
-
-  setFontSizes(){
-   bool valueFont = localStorage.getDeviceType();
-   if(valueFont==false)
-     {
-       fontSmall = 12;
-       fontMedium=14;
-      fontModerate =15;
-       fontLarge=17;
-       fontVeryLarge=19;
-       calenderSize = 20;
-       screenName =21;
-     }
+  static double calenderSize = 18;
+  static double screenName = 19;
+// *4
+  setFontSizes() {
+    bool valueFont = localStorage.getDeviceType();
+    if (Platform.isAndroid) {
+      if (valueFont == false) {
+        print("Android Tablet");
+        fontSmall = 12;
+        fontMedium = 14;
+        fontModerate = 15;
+        fontLarge = 17;
+        fontVeryLarge = 19;
+        calenderSize = 20;
+        screenName = 21;
+      }
+    } else {
+      if (valueFont == false) {
+        print("IOS Tablet");
+        fontSmall = 15;
+        fontMedium = 17;
+        fontModerate = 19;
+        fontLarge = 21;
+        fontVeryLarge = 23;
+        calenderSize = 20;
+        screenName = 20;
+      } else {
+        print("IOS Mobile");
+        fontSmall = 10;
+        fontMedium = 15;
+        fontModerate = 15;
+        fontLarge = 18;
+        fontVeryLarge = 18;
+        calenderSize = 20;
+        screenName = 19;
+      }
+    }
   }
-
 }

@@ -19,7 +19,7 @@ class DialogView extends StatelessWidget {
       builder: (context, model, child) => Container(
         height: MediaQuery.of(context).size.height * 0.27,
         child: Padding(
-          padding:EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             // crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +29,7 @@ class DialogView extends StatelessWidget {
                 "Forgot Password?",
                 style: TextStyle(
                     fontFamily: 'Open Sans',
-                    fontSize: ConstantsMessages.fontVeryLarge,
+                    fontSize: ConstantsMessages.fontLarge,
                     color: const Color.fromRGBO(149, 149, 149, 1)),
               )),
               TextField(
@@ -45,7 +45,7 @@ class DialogView extends StatelessWidget {
                   hintText: "Email",
                   hintStyle: TextStyle(
                       fontFamily: 'Open Sans',
-                      fontSize: 14,
+                      fontSize: ConstantsMessages.fontMedium,
                       color: const Color.fromRGBO(149, 149, 149, 1)),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: model.getVerifiedemail
@@ -71,7 +71,7 @@ class DialogView extends StatelessWidget {
                                     style: TextStyle(
                                       fontFamily: 'Open Sans',
                                       fontWeight: FontWeight.w700,
-                                      fontSize: ConstantsMessages.fontVeryLarge,
+                                      fontSize: ConstantsMessages.fontLarge,
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
                                     ),
@@ -98,7 +98,7 @@ class DialogView extends StatelessWidget {
                                     style: TextStyle(
                                       fontFamily: 'Open Sans',
                                       fontWeight: FontWeight.w700,
-                                      fontSize: ConstantsMessages.fontVeryLarge,
+                                      fontSize: ConstantsMessages.fontLarge,
                                       color: const Color.fromRGBO(
                                           255, 255, 255, 1),
                                     ),

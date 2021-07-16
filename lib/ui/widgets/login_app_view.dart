@@ -12,7 +12,6 @@ class LoginAppBar extends PreferredSize {
   @override
   Size get preferredSize => Size.fromHeight(height);
   Widget build(BuildContext context) {
-    double unitHeightValue = MediaQuery.of(context).size.width * 0.0022;
     return Container(
       color: Colors.white,
       child: Column(
