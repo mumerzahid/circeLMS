@@ -13,7 +13,6 @@ import 'package:crice_hospital_app/app/router.dart' as router;
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-// import 'package:rxdart/rxdart.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'services/snackbar.dart';
 
@@ -28,6 +27,10 @@ AndroidNotificationChannel channel = AndroidNotificationChannel(
 );
 String firebaseToken;
 void main() async {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
@@ -47,7 +50,9 @@ void main() async {
   // await FlutterDownloader.initialize(
 
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  runApp(MaterialApp(debugShowCheckedModeBanner: false, home: MyApp()));
+  runApp(
+      MaterialApp(debugShowCheckedModeBanner: false, home: MyApp(
+  )));
 }
 
 Map<int, Color> color = {
@@ -73,6 +78,10 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     // _localStorage.getFirebaseToken();
     firebaseNotification();
     loadData();
@@ -167,10 +176,6 @@ class _AfterSplashState extends State<AfterSplash> {
       }
     });
     getLoginStatus();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
     _initializeFlutterFire();
   }
 
@@ -278,15 +283,3 @@ void _initializeFlutterFire() async {
   }
 }
 
-// class ReceivedNotification {
-//   ReceivedNotification({
-//     @required this.id,
-//     @required this.title,
-//     @required this.body,
-//     @required this.payload,
-//   });
-//   final int id;
-//   final String title;
-//   final String body;
-//   final String payload;
-// }
