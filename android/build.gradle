@@ -31,3 +31,11 @@ subprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+/*
+Alais:crice-hospital
+All Passwords:12345678
+fill only 2 fields
+F&L Name: Crice Hospital
+Organization: AlgoRepublic
+* */
