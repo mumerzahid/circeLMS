@@ -268,7 +268,7 @@ class VisitScreenView extends StatelessWidget {
                                                                       width: MediaQuery.of(context)
                                                                               .size
                                                                               .width *
-                                                                          0.1,
+                                                                          0.11,
                                                                       height:
                                                                           25,
                                                                       child:
