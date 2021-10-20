@@ -9,3 +9,5 @@ const String DrawerRoute = 'Drawer';
 const String ResetRoute = 'Reset';
 const String HtmlRoute = 'HtmlViewr';
 const String YoutubeRoute = 'Youtube';
+const String QrRoute = 'qrRoute';
+

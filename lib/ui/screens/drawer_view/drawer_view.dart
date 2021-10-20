@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/constants/route_path.dart';
+import 'package:crice_hospital_app/ui/qr_code_screen/qr_code_screen_view.dart';
+import 'package:crice_hospital_app/ui/qr_code_screen/qr_code_screen_viewmodel.dart';
 import 'package:crice_hospital_app/ui/screens/login_screen/login_viewmodel.dart';
 import 'package:crice_hospital_app/ui/screens/settings_screen/settings_screen_viewmodel.dart';
 import 'package:flutter/cupertino.dart';
@@ -130,6 +132,55 @@ class DrawerView extends StatelessWidget {
                                 onTap: () => LoginViewModel().navigation(),
                                 child: Text(
                                   "Dashboard",
+                                  style: TextStyle(
+                                      fontFamily: 'Open Sans',
+                                      fontSize: ConstantsMessages.fontModerate,
+                                      color: const Color.fromRGBO(
+                                          107, 126, 129, 1)),
+                                ),
+                              )
+                            ]),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.02,
+                            ),
+                            Row(children: [
+                              InkWell(
+                                onTap: () =>
+                                    QrCodeScreenViewModel().navigation(),
+                                // model.navigationService
+                                // .navigateTo(SwitcherRoute),
+                                child: Container(
+                                  child: Padding(
+                                      padding: EdgeInsets.all(
+                                          MediaQuery.of(context).size.width *
+                                              0.01),
+                                      child: Icon(
+                                        Icons.qr_code_outlined,
+                                        color: Colors.white,
+                                      )),
+                                  height:
+                                  MediaQuery.of(context).size.width * 0.1,
+                                  width:
+                                  MediaQuery.of(context).size.width * 0.1,
+                                  decoration: BoxDecoration(
+                                      color: Color.fromRGBO(134, 227, 220, 1),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(10.0),
+                                        topRight: Radius.circular(10.0),
+                                        bottomLeft: Radius.circular(10.0),
+                                        bottomRight: Radius.circular(10.0),
+                                      ),
+                                      border: Border.all(color: Colors.white)),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 15,
+                              ),
+                              InkWell(
+                                onTap: () =>
+                                    QrCodeScreenViewModel().navigation(),
+                                child: Text(
+                                  "QR Codes   ",
                                   style: TextStyle(
                                       fontFamily: 'Open Sans',
                                       fontSize: ConstantsMessages.fontModerate,

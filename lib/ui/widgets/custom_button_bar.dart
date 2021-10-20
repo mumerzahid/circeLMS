@@ -62,17 +62,16 @@ class CustomButtonBar extends StatelessWidget {
               // SizedBox(width: 0.4,),
               InkWell(
                 onTap: () {
-                  callback(2, "VISITS");
+                  callback(2, "CURRENT VISITS");
                   print(Text("VISITS"));
                 },
                 child: CustomButton(
                   imgUrl: 'assets/images/list-task.png',
-                  screenName: "VISITS",
-                  pressed: vScreen == "VISITS" ? true : false,
+                  screenName: "CURRENT VISITS",
+                  pressed: vScreen == "CURRENT VISITS" ? true : false,
                   // pressed: true,
                 ),
-              ),
-              // SizedBox(width: 0.1,),
+              ),// SizedBox(width: 0.1,),
               InkWell(
                 onTap: () {
                   callback(3, "NOTIFICATIONS");

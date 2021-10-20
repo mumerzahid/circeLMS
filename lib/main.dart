@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:crice_hospital_app/app/locator.dart';
 import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/services/local_storage.dart';
@@ -27,6 +28,8 @@ AndroidNotificationChannel channel = AndroidNotificationChannel(
 );
 String firebaseToken;
 void main() async {
+
+  HttpOverrides.global = MyHttpOverrides();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -68,44 +71,44 @@ Map<int, Color> color = {
   900: Color.fromRGBO(134, 227, 220, 1),
 };
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final LocalStorage _localStorage = locator<LocalStorage>();
-  @override
-  void initState() {
-    super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
-    // _localStorage.getFirebaseToken();
-    firebaseNotification();
-    loadData();
+  class MyApp extends StatefulWidget {
+    @override
+    _MyAppState createState() => _MyAppState();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    _localStorage.setDeviceType(context);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Container(
-          // color: Theme.of(context).primaryColor,
-          child: Image.asset(
-            'assets/images/splash_screen.gif',
-            fit: BoxFit.fill,
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+  class _MyAppState extends State<MyApp> {
+    final LocalStorage _localStorage = locator<LocalStorage>();
+    @override
+    void initState() {
+      super.initState();
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.portraitUp,
+        DeviceOrientation.portraitDown,
+      ]);
+      // _localStorage.getFirebaseToken();
+      firebaseNotification();
+      loadData();
+    }
+
+    @override
+    Widget build(BuildContext context) {
+      _localStorage.setDeviceType(context);
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: Container(
+            // color: Theme.of(context).primaryColor,
+            child: Image.asset(
+              'assets/images/splash_screen.gif',
+              fit: BoxFit.fill,
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+            ),
           ),
         ),
-      ),
-    );
-    // );
-  }
+      );
+      // );
+    }
 
   void loadData() {
     Timer(Duration(milliseconds: 5000), () {
@@ -284,4 +287,12 @@ void _initializeFlutterFire() async {
 }
 
 //check
+
+class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
 

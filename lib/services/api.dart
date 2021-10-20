@@ -51,6 +51,7 @@ import 'package:crice_hospital_app/constants/constants_messages.dart';
 import 'package:crice_hospital_app/model/dashboard.dart';
 import 'package:crice_hospital_app/model/hospital_notification.dart';
 import 'package:crice_hospital_app/model/html.dart';
+import 'package:crice_hospital_app/model/qr_codes.dart';
 import 'package:crice_hospital_app/model/reset_password.dart';
 import 'package:crice_hospital_app/model/settings.dart';
 import 'package:crice_hospital_app/model/user.dart';
@@ -146,7 +147,6 @@ class Api {
     if (response.statusCode == 200) {
       print(response.statusCode);
       print(response.body);
-
       return VisitModel.fromJson(json.decode(response.body));
     } else {
       if (response.body != null)
@@ -266,6 +266,27 @@ class Api {
       } catch (e) {
         return null;
       }
+    }
+  }
+  @override
+  Future<QrCodesModel> QRCode() async {
+
+    String token = await _localStorage.getAuthToken();
+    print(token);
+    var header = {'Auth-Token': token};
+    final response = await client.post(
+        Uri.parse(ConstantsMessages.qrCodeURL),
+        headers: header
+    );
+    print(response);
+    if (response.statusCode == 200) {
+      print(response.statusCode);
+      return QrCodesModel.fromJson(json.decode(response.body));
+    } else {
+      if (response.body != null)
+        return QrCodesModel.fromJson(json.decode(response.body));
+      else
+        throw Exception(response.reasonPhrase);
     }
   }
   // @override

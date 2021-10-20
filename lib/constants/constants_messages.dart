@@ -15,6 +15,7 @@ class ConstantsMessages {
 
   //API
   // static String   fBaseURL = "http://79.143.187.147:3000/";
+  // static String baseUrl = "http://79.143.187.147:3000/api/v1/geofence/";
   static String fBaseURL = "https://cricecams.com/";
   static String baseUrl = "https://cricecams.com/api/v1/geofence/";
   static String midPoint = "auth/";
@@ -23,8 +24,11 @@ class ConstantsMessages {
   static String endSPoint = "settings";
   static String endVPoint = "visits";
   static String endDPoint = "dashboard";
+  static String endQRPoint = "qrcodes";
   static String reportsEPoint =
       "https://cricecams.com/visits/hospital_facility_report_mob";
+  // static String reportsEPoint =
+  //     "http://79.143.187.147:3000/visits/hospital_facility_report_mob";
   static String fcmTokenPoints = "update_fcm_token";
   static String endNPoint = "geofence_notifications";
   static bool loginStatus = false;
@@ -35,6 +39,7 @@ class ConstantsMessages {
   static String visitsURL = baseUrl + endVPoint + "?&&checkin_date=";
   static String dashBoardURL = baseUrl + endDPoint;
   static String reportsURL = reportsEPoint;
+  static String qrCodeURL = baseUrl + endQRPoint;
   static String notificationsURL = baseUrl + endNPoint;
   static String fcmToken = baseUrl + midPoint + fcmTokenPoints;
 

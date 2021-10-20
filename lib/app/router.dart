@@ -1,4 +1,5 @@
-  import 'package:crice_hospital_app/ui/screens/dashboard/dashboard_view.dart';
+  import 'package:crice_hospital_app/ui/qr_code_screen/qr_code_screen_view.dart';
+import 'package:crice_hospital_app/ui/screens/dashboard/dashboard_view.dart';
   import 'package:crice_hospital_app/ui/screens/drawer_view/drawer_view.dart';
   import 'package:crice_hospital_app/ui/screens/login_screen/login_view.dart';
   import 'package:crice_hospital_app/ui/screens/notification_screen/notification_screen_view.dart';
@@ -14,6 +15,7 @@
   import 'package:crice_hospital_app/constants/route_path.dart' as routes;
   import 'package:crice_hospital_app/ui/screens/reset_password/reset_password_view.dart';
   import 'locator.dart';
+  import '';
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case routes.DashboardRoute:
@@ -38,6 +40,8 @@
         return MaterialPageRoute(builder: (context) => HtmlViewer());
       case routes.YoutubeRoute:
         return MaterialPageRoute(builder: (context) =>  YoutubeView());
+      case routes.QrRoute:
+        return MaterialPageRoute(builder: (context) => QrCodeScreenView() );
       default:
         return MaterialPageRoute(
           builder: (context) => Scaffold(
